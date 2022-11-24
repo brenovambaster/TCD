@@ -17,9 +17,11 @@
  */
 package com.mycompany.adotapet;
 
+import credencial.Credencial;
+
 /**
  *
- * @author pedro
+ * @author pedro e Breno
  */
 public class Main {
 
@@ -28,6 +30,8 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Credencial cred = new Credencial("brenovambaster@gmail.com", "teste", true);
+        System.out.println(cred);
     }
-    
+
 }
