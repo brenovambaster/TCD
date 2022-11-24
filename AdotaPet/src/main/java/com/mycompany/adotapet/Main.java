@@ -17,7 +17,8 @@
  */
 package com.mycompany.adotapet;
 
-import credencial.Credencial;
+import com.mycompany.adotapet.credencial.Credencial;
+import com.mycompany.adotapet.telefone.Telefone;
 
 /**
  *
@@ -32,6 +33,10 @@ public class Main {
         // TODO code application logic here
         Credencial cred = new Credencial("brenovambaster@gmail.com", "teste", true);
         System.out.println(cred);
+
+        Telefone fone = new Telefone((short) 33, 999301145, "comercial");
+        System.out.println(fone);
+
     }
 
 }
