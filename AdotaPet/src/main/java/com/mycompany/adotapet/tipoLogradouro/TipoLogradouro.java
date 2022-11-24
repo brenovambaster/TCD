@@ -15,7 +15,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package com.mycompany.adotapet.tipoLogadouro;
+package com.mycompany.adotapet.tipoLogradouro;
 
 import com.mycompany.adotapet.entidade.Entidade;
 
@@ -24,21 +24,22 @@ import com.mycompany.adotapet.entidade.Entidade;
  *
  * @author Breno Vambaster C. L
  */
-public class TipoLogadouro extends Entidade {
+public class TipoLogradouro extends Entidade {
 
     private String nome;
 
-//<editor-fold defaultstate="collapsed" desc="Constructors">
-    public TipoLogadouro() {
+    //<editor-fold defaultstate="collapsed" desc="Constructors">
+    public TipoLogradouro() {
     }
 
-    public TipoLogadouro(String nome) {
+    public TipoLogradouro(String nome) {
         this.nome = nome;
         setId(null);
     }
 
-//</editor-fold>
-//<editor-fold defaultstate="collapsed" desc="Getters/Setters">
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public String getNome() {
         return nome;
     }
@@ -48,9 +49,13 @@ public class TipoLogadouro extends Entidade {
     }
 
 //</editor-fold>
+    
     @Override
     public String toString() {
-        return "TipoLogadouro{" + "nome=" + nome + ", ID:" + super.toString();
+        return "TipoLogadouro{" 
+                + "nome=" + nome 
+                + ", " + super.toString()
+                + '}';
     }
 
 }

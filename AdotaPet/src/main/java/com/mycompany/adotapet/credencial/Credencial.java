@@ -29,6 +29,7 @@ public class Credencial extends Entidade {
     private String email;
     private String senha;
     private boolean ativo;
+    
     //<editor-fold defaultstate="collapsed" desc="Constructors">
 
     public Credencial() {
@@ -40,7 +41,8 @@ public class Credencial extends Entidade {
         this.ativo = ativo;
         setId(null);
     }
-//</editor-fold>
+    //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="getters/setters">
 
     public String getEmail() {
@@ -66,11 +68,15 @@ public class Credencial extends Entidade {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-//</editor-fold>
+    //</editor-fold>
 
     @Override
     public String toString() {
-        return "Credencial{" + "email=" + email + ", senha=" + senha + ", ativo=" + ativo + ", id: " + super.toString();
+        return "Credencial{" 
+                + "email=" + email 
+                + ", senha=" + senha 
+                + ", ativo=" + ativo 
+                + ", id: " + super.toString();
     }
 
 }

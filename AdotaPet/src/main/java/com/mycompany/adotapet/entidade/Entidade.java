@@ -60,11 +60,7 @@ public abstract class Entidade {
 
     @Override
     public String toString() {
-        return "Entidade{" 
-                + "id=" + id 
-                + ", excluido=" + excluido 
-                + '}';
-    }
-    
-    
+        return  "id=" + id 
+                + ", excluido=" + excluido;
+    }  
 }

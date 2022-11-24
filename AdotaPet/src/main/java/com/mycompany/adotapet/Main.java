@@ -18,8 +18,9 @@
 package com.mycompany.adotapet;
 
 import com.mycompany.adotapet.credencial.Credencial;
+import com.mycompany.adotapet.endereco.Endereco;
 import com.mycompany.adotapet.telefone.Telefone;
-import com.mycompany.adotapet.tipoLogadouro.TipoLogadouro;
+import com.mycompany.adotapet.tipoLogradouro.TipoLogradouro;
 
 /**
  *
@@ -38,9 +39,15 @@ public class Main {
         Telefone fone = new Telefone((short) 33, 999301145, "comercial");
         System.out.println(fone);
 
-        TipoLogadouro logadouro = new TipoLogadouro("Rua");
-        System.out.println(logadouro);
-
+        TipoLogradouro logradouro = new TipoLogradouro("Rua");
+        System.out.println(logradouro);
+        
+        String stringEstado = "MG";
+        Character estado[] = new Character[2];
+        estado[0] = stringEstado.charAt(0);
+        estado[1] = stringEstado.charAt(1);
+        Endereco endereco = new Endereco(logradouro, "2", 678, "casa", "Monte", "Montes Claros", estado , 4567);
+        System.out.println("> " + endereco);
     }
 
 }
