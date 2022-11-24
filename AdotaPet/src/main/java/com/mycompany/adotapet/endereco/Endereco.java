@@ -132,7 +132,7 @@ public class Endereco extends Entidade{
                 + ", complemento = " + complemento 
                 + ", bairro = " + bairro 
                 + ", cidade = " + cidade 
-                + ", estado = " + estado[0] +estado[1]
+                + ", estado = " + estado[0] + estado[1]
                 + ", cep = " + cep 
                 + ", " + super.toString()
                 + '}';
