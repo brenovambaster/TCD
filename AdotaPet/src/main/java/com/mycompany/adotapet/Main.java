@@ -19,6 +19,7 @@ package com.mycompany.adotapet;
 
 import com.mycompany.adotapet.credencial.Credencial;
 import com.mycompany.adotapet.telefone.Telefone;
+import com.mycompany.adotapet.tipoLogadouro.TipoLogadouro;
 
 /**
  *
@@ -36,6 +37,9 @@ public class Main {
 
         Telefone fone = new Telefone((short) 33, 999301145, "comercial");
         System.out.println(fone);
+
+        TipoLogadouro logadouro = new TipoLogadouro("Rua");
+        System.out.println(logadouro);
 
     }
 
