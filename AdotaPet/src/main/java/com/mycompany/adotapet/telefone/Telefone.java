@@ -42,6 +42,7 @@ public class Telefone extends Entidade {
     }
 
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public Short getDDD() {
         return DDD;
@@ -68,9 +69,15 @@ public class Telefone extends Entidade {
     }
 
 //</editor-fold>
+    
     @Override
     public String toString() {
-        return "Telefone{" + "DDD=" + DDD + ", numero=" + numero + ", mensagem=" + mensagem + ", ID: " + super.toString() + "}";
+        return "Telefone{" 
+                + "DDD=" + DDD 
+                + ", numero=" + numero 
+                + ", mensagem=" + mensagem 
+                + ", " + super.toString() 
+                + "}";
     }
 
 }

@@ -33,19 +33,23 @@ public class TipoLogradouro extends Entidade {
     }
 
     public TipoLogradouro(String nome) {
-        this.nome = nome;
-        setId(null);
+        this.nome = nome.length() > 35 ? nome.substring(0, 35) : nome;
     }
 
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
+    
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String nome) throws Exception {
+        if (nome == null || nome.length() > 35){
+            throw new Exception ("Nome não pode ter mais que 35 caracteres ou vazio!");
+        }else{
+            this.nome = nome;
+        }
     }
 
 //</editor-fold>

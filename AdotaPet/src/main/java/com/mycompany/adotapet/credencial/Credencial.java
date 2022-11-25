@@ -18,6 +18,7 @@
 package com.mycompany.adotapet.credencial;
 
 import com.mycompany.adotapet.entidade.Entidade;
+import com.mycompany.adotapet.usuario.Usuario;
 
 /**
  * Classe Credencial
@@ -29,18 +30,20 @@ public class Credencial extends Entidade {
     private String email;
     private String senha;
     private boolean ativo;
+    private Usuario usuario;
     
     //<editor-fold defaultstate="collapsed" desc="Constructors">
 
     public Credencial() {
     }
 
-    public Credencial(String email, String senha, boolean ativo) {
-        this.email = email;
+    public Credencial(String email, String senha, boolean ativo, Usuario usuario) {
+        this.email = email.length() > 45 ? email.substring(0, 45) : email;
         this.senha = senha;
         this.ativo = ativo;
-        setId(null);
+        this.usuario = usuario;
     }
+
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="getters/setters">
@@ -49,8 +52,12 @@ public class Credencial extends Entidade {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String email) throws Exception {
+        if (email == null || email.length() > 35){
+            throw new Exception ("Email não pode ter mais que 35 caracteres ou vazio!");
+        }else{
+            this.email = email;
+        }
     }
 
     public String getSenha() {
@@ -68,6 +75,16 @@ public class Credencial extends Entidade {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
+    
     //</editor-fold>
 
     @Override
@@ -76,7 +93,9 @@ public class Credencial extends Entidade {
                 + "email=" + email 
                 + ", senha=" + senha 
                 + ", ativo=" + ativo 
-                + ", id: " + super.toString();
+                + ", " + super.toString()
+                + ", " + usuario
+                + '}';
     }
 
 }

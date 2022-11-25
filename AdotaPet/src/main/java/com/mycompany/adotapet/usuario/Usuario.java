@@ -26,7 +26,7 @@ import com.mycompany.adotapet.telefone.Telefone;
  * Classe Usuario
  * @author Pedro Dias
  */
-public class Usuario extends Entidade{
+public abstract class Usuario extends Entidade{
     private String nome;
     private Long cpf;
     private Telefone telefone;
@@ -53,8 +53,8 @@ public class Usuario extends Entidade{
     }
 
     public void setNome(String nome) throws Exception{
-        if (nome == null || nome.length() > 35){
-            throw new Exception ("Nome não pode ter mais que 35 caracteres!");
+    if (nome == null || nome.length() > 35){
+            throw new Exception ("Nome não pode ter mais que 35 caracteres ou vazio!");
         }else{
             this.nome = nome;
         }
@@ -84,5 +84,16 @@ public class Usuario extends Entidade{
         this.endereco = endereco;
     }
     
-    
+    //</editor-fold>
+
+    @Override
+    public String toString() {
+        return "Usuario{" 
+                + "nome=" + nome 
+                + ", cpf=" + cpf 
+                + ", telefone=" + telefone 
+                + ", endereco=" + endereco 
+                + ", " + super.toString()
+                + '}';
+    }  
 }
