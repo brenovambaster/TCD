@@ -25,6 +25,7 @@ import com.mycompany.adotapet.larTemporario.LarTemporario;
 import com.mycompany.adotapet.medicamento.Medicamento;
 import com.mycompany.adotapet.pet.Pet;
 import com.mycompany.adotapet.raca.Raca;
+import com.mycompany.adotapet.requerimentoAdocao.RequerimentoAdocao;
 import com.mycompany.adotapet.telefone.Telefone;
 import com.mycompany.adotapet.tipoLogradouro.TipoLogradouro;
 import com.mycompany.adotapet.tutor.Tutor;
@@ -85,7 +86,9 @@ public class Main {
         
         Credencial cred = new Credencial("brenovambaster@gmail.com", "teste", true, voluntario);
         System.out.println(cred);
-   
+        
+        RequerimentoAdocao reqAd = new RequerimentoAdocao( LocalDate.of(2020, Month.DECEMBER, 25), tutor, larTemporario);
+        System.out.println(reqAd);
                 
     }
 
