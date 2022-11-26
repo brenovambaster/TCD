@@ -33,7 +33,6 @@
  */
 package com.mycompany.adotapet.repositorio;
 
-
 import com.mycompany.adotapet.entidade.Entidade;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -151,7 +150,7 @@ public abstract class Dao<T>
 
     @Override
     public List<T> findAll() {
-            //
+        //
         try ( PreparedStatement preparedStatement
                 = DbConnection.getConexao().prepareStatement(
                         getFindAllStatment())) {
@@ -172,9 +171,9 @@ public abstract class Dao<T>
         return null;
     }
 
-        @Override
+    @Override
     public List<T> findAllOnTrash() {
-            //
+        //
         try ( PreparedStatement preparedStatement
                 = DbConnection.getConexao().prepareStatement(
                         getFindAllOnTrashStatement())) {
@@ -194,7 +193,7 @@ public abstract class Dao<T>
 
         return null;
     }
-    
+
     @Override
     public List<T> extractObjects(ResultSet resultSet) {
         List<T> objects = new ArrayList<>();
@@ -211,44 +210,43 @@ public abstract class Dao<T>
     }
 
     @Override
-    public void moveToTrash(Long id){
-            try ( PreparedStatement preparedStatement
-                    = DbConnection.getConexao().prepareStatement(
-                            getMoveToTrashStatement())) {
+    public void moveToTrash(Long id) {
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConexao().prepareStatement(
+                        getMoveToTrashStatement())) {
 
-                // Assemble the SQL statement with the id
-                preparedStatement.setLong(1, id);
-                
-                // Show the full sentence
-                System.out.println(">> SQL: " + preparedStatement);
+            // Assemble the SQL statement with the id
+            preparedStatement.setLong(1, id);
 
-                // Performs the update on the database
-                preparedStatement.executeUpdate();
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
 
-            } catch (Exception ex) {
-                System.out.println("Exception: " + ex);
-            }
+            // Performs the update on the database
+            preparedStatement.executeUpdate();
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
     }
 
     @Override
-    public void restoreFromTrash(Long id){
-            try ( PreparedStatement preparedStatement
-                    = DbConnection.getConexao().prepareStatement(
-                            getRestoreFromTrashStatement())) {
+    public void restoreFromTrash(Long id) {
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConexao().prepareStatement(
+                        getRestoreFromTrashStatement())) {
 
-                // Assemble the SQL statement with the id
-                preparedStatement.setLong(1, id);
-                                
-                // Show the full sentence
-                System.out.println(">> SQL: " + preparedStatement);
+            // Assemble the SQL statement with the id
+            preparedStatement.setLong(1, id);
 
-                // Performs the update on the database
-                preparedStatement.executeUpdate();
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
 
-            } catch (Exception ex) {
-                System.out.println("Exception: " + ex);
-            }
+            // Performs the update on the database
+            preparedStatement.executeUpdate();
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
     }
 
-    
 }
