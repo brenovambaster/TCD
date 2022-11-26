@@ -67,7 +67,7 @@ public class TipoLogradouroDAO extends Dao<TipoLogradouro> {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(EspecieDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TipoLogradouroDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -105,9 +105,9 @@ public class TipoLogradouroDAO extends Dao<TipoLogradouro> {
             logradouro.setNome(resultSet.getString("nome"));
             logradouro.setExcluido(resultSet.getBoolean("excluido"));
         } catch (SQLException ex) {
-            Logger.getLogger(EspecieDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TipoLogradouroDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(EspecieDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TipoLogradouroDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return logradouro;
