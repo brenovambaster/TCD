@@ -1,55 +1,88 @@
-/* 
- * Material didático destinado ao curso
- * de Programação Orientada a Objetos do 
- * Bacharelado em Ciência da Computação 
- * do IFNMG - Câmpus Montes Claros
+/*
+ * CC BY-NC-SA 4.0
+ *
+ * Copyright 2022 Luis Guisso &lt;luis dot guisso at ifnmg dot edu dot br&gt;.
+ *
+ * Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
+ *
+ * You are free to:
+ *   Share - copy and redistribute the material in any medium or format
+ *   Adapt - remix, transform, and build upon the material
+ *
+ * Under the following terms:
+ *   Attribution - You must give appropriate credit, provide 
+ *   a link to the license, and indicate if changes were made.
+ *   You may do so in any reasonable manner, but not in any 
+ *   way that suggests the licensor endorses you or your use.
+ *   NonCommercial - You may not use the material for commercial purposes.
+ *   ShareAlike - If you remix, transform, or build upon the 
+ *   material, you must distribute your contributions under 
+ *   the same license as the original.
+ *   No additional restrictions - You may not apply legal 
+ *   terms or technological measures that legally restrict 
+ *   others from doing anything the license permits.
+ *
+ * Notices:
+ *   You do not have to comply with the license for elements 
+ *   of the material in the public domain or where your use 
+ *   is permitted by an applicable exception or limitation.
+ *   No warranties are given. The license may not give you 
+ *   all of the permissions necessary for your intended use. 
+ *   For example, other rights such as publicity, privacy, 
+ *   or moral rights may limit how you use the material.
  */
 package com.mycompany.adotapet.repositorio;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 
 /**
- * Interface genérica com métodos mínimos requeridos para classes concretas.
- * 
- * @author Luis Guisso <luis dot guisso at ifnmg dot edu dot br>
- * @version 0.0.1, 29/11/2020
- * 
- * @param <T> Tipo da entidade a ser processada
- * @param <K> Tipo da chave primária
+ * Interface IDao
+ *
+ * @author Luis Guisso &lt;luis dot guisso at ifnmg dot edu dot br&gt;
+ * @version 0.1, 2022-10-24
+ * @param <T> Data type
  */
-public interface IDao<T, K> {
+public interface IDao<T> {
 
-    /**
-     * Executa o procedimento de salvamento (inserção ou atualização) do objeto
-     * mapeado no banco de dados.
-     * 
-     * @param o Objeto a ser salvo no banco de dados.
-     * @return Valor da chave primária gerada pela inclusão de um novo registro
-     * ou mesmo valor da chave primária do objeto original presistido anteriormente.
-     */
-    public K salvar(T o);
+    // Save
+    public String getSaveStatment();
 
-    /**
-     * Exclui o registro do objeto no banco de dados.
-     * 
-     * @param o Objeto a ser excluído.<br>
-     * <i>OBS.: o único valor útil é a identidade do objeto mapeado.</i>
-     * @return Condição de sucesso ou falha na exclusão.
-     */
-    public Boolean excluir(T o);
+    public String getUpdateStatment();
 
-    /**
-     * Recupera um dado objeto mapeado para o banco de dados por meio de sua
-     * chave de identidade.
-     * 
-     * @param id Identidade do objeto.
-     * @return Objeto segundo registro persistido.
-     */
-    public T localizarPorId(K id);
+    public void composeSaveOrUpdateStatement(PreparedStatement pstmt, T e); //trocas as icognitas - classDao implementa
 
-    /**
-     * Recupera todos os objetos mapeados para o banco de dados do tipo específico.
-     * @return Lista (geralmente um <code>ArrayList<T></code>) de objetos persistidos.
-     */
-    public List<T> localizarTodos();
+    public Long saveOrUpdate(T e);
+
+    // Get by ID
+    public String getFindByIdStatment();
+
+    public T findById(Long id);
+
+    // Get all
+    public String getFindAllStatment();
+
+    public List<T> findAll();
+    
+    // Get all on Trash
+    public String getFindAllOnTrashStatement();
+        
+    public List<T> findAllOnTrash();
+    
+    //marca um objeto com excluido
+    public String getMoveToTrashStatement();
+     
+    public void moveToTrash(Long id);
+    
+    //marca um objeto com não excluido
+    public String getRestoreFromTrashStatement();
+    
+    public void restoreFromTrash(Long id);
+    
+    // Assembly objects
+    public T extractObject(ResultSet resultSet);
+
+    public List<T> extractObjects(ResultSet resultSet);
+
 }
