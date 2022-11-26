@@ -22,7 +22,6 @@ import com.mycompany.adotapet.repositorio.Dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,10 +30,18 @@ import java.util.logging.Logger;
  *
  * @author Breno Vambaster C. L
  */
+
+/*
+<pre>CREATE TABLE `tipologradouro` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(35) NOT NULL,
+  `excluido` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+  ) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 </pre>
+ */
 public class TipoLogradouroDAO extends Dao<TipoLogradouro> {
 
     public static final String TABLE = "TipoLogradouro";
-
 
     @Override
     public String getSaveStatment() {
