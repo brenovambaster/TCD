@@ -30,6 +30,16 @@ import java.util.logging.Logger;
  *
  * @author Breno Vambaster C. L
  */
+/*
+CREATE TABLE `raca` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(35) NOT NULL,
+  `excluido` tinyint(1) DEFAULT '0',
+  `especie_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `especie_id` (`especie_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
+ */
 public class RacaDAO extends Dao<Raca> {
 
     public static final String TABLE = "raca";
