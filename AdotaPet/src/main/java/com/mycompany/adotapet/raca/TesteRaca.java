@@ -19,6 +19,7 @@ package com.mycompany.adotapet.raca;
 
 import com.mycompany.adotapet.especie.Especie;
 import com.mycompany.adotapet.especie.EspecieDao;
+import java.util.List;
 
 /**
  * Classe TesteRaca
@@ -27,7 +28,7 @@ import com.mycompany.adotapet.especie.EspecieDao;
  */
 public class TesteRaca {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // criando e  adicionando especiea ao bd
         Especie esp = new Especie("lobus");
         Long id_especie = new EspecieDao().saveOrUpdate(esp);
@@ -35,6 +36,30 @@ public class TesteRaca {
 
         // criando e adicionando raca ao bd
         Raca raca = new Raca("pitbull", esp);
+        Long id_raca = new RacaDAO().saveOrUpdate(raca);
+        raca.setId(id_raca);
+
+        // Alterando o nome da raca;
+        raca.setNome("Xuaua");
         new RacaDAO().saveOrUpdate(raca);
+
+        // pega tudo do bd
+        List<Raca> racas = new RacaDAO().findAll();
+        System.out.println("> " + racas);
+
+        //marca como excluido
+        new RacaDAO().moveToTrash(id_raca);
+
+        //pega tudo da lixeira
+        racas = new RacaDAO().findAllOnTrash();
+        System.out.println("> " + racas);
+
+        //desmarca como excluido
+        new RacaDAO().restoreFromTrash(id_raca);
+
+        //pega tudo da lixeira
+        racas = new RacaDAO().findAllOnTrash();
+        System.out.println("> " + racas);
+
     }
 }

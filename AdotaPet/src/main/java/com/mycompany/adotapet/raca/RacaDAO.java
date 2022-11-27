@@ -18,6 +18,7 @@
 package com.mycompany.adotapet.raca;
 
 import com.mycompany.adotapet.especie.Especie;
+import com.mycompany.adotapet.especie.EspecieDao;
 import com.mycompany.adotapet.repositorio.Dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,12 +47,12 @@ public class RacaDAO extends Dao<Raca> {
 
     @Override
     public String getSaveStatment() {
-        return " INSERT INTO " + TABLE + " (nome, especie_id) values (?,?)";
+        return " INSERT INTO " + TABLE + " (nome, excluido, especie_id) values (?, ?,?)";
     }
 
     @Override
     public String getUpdateStatment() {
-        return "UPDATE " + TABLE + " SET nome=? WHERE id= ? ";
+        return "UPDATE " + TABLE + " SET nome=?, excluido=?, especie_id=? WHERE id= ? ";
     }
 
     @Override
@@ -59,11 +60,12 @@ public class RacaDAO extends Dao<Raca> {
         try {
             //formata de acordo com o bd 
             pstmt.setString(1, raca.getNome());
-            pstmt.setLong(2, raca.getEspecie().getId());
+            pstmt.setBoolean(2, raca.isExcluido());
+            pstmt.setLong(3, raca.getEspecie().getId());
 
             // Just for the update
             if (raca.getId() != null) {
-                pstmt.setLong(3, raca.getId());
+                pstmt.setLong(4, raca.getId());
             }
 
         } catch (SQLException ex) {
@@ -103,6 +105,7 @@ public class RacaDAO extends Dao<Raca> {
         try {
             raca = new Raca();
             raca.setId(resultSet.getLong("id"));
+            raca.setEspecie(new EspecieDao().findById(resultSet.getLong("especie_id")));
             raca.setExcluido(resultSet.getBoolean("excluido"));
             raca.setNome(resultSet.getString("nome"));
         } catch (SQLException ex) {
