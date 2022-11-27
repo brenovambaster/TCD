@@ -61,8 +61,8 @@ public abstract class Dao<T>
         // Primary key
         Long id = 0L;
 
-        if (((Entidade) e).getId() == null
-                || ((Entidade) e).getId() == 0) {
+        //Checa se é para salvar ou editar. Se id==null, é para salvar
+        if (((Entidade) e).getId() == null || ((Entidade) e).getId() == 0) {
 
             // Insert a new register
             // try-with-resources
