@@ -45,7 +45,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
 
-        Telefone fone = new Telefone((short) 33, 999301145, "comercial");
+        Telefone fone = new Telefone((short) 33, 999301145, true);
         System.out.println(fone);
 
         TipoLogradouro logradouro = new TipoLogradouro("Rua");

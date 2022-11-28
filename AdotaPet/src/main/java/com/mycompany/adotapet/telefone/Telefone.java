@@ -28,13 +28,13 @@ public class Telefone extends Entidade {
 
     private Short DDD;
     private Integer numero;
-    private String mensagem;
+    private Boolean mensagem;
 
     //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Telefone() {
     }
 
-    public Telefone(Short DDD, Integer numero, String mensagem) {
+    public Telefone(Short DDD, Integer numero, Boolean mensagem) {
         this.DDD = DDD;
         this.numero = numero;
         this.mensagem = mensagem;
@@ -60,15 +60,15 @@ public class Telefone extends Entidade {
         this.numero = numero;
     }
 
-    public String getMensagem() {
+    public Boolean getMensagem() {
         return mensagem;
     }
 
-    public void setMensagem(String mensagem) {
+    public void setMensagem(Boolean mensagem) {
         this.mensagem = mensagem;
     }
-
-//</editor-fold>
+    
+    //</editor-fold>
     
     @Override
     public String toString() {
