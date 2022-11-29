@@ -35,7 +35,7 @@ import java.util.logging.Logger;
  * PRIMARY KEY (`id`),
  * UNIQUE KEY `id` (`id`),
  * UNIQUE KEY `numero` (`numero`)
- * ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</pre> Classe TelefoneDao
+ * ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</pre> Classe TelefoneDAO
  *
  * @author Pedro Dias
  */
