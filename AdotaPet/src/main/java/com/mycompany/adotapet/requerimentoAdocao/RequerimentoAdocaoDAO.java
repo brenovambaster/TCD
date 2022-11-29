@@ -26,8 +26,8 @@ import java.sql.ResultSet;
  * @author Pedro Henrique
  */
 
-/*
-<pre>CREATE TABLE `requerimentoadocao` (
+/**
+  CREATE TABLE `requerimentoadocao` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(35) NOT NULL,
   `lartemporario_id` int(11) NOT NULL,
@@ -40,8 +40,8 @@ import java.sql.ResultSet;
   CONSTRAINT PRIMARY KEY (`id`),
   CONSTRAINT FOREGEIN KEY (`lartemporario_id`) REFERENCES lartemporario (id),
   CONSTRAINT FOREGEIN KEY (`tutor_id`) REFERENCES tutor (id)
-  ) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 </pre>
- */
+  ) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 
+  */
 
 public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao>{
 
