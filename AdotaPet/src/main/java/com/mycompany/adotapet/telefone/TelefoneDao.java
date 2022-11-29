@@ -15,10 +15,9 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
 package com.mycompany.adotapet.telefone;
 
-import com.mycompany.adotapet.repositorio.Dao;
+import com.mycompany.adotapet.repositorio.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,25 +25,26 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * 
+ *
  * <pre>CREATE TABLE `telefone` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `ddd` tinyint(4) NOT NULL,
-  `numero` int(11) NOT NULL,
-  `mensagem` tinyint(1) DEFAULT 0,
-  `excluido` tinyint(1) DEFAULT 0,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`),
-  UNIQUE KEY `numero` (`numero`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</pre>
- * Classe TelefoneDao
+ * `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+ * `ddd` tinyint(4) NOT NULL,
+ * `numero` int(11) NOT NULL,
+ * `mensagem` tinyint(1) DEFAULT 0,
+ * `excluido` tinyint(1) DEFAULT 0,
+ * PRIMARY KEY (`id`),
+ * UNIQUE KEY `id` (`id`),
+ * UNIQUE KEY `numero` (`numero`)
+ * ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</pre> Classe TelefoneDao
+ *
  * @author Pedro Dias
  */
-public class TelefoneDao extends Dao<Telefone>{
+public class TelefoneDAO extends DAO<Telefone> {
+
     public static final String TABLE = "telefone";
-    
+
     @Override
-    public String getSaveStatment() {   
+    public String getSaveStatment() {
         return "INSERT INTO " + TABLE + " (ddd, numero, mensagem) VALUES(?,?,?)";
     }
 
@@ -55,7 +55,7 @@ public class TelefoneDao extends Dao<Telefone>{
 
     @Override
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Telefone e) {
-           try {
+        try {
             //formata de acordo com o bd 
             pstmt.setObject(1, e.getDDD(), java.sql.Types.TINYINT);
             pstmt.setObject(2, e.getNumero(), java.sql.Types.INTEGER);
@@ -67,7 +67,7 @@ public class TelefoneDao extends Dao<Telefone>{
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(TelefoneDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelefoneDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -109,9 +109,9 @@ public class TelefoneDao extends Dao<Telefone>{
             telefone.setMensagem(resultSet.getBoolean("mensagem"));
             telefone.setExcluido(resultSet.getBoolean("excluido"));
         } catch (SQLException ex) {
-            Logger.getLogger(TelefoneDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelefoneDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(TelefoneDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelefoneDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return telefone;

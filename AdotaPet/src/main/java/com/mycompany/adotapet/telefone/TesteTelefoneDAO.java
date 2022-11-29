@@ -23,43 +23,42 @@ import java.util.List;
  *
  * @author pedro
  */
-public class TesteTelefoneDao {
+public class TesteTelefoneDAO {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
+
         //criando objeto
-        Telefone telefone = new Telefone((short)38, 997287649, true);
-        
+        Telefone telefone = new Telefone((short) 38, 997287649, true);
+
         //salvando no bd - numero é unico 
-        Long idTelefone = new TelefoneDao().saveOrUpdate(telefone);
+        Long idTelefone = new TelefoneDAO().saveOrUpdate(telefone);
         telefone.setId(idTelefone);
-        System.out.println("> "+ telefone);
-        
+        System.out.println("> " + telefone);
+
         //modifica
         telefone.setNumero(998397591);
-        new TelefoneDao().saveOrUpdate(telefone);
-        
+        new TelefoneDAO().saveOrUpdate(telefone);
 
         //pega tudo do bd
-        List<Telefone> telefones = new TelefoneDao().findAll();
+        List<Telefone> telefones = new TelefoneDAO().findAll();
         System.out.println("> " + telefones);
-    
+
         //marca como excluido
-        new TelefoneDao().moveToTrash(idTelefone);
-        
+        new TelefoneDAO().moveToTrash(idTelefone);
+
         //pega tudo da lixeira
-        telefones = new TelefoneDao().findAllOnTrash();
+        telefones = new TelefoneDAO().findAllOnTrash();
         System.out.println("> " + telefones);
-        
+
         //desmarca como excluido
-        new TelefoneDao().restoreFromTrash(idTelefone);
-        
+        new TelefoneDAO().restoreFromTrash(idTelefone);
+
         //pega tudo da lixeira
-        telefones = new TelefoneDao().findAll();
+        telefones = new TelefoneDAO().findAll();
         System.out.println("> " + telefones);
-    }  
+    }
 }
