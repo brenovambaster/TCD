@@ -30,16 +30,16 @@ import java.sql.ResultSet;
 <pre>CREATE TABLE `requerimentoadocao` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(35) NOT NULL,
-  `id_lartemporario` int(11) NOT NULL,
-  `id_tutor` int(11) NOT NULL,
+  `lartemporario_id` int(11) NOT NULL,
+  `tutor_id` int(11) NOT NULL,
   `ativo` tinyint(1) DEFAULT '1',
   `aprovado` tinyint(1) DEFAULT '0',
   `inicio` datetime NOT NULL,
   `termino` datetime DEFAULT NULL,
   `excluido` tinyint(1) DEFAULT '0',
   CONSTRAINT PRIMARY KEY (`id`),
-  CONSTRAINT FOREGEIN KEY (`idlartemporario`) REFERENCES lartemporario (id),
-  CONSTRAINT FOREGEIN KEY (`idtutor`) REFERENCES tutor (id)
+  CONSTRAINT FOREGEIN KEY (`lartemporario_id`) REFERENCES lartemporario (id),
+  CONSTRAINT FOREGEIN KEY (`tutor_id`) REFERENCES tutor (id)
   ) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 </pre>
  */
 
@@ -49,12 +49,15 @@ public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao>{
     
     @Override
     public String getSaveStatment() {
-        return " INSERT INTO " + TABLE + " (nome) values (?);"; 
+        return " INSERT INTO " + TABLE 
+                + "(nome,lartemporario_id,tutor_id,inicio) values (?,?,?,?);";
     }
 
     @Override
     public String getUpdateStatment() {
-        return "UPDATE " + TABLE + " SET nome=? WHERE id= ? ";    }
+        return "UPDATE " + TABLE 
+                + " ativo=?,SET aprovado=?,termino=? WHERE id= ? ";    
+    }
 
     @Override
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, RequerimentoAdocao e) {
@@ -63,31 +66,32 @@ public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao>{
 
     @Override
     public String getFindByIdStatment() {
-        return "SELECT * FROM " + TABLE + " WHERE id=?";    }
+        return "SELECT * FROM " + TABLE + " WHERE id=?";    
+    }
 
     @Override
     public String getFindAllStatment() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "SELECT * FROM " + TABLE;
     }
 
     @Override
     public String getFindAllOnTrashStatement() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "select * FROM" + TABLE + " where excluido = true";
     }
 
     @Override
     public String getMoveToTrashStatement() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "update " + TABLE + " set excluido = true where id=?";
     }
 
     @Override
     public String getRestoreFromTrashStatement() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "update " + TABLE + " set excluido = false where id = ?";
     }
 
     @Override
     public RequerimentoAdocao extractObject(ResultSet resultSet) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+   
 }
