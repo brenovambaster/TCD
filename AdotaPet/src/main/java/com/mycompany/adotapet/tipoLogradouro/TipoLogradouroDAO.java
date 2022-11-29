@@ -18,7 +18,7 @@
 package com.mycompany.adotapet.tipoLogradouro;
 
 import com.mycompany.adotapet.especie.EspecieDao;
-import com.mycompany.adotapet.repositorio.Dao;
+import com.mycompany.adotapet.repositorio.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,7 +39,7 @@ import java.util.logging.Logger;
   PRIMARY KEY (`id`)
   ) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 </pre>
  */
-public class TipoLogradouroDAO extends Dao<TipoLogradouro> {
+public class TipoLogradouroDAO extends DAO<TipoLogradouro> {
 
     public static final String TABLE = "TipoLogradouro";
 

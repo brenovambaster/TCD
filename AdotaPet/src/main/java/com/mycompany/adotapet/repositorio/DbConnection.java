@@ -65,7 +65,7 @@ public class DbConnection {
     // Static initialization
     static {
         // Local server
-        URL = "jdbc:mysql://127.0.0.1:3306/" + Dao.DB
+        URL = "jdbc:mysql://127.0.0.1:3306/" + DAO.DB
                 + "?useUnicode=true"
                 + "&useJDBCCompliantTimezoneShift=true"
                 + "&serverTimezone=UTC"

@@ -50,8 +50,8 @@ import java.util.logging.Logger;
  * @version 0.1, 2022-10-24
  * @param <T> Entity data type
  */
-public abstract class Dao<T>
-        implements IDao<T> {
+public abstract class DAO<T>
+        implements IDAO<T> {
 
     public static final String DB = "adotapet";
 
@@ -203,7 +203,7 @@ public abstract class Dao<T>
                 objects.add(extractObject(resultSet));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Dao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return objects.isEmpty() ? null : objects;

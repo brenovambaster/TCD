@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 henrique
+ * Copyright (C) 2022 Pedro Henrique
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,7 +24,7 @@ import java.time.LocalDate;
 
 /**
  *
- * @author henrique
+ * @author Pedro Henrique
  */
 public class RequerimentoAdocao extends Entidade{
     private Boolean ativo;
@@ -33,11 +33,6 @@ public class RequerimentoAdocao extends Entidade{
     private LocalDate termino;
     private Tutor   tutor;
     private LarTemporario larTemporario;
-
-    
-    public RequerimentoAdocao() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
     public RequerimentoAdocao(LocalDate inicio, Tutor tutor, LarTemporario larTemporario) {
         this.ativo = true;
@@ -108,9 +103,5 @@ public class RequerimentoAdocao extends Entidade{
                 + ", tutor=" + tutor 
                 + ", larTemporario=" + larTemporario
                 +'}';
-    }
-    
-    
-    
-    
+    }    
 }

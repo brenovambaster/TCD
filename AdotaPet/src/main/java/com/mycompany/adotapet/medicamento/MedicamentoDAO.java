@@ -17,7 +17,7 @@
  */
 package com.mycompany.adotapet.medicamento;
 
-import com.mycompany.adotapet.repositorio.Dao;
+import com.mycompany.adotapet.repositorio.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,7 +29,7 @@ import java.util.logging.Logger;
  *
  * @author Breno Vambaster C. L
  */
-public class MedicamentoDAO extends Dao<Medicamento> {
+public class MedicamentoDAO extends DAO<Medicamento> {
 
     public static final String TABLE = "medicamento";
 

@@ -19,7 +19,7 @@ package com.mycompany.adotapet.raca;
 
 import com.mycompany.adotapet.especie.Especie;
 import com.mycompany.adotapet.especie.EspecieDao;
-import com.mycompany.adotapet.repositorio.Dao;
+import com.mycompany.adotapet.repositorio.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,7 +41,7 @@ CREATE TABLE `raca` (
   KEY `especie_id` (`especie_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
  */
-public class RacaDAO extends Dao<Raca> {
+public class RacaDAO extends DAO<Raca> {
 
     public static final String TABLE = "raca";
 

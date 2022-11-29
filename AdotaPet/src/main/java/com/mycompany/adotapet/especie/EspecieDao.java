@@ -18,7 +18,7 @@
 
 package com.mycompany.adotapet.especie;
 
-import com.mycompany.adotapet.repositorio.Dao;
+import com.mycompany.adotapet.repositorio.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,7 +36,7 @@ import java.util.logging.Logger;
  * Classe EspecieDao
  * @author Pedro Dias
  */
-public class EspecieDao extends  Dao<Especie>{
+public class EspecieDao extends  DAO<Especie>{
     public static final String TABLE = "especie";
 
     @Override
