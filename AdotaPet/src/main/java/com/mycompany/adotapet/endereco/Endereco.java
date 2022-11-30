@@ -15,7 +15,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
 package com.mycompany.adotapet.endereco;
 
 import com.mycompany.adotapet.entidade.Entidade;
@@ -23,25 +22,26 @@ import com.mycompany.adotapet.tipoLogradouro.TipoLogradouro;
 
 /**
  * Classe Endereco
+ *
  * @author Pedro Dias
  */
-public class Endereco extends Entidade{
+public class Endereco extends Entidade {
+
     private TipoLogradouro tipoLogradouro;
     private String logradouro;
     private Integer numero;
     private String complemento;
     private String bairro;
     private String cidade;
-    private Character[] estado;
+    private String estado;
     private Integer cep;
-    
+
     //<editor-fold defaultstate="collapsed" desc="Constructors">
-    
     public Endereco() {
-        estado = new Character[2];
+
     }
 
-    public Endereco(TipoLogradouro tipoLogradouro, String logadouro, Integer numero, String complemento, String bairro, String cidade, Character[] estado, Integer cep) {
+    public Endereco(TipoLogradouro tipoLogradouro, String logadouro, Integer numero, String complemento, String bairro, String cidade, String estado, Integer cep) {
         this();
         this.tipoLogradouro = tipoLogradouro;
         this.logradouro = logadouro;
@@ -52,11 +52,9 @@ public class Endereco extends Entidade{
         this.estado = estado;
         this.cep = cep;
     }
-    
-    //</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
 
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public TipoLogradouro getTipoLogradouro() {
         return tipoLogradouro;
     }
@@ -105,12 +103,16 @@ public class Endereco extends Entidade{
         this.cidade = cidade;
     }
 
-    public Character[] getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(Character[] estado) {
-        this.estado = estado;
+    public void setEstado(String estado) throws Exception {
+        if (estado.length() <= 2) {
+            this.estado = estado;
+        } else {
+            throw new Exception("Estado deve conter apenas 2 caracteres");
+        }
     }
 
     public Integer getCep() {
@@ -120,20 +122,19 @@ public class Endereco extends Entidade{
     public void setCep(Integer cep) {
         this.cep = cep;
     }
-    
-    //</editor-fold>
 
+    //</editor-fold>
     @Override
     public String toString() {
-        return "Endereco{" 
-                + ", " + tipoLogradouro 
-                + ", logadouro = " + logradouro 
-                + ", numero = " + numero 
-                + ", complemento = " + complemento 
-                + ", bairro = " + bairro 
-                + ", cidade = " + cidade 
-                + ", estado = " + estado[0] + estado[1]
-                + ", cep = " + cep 
+        return "Endereco{"
+                + ", " + tipoLogradouro
+                + ", logadouro = " + logradouro
+                + ", numero = " + numero
+                + ", complemento = " + complemento
+                + ", bairro = " + bairro
+                + ", cidade = " + cidade
+                + ", estado = " + estado
+                + ", cep = " + cep
                 + ", " + super.toString()
                 + '}';
     }
