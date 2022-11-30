@@ -29,6 +29,14 @@ import java.util.logging.Logger;
  *
  * @author Breno Vambaster C. L
  */
+/*
+  CREATE TABLE `medicamento` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(35) NOT NULL,
+  `excluido` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1
+ */
 public class MedicamentoDAO extends DAO<Medicamento> {
 
     public static final String TABLE = "medicamento";
