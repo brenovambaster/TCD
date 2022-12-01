@@ -17,6 +17,10 @@
  */
 package com.mycompany.adotapet.endereco;
 
+import com.mycompany.adotapet.tipoLogradouro.TipoLogradouro;
+import com.mycompany.adotapet.tipoLogradouro.TipoLogradouroDAO;
+import java.util.List;
+
 /**
  * Classe TesteEndereco
  *
@@ -25,6 +29,37 @@ package com.mycompany.adotapet.endereco;
 public class TesteEndereco {
 
     public static void main(String[] args) {
-        //Implement test code
+
+        // criando e inserindo endereco 
+        TipoLogradouro logr = new TipoLogradouro("Casa principal");
+        Long id_logr = new TipoLogradouroDAO().saveOrUpdate(logr);
+        logr.setId(id_logr);
+
+        Endereco end1 = new Endereco(logr, "Rua Juca Prates", 12, "Atrás do Automóvel Club", "Centro",
+                "Montes Claros", "MG", 39400078);
+        Long id_endr = new EnderecoDAO().saveOrUpdate(end1);
+        end1.setId(id_endr);
+
+        //update ----------------------------------------------------------------------------------------------------------------------------
+        end1.setLogadouro("Rua Espim Gurda ");
+        new EnderecoDAO().saveOrUpdate(end1);
+
+        // findByID--------------------------------------------------------------------------------------------------------------------------
+        System.out.println("Atualizado: FIND BY ID> " + new EnderecoDAO().findById(id_endr));
+
+        //findALL-----------------------------------------------------------------------------------------------------------------------------
+        List<Endereco> enderecos = new EnderecoDAO().findAll();
+        System.out.println("Enderecos >> " + enderecos);
+
+        // MOVE TO TRASH
+        new EnderecoDAO().moveToTrash(id_endr);
+
+        //FIND ALL ON TRASH
+        enderecos = new EnderecoDAO().findAllOnTrash();
+        System.out.println("TRASH >> " + enderecos);
+
+        // Restore from trash
+        new EnderecoDAO().restoreFromTrash(id_endr);
+        System.out.println("Restore from trash" + new EnderecoDAO().findById(id_endr));
     }
 }
