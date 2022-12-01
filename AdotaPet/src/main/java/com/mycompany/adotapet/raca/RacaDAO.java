@@ -34,7 +34,7 @@ import java.util.logging.Logger;
 /*
 CREATE TABLE `raca` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(35) NOT NULL,
+  `nome` varchar(35) NOT NULL UNIQUE,
   `excluido` tinyint(1) DEFAULT '0',
   `especie_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),

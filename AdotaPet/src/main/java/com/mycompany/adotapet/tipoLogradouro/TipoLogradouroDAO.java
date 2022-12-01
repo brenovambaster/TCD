@@ -34,7 +34,7 @@ import java.util.logging.Logger;
 /*
 <pre>CREATE TABLE `tipologradouro` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(35) NOT NULL,
+  `nome` varchar(35) NOT NULL UNIQUE,
   `excluido` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
   ) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 </pre>

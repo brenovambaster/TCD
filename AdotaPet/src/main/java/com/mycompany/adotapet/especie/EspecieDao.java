@@ -15,7 +15,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
 package com.mycompany.adotapet.especie;
 
 import com.mycompany.adotapet.repositorio.DAO;
@@ -27,16 +26,17 @@ import java.util.logging.Logger;
 
 /**
  * <pre> CREATE TABLE `especie` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `nome` varchar(35) NOT NULL,
-  `excluido` tinyint(1) DEFAULT 0,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</pre>
- * Classe EspecieDao
+ * `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+ * `nome` varchar(35) NOT NULL UNIQUE,
+ * `excluido` tinyint(1) DEFAULT 0,
+ * PRIMARY KEY (`id`),
+ * UNIQUE KEY `id` (`id`)
+ * ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</pre> Classe EspecieDao
+ *
  * @author Pedro Dias
  */
-public class EspecieDao extends  DAO<Especie>{
+public class EspecieDao extends DAO<Especie> {
+
     public static final String TABLE = "especie";
 
     @Override
@@ -50,7 +50,7 @@ public class EspecieDao extends  DAO<Especie>{
     }
 
     @Override
-    public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Especie e) { 
+    public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Especie e) {
         try {
             //formata de acordo com o bd 
             pstmt.setString(1, e.getNome());
