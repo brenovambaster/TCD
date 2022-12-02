@@ -26,7 +26,7 @@ import com.mycompany.adotapet.tipoLogradouro.TipoLogradouro;
  * @author Pedro Dias
  */
 public class Endereco extends Entidade {
-
+    
     private TipoLogradouro tipoLogradouro;
     private String logradouro;
     private Integer numero;
@@ -38,18 +38,18 @@ public class Endereco extends Entidade {
 
     //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Endereco() {
-
+        
     }
-
-    public Endereco(TipoLogradouro tipoLogradouro, String logadouro, Integer numero, String complemento, String bairro, String cidade, String estado, Integer cep) {
+    
+    public Endereco(TipoLogradouro tipoLogradouro, String logadouro, Integer numero, String complemento, String bairro, String cidade, String estado, Integer cep) throws Exception {
         this();
         this.tipoLogradouro = tipoLogradouro;
-        this.logradouro = logadouro;
+        setLogadouro(logadouro);
         this.numero = numero;
-        this.complemento = complemento;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
+        setComplemento(complemento);
+        setBairro(bairro);
+        setCidade(cidade);
+        setEstado(estado);
         this.cep = cep;
     }
 
@@ -58,55 +58,71 @@ public class Endereco extends Entidade {
     public TipoLogradouro getTipoLogradouro() {
         return tipoLogradouro;
     }
-
+    
     public void setTipoLogradouro(TipoLogradouro tipoLogradouro) {
         this.tipoLogradouro = tipoLogradouro;
     }
-
+    
     public String getLogadouro() {
         return logradouro;
     }
-
-    public void setLogadouro(String logadouro) {
-        this.logradouro = logadouro;
+    
+    public void setLogadouro(String logadouro) throws Exception {
+        if (logradouro.length() >= 45) {
+            throw new Exception("Nome do logradouro não pode exceder 45 caracteres");
+        } else {
+            this.logradouro = logadouro;
+        }
     }
-
+    
     public Integer getNumero() {
         return numero;
     }
-
+    
     public void setNumero(Integer numero) {
         this.numero = numero;
     }
-
+    
     public String getComplemento() {
         return complemento;
     }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
+    
+    public void setComplemento(String complemento) throws Exception {
+        if (complemento.length() >= 45) {
+            throw new Exception("Nome do complemento não pode exceder 45 caracteres");
+        } else {
+            this.complemento = complemento;
+        }
     }
-
+    
     public String getBairro() {
         return bairro;
     }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
+    
+    public void setBairro(String bairro) throws Exception {
+        if (bairro.length() >= 20) {
+            throw new Exception("Nome do bairro não pode exceder 20 caracteres");
+        } else {
+            this.bairro = bairro;
+        }
     }
-
+    
     public String getCidade() {
         return cidade;
     }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    
+    public void setCidade(String cidade) throws Exception {
+        if (cidade.length() >= 35) {
+            throw new Exception("Nome da cidade não pode exceder 35 caracteres");
+        } else {
+            this.cidade = cidade;
+        }
     }
-
+    
     public String getEstado() {
         return estado;
     }
-
+    
     public void setEstado(String estado) throws Exception {
         if (estado.length() <= 2) {
             this.estado = estado;
@@ -114,11 +130,11 @@ public class Endereco extends Entidade {
             throw new Exception("Estado deve conter apenas 2 caracteres");
         }
     }
-
+    
     public Integer getCep() {
         return cep;
     }
-
+    
     public void setCep(Integer cep) {
         this.cep = cep;
     }

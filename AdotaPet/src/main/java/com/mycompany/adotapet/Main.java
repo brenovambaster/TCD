@@ -50,46 +50,44 @@ public class Main {
 
         TipoLogradouro logradouro = new TipoLogradouro("Rua");
         System.out.println(logradouro);
-        
+
         String stringEstado = "MG";
         Character estado[] = new Character[2];
-        estado[0] = stringEstado.charAt(0);
-        estado[1] = stringEstado.charAt(1);
-        Endereco endereco = new Endereco(logradouro, "2", 678, "casa", "Monte", "Montes Claros", estado , 4567);
+        Endereco endereco = new Endereco(logradouro, "2", 678, "casa", "Monte", "Montes Claros", "MG", 4567);
         System.out.println("> " + endereco);
-        
+
         Especie especie = new Especie();
-        especie.setNome("Cachorro");     
+        especie.setNome("Cachorro");
         Raca raca = new Raca();
         raca.setNome("Dachshund");
         raca.setEspecie(especie);
         System.out.println("> " + raca);
-        
+
         Medicamento medicamento = new Medicamento("Vacina para raiva");
         Aplicacao aplicacao = new Aplicacao(medicamento, LocalDate.now(), "Necessita de outra dose", 1F);
         System.out.println("> " + aplicacao);
-        
-        Pet pet = new Pet("Maik", raca, null, LocalDate.of(2020, Month.AUGUST, 28), (byte)10, true, false, "Muito agitado");
+
+        Pet pet = new Pet("Maik", raca, null, LocalDate.of(2020, Month.AUGUST, 28), (byte) 10, true, false, "Muito agitado");
         pet.setAdotado(true);
         System.out.println("> " + pet);
-        
+
         Voluntario voluntario = new Voluntario(null, "Breno", 123456789010L, fone, endereco);
-        System.out.println("> "+ voluntario);
-        
+        System.out.println("> " + voluntario);
+
         LarTemporario larTemporario = new LarTemporario("AdotaPet", endereco, voluntario);
         larTemporario.adicionarPet(pet);
         System.out.println("> " + larTemporario);
-        
+
         Tutor tutor = new Tutor("Pedro", 123456789010L, fone, endereco);
         tutor.adicionarPet(pet);
         System.out.println("> " + tutor);
-        
+
         Credencial cred = new Credencial("brenovambaster@gmail.com", "teste", true, voluntario);
         System.out.println(cred);
-        
-        RequerimentoAdocao reqAd = new RequerimentoAdocao( LocalDate.of(2020, Month.DECEMBER, 25), tutor, larTemporario);
+
+        RequerimentoAdocao reqAd = new RequerimentoAdocao(LocalDate.of(2020, Month.DECEMBER, 25), tutor, larTemporario);
         System.out.println(reqAd);
-                
+
     }
 
 }
