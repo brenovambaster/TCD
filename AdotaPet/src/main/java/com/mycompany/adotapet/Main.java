@@ -50,10 +50,16 @@ public class Main {
 
         TipoLogradouro logradouro = new TipoLogradouro("Rua");
         System.out.println(logradouro);
+<<<<<<< HEAD
 
         String stringEstado = "MG";
         Character estado[] = new Character[2];
         Endereco endereco = new Endereco(logradouro, "2", 678, "casa", "Monte", "Montes Claros", "MG", 4567);
+=======
+        
+        String estado= "MG";
+        Endereco endereco = new Endereco(logradouro, "2", 678, "casa", "Monte", "Montes Claros", estado , 4567);
+>>>>>>> b70068b2d6dbb825825c45b680795def28d297fd
         System.out.println("> " + endereco);
 
         Especie especie = new Especie();
