@@ -51,10 +51,7 @@ public class Main {
         TipoLogradouro logradouro = new TipoLogradouro("Rua");
         System.out.println(logradouro);
         
-        String stringEstado = "MG";
-        Character estado[] = new Character[2];
-        estado[0] = stringEstado.charAt(0);
-        estado[1] = stringEstado.charAt(1);
+        String estado= "MG";
         Endereco endereco = new Endereco(logradouro, "2", 678, "casa", "Monte", "Montes Claros", estado , 4567);
         System.out.println("> " + endereco);
         
