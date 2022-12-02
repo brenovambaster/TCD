@@ -27,12 +27,13 @@ import java.util.logging.Logger;
 /**
  * <pre>
  * CREATE TABLE `tipologradouro` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(35) NOT NULL,
   `excluido` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
   UNIQUE KEY `nome` (`nome`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 </pre>
+) ENGINE=InnoDB </pre>
  * Classe TipoLogradouroDAO
  *
  * @author Breno Vambaster C. L
@@ -85,7 +86,7 @@ public class TipoLogradouroDAO extends DAO<TipoLogradouro> {
 
     @Override
     public String getMoveToTrashStatement() {
-        return "update " + TABLE + " SET excluido = true WHERE id=?";
+        return "UPDATE " + TABLE + " SET excluido = true WHERE id=?";
     }
 
     @Override

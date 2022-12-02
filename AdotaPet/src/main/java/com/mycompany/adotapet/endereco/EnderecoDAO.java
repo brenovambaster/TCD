@@ -18,7 +18,6 @@
 package com.mycompany.adotapet.endereco;
 
 import com.mycompany.adotapet.repositorio.DAO;
-import com.mycompany.adotapet.tipoLogradouro.TipoLogradouro;
 import com.mycompany.adotapet.tipoLogradouro.TipoLogradouroDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -116,8 +115,7 @@ public class EnderecoDAO extends DAO<Endereco> {
         end = new Endereco();
         try {
             end.setId(resultSet.getLong("id"));
-            long id_log = resultSet.getLong("tipoLogradouro_id");
-            end.setTipoLogradouro(new TipoLogradouroDAO().findById(id_log));
+            end.setTipoLogradouro(new TipoLogradouroDAO().findById(resultSet.getLong("tipologradouro_id")));
             end.setLogadouro(resultSet.getString("logradouro"));
             end.setNumero(resultSet.getInt("numero"));
             end.setComplemento(resultSet.getString("complemento"));

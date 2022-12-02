@@ -28,7 +28,7 @@ import java.util.List;
  */
 public class TesteEndereco {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         // criando e inserindo endereco 
         TipoLogradouro logr = new TipoLogradouro("Casa principal");
@@ -37,6 +37,7 @@ public class TesteEndereco {
 
         Endereco end1 = new Endereco(logr, "Rua Juca Prates", 12, "Atrás do Automóvel Club", "Centro",
                 "Montes Claros", "MG", 39400078);
+
         Long id_endr = new EnderecoDAO().saveOrUpdate(end1);
         end1.setId(id_endr);
 
@@ -61,5 +62,6 @@ public class TesteEndereco {
         // Restore from trash
         new EnderecoDAO().restoreFromTrash(id_endr);
         System.out.println("Restore from trash" + new EnderecoDAO().findById(id_endr));
+    
     }
 }

@@ -21,6 +21,23 @@ import com.mycompany.adotapet.entidade.Entidade;
 import com.mycompany.adotapet.tipoLogradouro.TipoLogradouro;
 
 /**
+ * 
+ * <pre>CREATE TABLE `endereco` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tipologradouro_id` bigint(20) unsigned NOT NULL,
+  `logradouro` varchar(35) NOT NULL,
+  `numero` int(11) NOT NULL,
+  `complemento` varchar(35) NOT NULL,
+  `bairro` varchar(35) NOT NULL,
+  `cidade` varchar(35) NOT NULL,
+  `estado` varchar(2) NOT NULL,
+  `cep` int(11) NOT NULL,
+  `excluido` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `tipologradouro_id` (`tipologradouro_id`),
+  CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`tipologradouro_id`) REFERENCES `tipologradouro` (`id`)
+) ENGINE=InnoDB DEFAULT</pre>
  * Classe Endereco
  *
  * @author Pedro Dias
@@ -41,10 +58,9 @@ public class Endereco extends Entidade {
         
     }
     
-    public Endereco(TipoLogradouro tipoLogradouro, String logadouro, Integer numero, String complemento, String bairro, String cidade, String estado, Integer cep) throws Exception {
-        this();
+    public Endereco(TipoLogradouro tipoLogradouro, String logradouro, Integer numero, String complemento, String bairro, String cidade, String estado, Integer cep) throws Exception {
         this.tipoLogradouro = tipoLogradouro;
-        setLogadouro(logadouro);
+        setLogadouro(logradouro);
         this.numero = numero;
         setComplemento(complemento);
         setBairro(bairro);
@@ -54,6 +70,7 @@ public class Endereco extends Entidade {
     }
 
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public TipoLogradouro getTipoLogradouro() {
         return tipoLogradouro;
@@ -67,11 +84,11 @@ public class Endereco extends Entidade {
         return logradouro;
     }
     
-    public void setLogadouro(String logadouro) throws Exception {
-        if (logradouro.length() >= 45) {
+    public void setLogadouro(String logradouro) throws Exception {
+        if (logradouro.length() >= 35) {
             throw new Exception("Nome do logradouro não pode exceder 45 caracteres");
         } else {
-            this.logradouro = logadouro;
+            this.logradouro = logradouro;
         }
     }
     
@@ -88,7 +105,7 @@ public class Endereco extends Entidade {
     }
     
     public void setComplemento(String complemento) throws Exception {
-        if (complemento.length() >= 45) {
+        if (complemento.length() >= 35) {
             throw new Exception("Nome do complemento não pode exceder 45 caracteres");
         } else {
             this.complemento = complemento;
@@ -100,7 +117,7 @@ public class Endereco extends Entidade {
     }
     
     public void setBairro(String bairro) throws Exception {
-        if (bairro.length() >= 20) {
+        if (bairro.length() >= 35) {
             throw new Exception("Nome do bairro não pode exceder 20 caracteres");
         } else {
             this.bairro = bairro;
@@ -140,6 +157,7 @@ public class Endereco extends Entidade {
     }
 
     //</editor-fold>
+    
     @Override
     public String toString() {
         return "Endereco{"
