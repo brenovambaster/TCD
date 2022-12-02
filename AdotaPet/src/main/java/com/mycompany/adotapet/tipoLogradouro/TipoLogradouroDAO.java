@@ -17,7 +17,6 @@
  */
 package com.mycompany.adotapet.tipoLogradouro;
 
-import com.mycompany.adotapet.especie.EspecieDao;
 import com.mycompany.adotapet.repositorio.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,26 +25,26 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * <pre>
+ * CREATE TABLE `tipologradouro` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(35) NOT NULL,
+  `excluido` tinyint(1) DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nome` (`nome`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 </pre>
  * Classe TipoLogradouroDAO
  *
  * @author Breno Vambaster C. L
  */
 
-/*
-<pre>CREATE TABLE `tipologradouro` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(35) NOT NULL UNIQUE,
-  `excluido` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`id`)
-  ) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 </pre>
- */
 public class TipoLogradouroDAO extends DAO<TipoLogradouro> {
 
     public static final String TABLE = "TipoLogradouro";
 
     @Override
     public String getSaveStatment() {
-        return "INSERT INTO " + TABLE + " (nome)    values(?)";
+        return "INSERT INTO " + TABLE + " (nome) values(?)";
     }
 
     @Override
@@ -58,8 +57,6 @@ public class TipoLogradouroDAO extends DAO<TipoLogradouro> {
         try {
             //formata de acordo com o bd 
             pstmt.setString(1, e.getNome());
-            // OR
-            // pstmt.setObject(1, e.getDescription(), java.sql.Types.VARCHAR);
 
             // Just for the update
             if (e.getId() != null) {
@@ -73,7 +70,7 @@ public class TipoLogradouroDAO extends DAO<TipoLogradouro> {
 
     @Override
     public String getFindByIdStatment() {
-        return "select * from " + TABLE + " where id = ?";
+        return "SELECT * FROM " + TABLE + " WHERE id = ?";
     }
 
     @Override
@@ -83,17 +80,17 @@ public class TipoLogradouroDAO extends DAO<TipoLogradouro> {
 
     @Override
     public String getFindAllOnTrashStatement() {
-        return "select * from " + TABLE + " where excluido = true";
+        return "SELECT * FROM " + TABLE + " WHERE excluido = true";
     }
 
     @Override
     public String getMoveToTrashStatement() {
-        return "update " + TABLE + " set excluido = true where id=?";
+        return "update " + TABLE + " SET excluido = true WHERE id=?";
     }
 
     @Override
     public String getRestoreFromTrashStatement() {
-        return "update " + TABLE + " set excluido = false where id = ?";
+        return "UPDATE " + TABLE + " SET excluido = false WHERE id = ?";
     }
 
     @Override
@@ -109,9 +106,6 @@ public class TipoLogradouroDAO extends DAO<TipoLogradouro> {
         } catch (Exception ex) {
             Logger.getLogger(TipoLogradouroDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return logradouro;
-
     }
-
 }
