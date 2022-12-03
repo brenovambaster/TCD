@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Breno Vambaster C. L
+ * Copyright (C) 2022 Pedro Dias
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -15,10 +15,13 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package com.mycompany.adotapet.tipoLogradouro;
 
+package com.mycompany.adotapet.tutor;
+
+import com.mycompany.adotapet.endereco.EnderecoDAO;
 import com.mycompany.adotapet.repositorio.DAO;
 import com.mycompany.adotapet.repositorio.DbConnection;
+import com.mycompany.adotapet.telefone.TelefoneDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,47 +29,53 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * <pre>
- * CREATE TABLE `tipologradouro` (
+ * <pre>CREATE TABLE `tutor` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(35) NOT NULL,
+  `cpf` bigint(20) unsigned NOT NULL,
+  `telefone_id` bigint(20) unsigned NOT NULL,
+  `endereco_id` bigint(20) unsigned NOT NULL,
   `excluido` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
-  UNIQUE KEY `nome` (`nome`)
-) ENGINE=InnoDB </pre>
- * Classe TipoLogradouroDAO
- *
- * @author Breno Vambaster C. L
+  UNIQUE KEY `cpf` (`cpf`),
+  KEY `telefone_id` (`telefone_id`),
+  KEY `endereco_id` (`endereco_id`),
+  CONSTRAINT `tutor_ibfk_1` FOREIGN KEY (`telefone_id`) REFERENCES `telefone` (`id`),
+  CONSTRAINT `tutor_ibfk_2` FOREIGN KEY (`endereco_id`) REFERENCES `endereco` (`id`)
+) ENGINE=InnoDB</pre>
+ * Classe TutorDAO
+ * @author Pedro Dias
  */
-
-public class TipoLogradouroDAO extends DAO<TipoLogradouro> {
-
-    public static final String TABLE = "TipoLogradouro";
+public class TutorDAO extends DAO<Tutor>{
+    
+    public static final String TABLE = "tutor";
 
     @Override
     public String getSaveStatment() {
-        return "INSERT INTO " + TABLE + " (nome) values(?)";
+        return "INSERT INTO " + TABLE + " (nome, cpf, telefone_id, endereco_id) VALUES (?,?,?,?)";
     }
 
     @Override
     public String getUpdateStatment() {
-        return "UPDATE " + TABLE + " SET nome = ? WHERE id = ?";
+        return "UPDATE " + TABLE + " SET nome = ?, cpf = ?, telefone_id = ?, endereco_id = ? WHERE id = ?";
     }
 
     @Override
-    public void composeSaveOrUpdateStatement(PreparedStatement pstmt, TipoLogradouro e) {
+    public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Tutor e) {
         try {
             //formata de acordo com o bd 
             pstmt.setString(1, e.getNome());
+            pstmt.setLong(2, e.getCpf());
+            pstmt.setObject(3, e.getTelefone().getId(), java.sql.Types.BIGINT);
+            pstmt.setObject(4, e.getEndereco().getId(), java.sql.Types.BIGINT);
 
             // Just for the update
             if (e.getId() != null) {
-                pstmt.setLong(2, e.getId());
+                pstmt.setLong(5, e.getId());
             }
-
         } catch (SQLException ex) {
-            Logger.getLogger(TipoLogradouroDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TutorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -75,8 +84,8 @@ public class TipoLogradouroDAO extends DAO<TipoLogradouro> {
         return "SELECT * FROM " + TABLE + " WHERE id = ?";
     }
     
-    public String getFindByNameStatment() {
-        return "SELECT * FROM " + TABLE + " WHERE nome = ?";
+    public String getFindByCpfStatment() {
+        return "SELECT * FROM " + TABLE + " WHERE cpf = ?";
     }
 
     @Override
@@ -91,7 +100,7 @@ public class TipoLogradouroDAO extends DAO<TipoLogradouro> {
 
     @Override
     public String getMoveToTrashStatement() {
-        return "UPDATE " + TABLE + " SET excluido = true WHERE id=?";
+        return "UPDATE " + TABLE + " SET excluido = true WHERE id = ?";
     }
 
     @Override
@@ -100,29 +109,34 @@ public class TipoLogradouroDAO extends DAO<TipoLogradouro> {
     }
 
     @Override
-    public TipoLogradouro extractObject(ResultSet resultSet) {
-        TipoLogradouro logradouro = null;
+    public Tutor extractObject(ResultSet resultSet) {
+
+        Tutor tutor = null;
+
         try {
-            logradouro = new TipoLogradouro();
-            logradouro.setId(resultSet.getLong("id"));
-            logradouro.setNome(resultSet.getString("nome"));
-            logradouro.setExcluido(resultSet.getBoolean("excluido"));
+            tutor = new Tutor();
+            tutor.setId(resultSet.getLong("id"));
+            tutor.setNome(resultSet.getString("nome"));
+            tutor.setCpf(resultSet.getLong("cpf"));
+            tutor.setTelefone(new TelefoneDAO().findById(resultSet.getLong("telefone_id")));
+            tutor.setEndereco(new EnderecoDAO().findById(resultSet.getLong("endereco_id")));
+            tutor.setExcluido(resultSet.getBoolean("excluido"));
         } catch (SQLException ex) {
-            Logger.getLogger(TipoLogradouroDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TutorDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(TipoLogradouroDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TutorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return logradouro;
+        return tutor;
     }
     
-    public TipoLogradouro findByName(String nome) {
+    public Tutor findByCpf(Long cpf) {
 
         try ( PreparedStatement preparedStatement
                 = DbConnection.getConexao().prepareStatement(
-                        getFindByNameStatment())) {
+                        getFindByCpfStatment())) {
 
             // Assemble the SQL statement with the id
-            preparedStatement.setString(1, nome);
+            preparedStatement.setLong(1, cpf);
 
             // Show the full sentence
             System.out.println(">> SQL: " + preparedStatement);

@@ -18,6 +18,7 @@
 package com.mycompany.adotapet.telefone;
 
 import com.mycompany.adotapet.repositorio.DAO;
+import com.mycompany.adotapet.repositorio.DbConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -73,7 +74,11 @@ public class TelefoneDAO extends DAO<Telefone> {
 
     @Override
     public String getFindByIdStatment() {
-        return "SELECT * FROM " + TABLE + "WHERE id = ?";
+        return "SELECT * FROM " + TABLE + " WHERE id = ?";
+    }
+
+    public String getFindByNumberStatment() {
+        return "SELECT * FROM " + TABLE + " WHERE numero = ?";
     }
 
     @Override
@@ -115,5 +120,32 @@ public class TelefoneDAO extends DAO<Telefone> {
         }
 
         return telefone;
+    }
+    
+    public Telefone findByNumber(Integer numero) {
+
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConexao().prepareStatement(
+                        getFindByNumberStatment())) {
+
+            // Assemble the SQL statement with the id
+            preparedStatement.setInt(1, numero);
+
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            // Performs the query on the database
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Returns the respective object if exists
+            if (resultSet.next()) {
+                return extractObject(resultSet);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
+
+        return null;
     }
 }
