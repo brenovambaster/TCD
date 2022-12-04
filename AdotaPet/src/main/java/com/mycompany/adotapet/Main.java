@@ -84,7 +84,7 @@ public class Main {
         Credencial cred = new Credencial("brenovambaster@gmail.com", "teste", true, voluntario);
         System.out.println(cred);
 
-        RequerimentoAdocao reqAd = new RequerimentoAdocao(LocalDate.of(2020, Month.DECEMBER, 25), tutor, larTemporario);
+        RequerimentoAdocao reqAd = new RequerimentoAdocao(LocalDate.of(2020, Month.DECEMBER, 25), pet, tutor, larTemporario);
         System.out.println(reqAd);
 
     }
