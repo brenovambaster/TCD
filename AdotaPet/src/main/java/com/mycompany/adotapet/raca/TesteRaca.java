@@ -18,7 +18,7 @@
 package com.mycompany.adotapet.raca;
 
 import com.mycompany.adotapet.especie.Especie;
-import com.mycompany.adotapet.especie.EspecieDao;
+import com.mycompany.adotapet.especie.EspecieDAO;
 import java.util.List;
 
 /**
@@ -31,7 +31,7 @@ public class TesteRaca {
     public static void main(String[] args) throws Exception {
         // criando e  adicionando especiea ao bd
         Especie esp = new Especie("lobus");
-        Long id_especie = new EspecieDao().saveOrUpdate(esp);
+        Long id_especie = new EspecieDAO().saveOrUpdate(esp);
         esp.setId(id_especie);
 
         // criando e adicionando raca ao bd

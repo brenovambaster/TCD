@@ -20,6 +20,8 @@ package com.mycompany.adotapet.aplicacao;
 
 import com.mycompany.adotapet.entidade.Entidade;
 import com.mycompany.adotapet.medicamento.Medicamento;
+import com.mycompany.adotapet.pet.Pet;
+import com.mycompany.adotapet.voluntario.Voluntario;
 import java.time.LocalDate;
 
 /**
@@ -28,6 +30,8 @@ import java.time.LocalDate;
  */
 public class Aplicacao extends Entidade{
     private Medicamento medicamento;
+    private Voluntario responsavelAplicacao;
+    private Pet pet;
     private LocalDate data; 
     private String anotacao;
     private Float qtdDose;
@@ -37,13 +41,15 @@ public class Aplicacao extends Entidade{
     public Aplicacao() {
     }
 
-    public Aplicacao(Medicamento medicamento, LocalDate data, String anotacao, Float qtdDose) {
+    public Aplicacao(Medicamento medicamento, Voluntario responsavelAplicacao, Pet pet, LocalDate data, String anotacao, Float qtdDose) {
         this.medicamento = medicamento;
+        this.responsavelAplicacao = responsavelAplicacao;
+        this.pet = pet;
         this.data = data;
         this.anotacao = anotacao.length() > 200 ? anotacao.substring(0, 200) : anotacao;
         this.qtdDose = qtdDose;
     }
-    
+
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="getters/setters">
@@ -83,6 +89,22 @@ public class Aplicacao extends Entidade{
     public void setQtdDose(Float qtdDose) {
         this.qtdDose = qtdDose;
     }
+
+    public Voluntario getResponsavelAplicacao() {
+        return responsavelAplicacao;
+    }
+
+    public void setResponsavelAplicacao(Voluntario responsavelAplicacao) {
+        this.responsavelAplicacao = responsavelAplicacao;
+    }
+
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
     
     //</editor-fold>
 
@@ -90,12 +112,12 @@ public class Aplicacao extends Entidade{
     public String toString() {
         return "Aplicacao{" 
                 + "medicamento=" + medicamento 
+                + ", responsavelAplicacao=" + responsavelAplicacao 
+                + ", pet=" + pet 
                 + ", data=" + data 
                 + ", anotacao=" + anotacao 
                 + ", qtdDose=" + qtdDose 
                 + ", " + super.toString()
                 + '}';
     }
-    
-    
 }

@@ -18,6 +18,7 @@
 package com.mycompany.adotapet.medicamento;
 
 import com.mycompany.adotapet.repositorio.DAO;
+import com.mycompany.adotapet.repositorio.DbConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,18 +26,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * <pre>CREATE TABLE `medicamento` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `nome` varchar(35) NOT NULL,
+  `excluido` tinyint(1) DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  UNIQUE KEY `nome` (`nome`)
+) ENGINE=InnoDB</pre>
+ *
  * Classe MedicamentoDAO
  *
  * @author Breno Vambaster C. L
  */
-/*
-  CREATE TABLE `medicamento` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(35) NOT NULL,
-  `excluido` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1
- */
+
 public class MedicamentoDAO extends DAO<Medicamento> {
 
     public static final String TABLE = "medicamento";
@@ -74,6 +77,10 @@ public class MedicamentoDAO extends DAO<Medicamento> {
         return "SELECT * FROM " + TABLE + " WHERE id=?";
     }
 
+    public String getFindByNameStatment() {
+        return "SELECT * FROM " + TABLE + " WHERE nome = ?";
+    }
+    
     @Override
     public String getFindAllStatment() {
         return "SELECT * FROM " + TABLE;
@@ -109,5 +116,30 @@ public class MedicamentoDAO extends DAO<Medicamento> {
 
         return med;
     }
+    
+    public Medicamento findByName(String nome) {
 
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConexao().prepareStatement(
+                        getFindByNameStatment())) {
+
+            // Assemble the SQL statement with the id
+            preparedStatement.setString(1, nome);
+
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            // Performs the query on the database
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Returns the respective object if exists
+            if (resultSet.next()) {
+                return extractObject(resultSet);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
+        return null;
+    }
 }

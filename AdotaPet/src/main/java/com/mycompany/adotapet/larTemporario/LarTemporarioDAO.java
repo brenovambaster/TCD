@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Breno Vambaster C. L
+ * Copyright (C) 2022 Pedro Dias
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -15,12 +15,13 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package com.mycompany.adotapet.raca;
 
-import com.mycompany.adotapet.especie.Especie;
-import com.mycompany.adotapet.especie.EspecieDAO;
+package com.mycompany.adotapet.larTemporario;
+
+import com.mycompany.adotapet.endereco.EnderecoDAO;
 import com.mycompany.adotapet.repositorio.DAO;
 import com.mycompany.adotapet.repositorio.DbConnection;
+import com.mycompany.adotapet.voluntario.VoluntarioDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,104 +29,102 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * <pre>CREATE TABLE `raca` (
+ * <pre>CREATE TABLE `lartemporario` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(35) NOT NULL,
-  `especie_id` bigint(20) unsigned NOT NULL,
+  `endereco_id` bigint(20) unsigned NOT NULL,
   `excluido` tinyint(1) DEFAULT 0,
+  `voluntario_id` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
-  UNIQUE KEY `nome` (`nome`),
-  KEY `especie_id` (`especie_id`),
-  CONSTRAINT `raca_ibfk_1` FOREIGN KEY (`especie_id`) REFERENCES `especie` (`id`)
+  KEY `endereco_id` (`endereco_id`),
+  KEY `voluntario_id` (`voluntario_id`),
+  CONSTRAINT `lartemporario_ibfk_1` FOREIGN KEY (`endereco_id`) REFERENCES `endereco` (`id`),
+  CONSTRAINT `lartemporario_ibfk_2` FOREIGN KEY (`voluntario_id`) REFERENCES `voluntario` (`id`)
 ) ENGINE=InnoDB</pre>
- * 
- * Classe RacaDAO
  *
- * @author Breno Vambaster C. L
+ * Classe LarTemporarioDAO
+ * @author Pedro Dias
  */
-
-public class RacaDAO extends DAO<Raca> {
-
-    public static final String TABLE = "raca";
-
+public class LarTemporarioDAO extends DAO<LarTemporario>{
+    
+    public static final String TABLE = "lartemporario";
+    
     @Override
     public String getSaveStatment() {
-        return " INSERT INTO " + TABLE + " (nome, excluido, especie_id) values (?, ?,?)";
+        return "INSERT INTO " + TABLE + "  (nome, endereco_id, voluntario_id) VALUES (?,?,?)";
     }
-
+    
     @Override
     public String getUpdateStatment() {
-        return "UPDATE " + TABLE + " SET nome=?, excluido=?, especie_id=? WHERE id= ? ";
+        return "UPDATE " + TABLE + "  SET nome = ? , endereco_id = ?,  voluntario_id = ? WHERE id = ? ";
     }
-
+    
     @Override
-    public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Raca raca) {
+    public void composeSaveOrUpdateStatement(PreparedStatement pstmt, LarTemporario e) {
         try {
-            //formata de acordo com o bd 
-            pstmt.setString(1, raca.getNome());
-            pstmt.setBoolean(2, raca.isExcluido());
-            pstmt.setLong(3, raca.getEspecie().getId());
-
-            // Just for the update
-            if (raca.getId() != null) {
-                pstmt.setLong(4, raca.getId());
+            pstmt.setString(1, e.getNome());
+            pstmt.setLong(2, e.getEndereco().getId());
+            pstmt.setLong(3, e.getFundador().getId());;
+            
+            if (e.getId() != null) {
+                pstmt.setLong(4, e.getId());
             }
-
+            
         } catch (SQLException ex) {
-            Logger.getLogger(RacaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LarTemporarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @Override
     public String getFindByIdStatment() {
-        return "SELECT * FROM " + TABLE + " WHERE id=?";
+        return "SELECT * FROM " + TABLE + " WHERE id = ? ";
     }
     
     public String getFindByNameStatment() {
-        return "SELECT * FROM " + TABLE + " WHERE nome = ?";
+        return "SELECT * FROM " + TABLE + " WHERE nome = ? ";
     }
-
+    
     @Override
     public String getFindAllStatment() {
         return "SELECT * FROM " + TABLE;
     }
-
+    
     @Override
     public String getFindAllOnTrashStatement() {
-        return "SELECT * FROM " + TABLE + " WHERE excluido=true";
-    }
-
-    @Override
-    public String getMoveToTrashStatement() {
-        return "UPDATE  " + TABLE + " SET excluido=true WHERE id=?";
-    }
-
-    @Override
-    public String getRestoreFromTrashStatement() {
-        return "UPDATE  " + TABLE + " SET excluido=false WHERE id=?";
-    }
-
-    @Override
-    public Raca extractObject(ResultSet resultSet) {
-        Raca raca = null;
-
-        try {
-            raca = new Raca();
-            raca.setId(resultSet.getLong("id"));
-            raca.setEspecie(new EspecieDAO().findById(resultSet.getLong("especie_id")));
-            raca.setExcluido(resultSet.getBoolean("excluido"));
-            raca.setNome(resultSet.getString("nome"));
-        } catch (SQLException ex) {
-            Logger.getLogger(RacaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(RacaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return raca;
+        return "SELECT * FROM " + TABLE + " WHERE excluido = true";
     }
     
-    public Raca findByName(String nome) {
+    @Override
+    public String getMoveToTrashStatement() {
+        return "UPDATE  " + TABLE + " SET excluido = true WHERE id = ?";
+    }
+    
+    @Override
+    public String getRestoreFromTrashStatement() {
+        return "UPDATE  " + TABLE + " SET excluido = false WHERE id = ?";
+    }
+    
+    @Override
+    public LarTemporario extractObject(ResultSet resultSet) {
+        LarTemporario larTemporario = null;
+        
+        larTemporario = new LarTemporario();
+        try {
+            larTemporario.setId(resultSet.getLong("id"));
+            larTemporario.setNome(resultSet.getString("nome"));
+            larTemporario.setEndereco(new EnderecoDAO().findById(resultSet.getLong("endereco_id")));
+            larTemporario.setFundador(new VoluntarioDAO().findById(resultSet.getLong("voluntario_id")));
+            larTemporario.setExcluido(resultSet.getBoolean("excluido"));
+        } catch (SQLException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+        return larTemporario;
+    }
+    
+    public LarTemporario findByName(String nome) {
 
         try ( PreparedStatement preparedStatement
                 = DbConnection.getConexao().prepareStatement(

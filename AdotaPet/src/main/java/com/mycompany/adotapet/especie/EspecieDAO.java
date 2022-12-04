@@ -18,6 +18,7 @@
 package com.mycompany.adotapet.especie;
 
 import com.mycompany.adotapet.repositorio.DAO;
+import com.mycompany.adotapet.repositorio.DbConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,17 +26,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * <pre> CREATE TABLE `especie` (
- * `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
- * `nome` varchar(35) NOT NULL UNIQUE,
- * `excluido` tinyint(1) DEFAULT 0,
- * PRIMARY KEY (`id`),
- * UNIQUE KEY `id` (`id`)
- * ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</pre> Classe EspecieDao
+ * <pre>CREATE TABLE `especie` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `nome` varchar(35) NOT NULL,
+  `excluido` tinyint(1) DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  UNIQUE KEY `nome` (`nome`)
+) ENGINE=InnoDB</pre> 
+ * Classe EspecieDao
  *
  * @author Pedro Dias
  */
-public class EspecieDao extends DAO<Especie> {
+public class EspecieDAO extends DAO<Especie> {
 
     public static final String TABLE = "especie";
 
@@ -63,13 +66,17 @@ public class EspecieDao extends DAO<Especie> {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(EspecieDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EspecieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
     public String getFindByIdStatment() {
         return "select * from " + TABLE + " where id = ?";
+    }
+    
+    public String getFindByNameStatment() {
+        return "select * from " + TABLE + " where nome = ?";
     }
 
     @Override
@@ -103,11 +110,37 @@ public class EspecieDao extends DAO<Especie> {
             especie.setNome(resultSet.getString("nome"));
             especie.setExcluido(resultSet.getBoolean("excluido"));
         } catch (SQLException ex) {
-            Logger.getLogger(EspecieDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EspecieDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(EspecieDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EspecieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return especie;
+    }
+
+    public Especie findByName(String nome) {
+
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConexao().prepareStatement(
+                        getFindByNameStatment())) {
+
+            // Assemble the SQL statement with the id
+            preparedStatement.setString(1, nome);
+
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            // Performs the query on the database
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Returns the respective object if exists
+            if (resultSet.next()) {
+                return extractObject(resultSet);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
+        return null;
     }
 }

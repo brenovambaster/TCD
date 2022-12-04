@@ -50,7 +50,6 @@ public class Voluntario extends Usuario{
 
     public void setLarTemporario(LarTemporario larTemporario) {
         this.larTemporario = larTemporario;
-        this.larTemporario.adicionarVoluntario(this);
     }
         
     //</editor-fold>
@@ -58,8 +57,7 @@ public class Voluntario extends Usuario{
     @Override
     public String toString() {
         return "Voluntario{" 
-                + ", " + super.toString()
-                + ", larTemporario=" + larTemporario 
+                + super.toString()
                 + '}';
     }
 }

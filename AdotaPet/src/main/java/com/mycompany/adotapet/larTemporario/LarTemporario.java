@@ -22,8 +22,6 @@ import com.mycompany.adotapet.endereco.Endereco;
 import com.mycompany.adotapet.entidade.Entidade;
 import com.mycompany.adotapet.pet.Pet;
 import com.mycompany.adotapet.voluntario.Voluntario;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Classe LarTemporario
@@ -32,20 +30,14 @@ import java.util.List;
 public class LarTemporario extends Entidade {
     private String nome;
     private Endereco endereco;
-    private List<Pet> pets;
     private Voluntario fundador;
-    private List<Voluntario> voluntarios;
     
     //<editor-fold defaultstate="collapsed" desc="constructor">
 
-    public LarTemporario(Voluntario fundador) {
-        voluntarios = new ArrayList<>();
-        pets = new ArrayList<>();
-        this.fundador = fundador;
+    public LarTemporario() {
     }
 
-    public LarTemporario(String nome, Endereco endereco, Voluntario fundador) {
-        this(fundador);
+    public LarTemporario(String nome, Endereco endereco) {
         this.nome = nome.length() > 45 ? nome.substring(0, 45) : nome;
         this.endereco = endereco;
     }
@@ -74,14 +66,6 @@ public class LarTemporario extends Entidade {
         this.endereco = endereco;
     }
 
-    public List<Voluntario> getVoluntarios() {
-        return voluntarios;
-    }
-
-    public void setVoluntarios(List<Voluntario> voluntarios) {
-        this.voluntarios = voluntarios;
-    }
-
     public Voluntario getFundador() {
         return fundador;
     }
@@ -89,41 +73,24 @@ public class LarTemporario extends Entidade {
     public void setFundador(Voluntario fundador) {
         this.fundador = fundador;
     }
-
-    public List<Pet> getPets() {
-        return pets;
-    }
-
-    public void setPets(List<Pet> pets) {
-        this.pets = pets;
-    }
     
     //</editor-fold>
     
     public void adicionarVoluntario(Voluntario voluntario){
-        voluntarios.add(voluntario);
-    }
-    
-    public Voluntario getVoluntario(int indice){
-        return voluntarios.get(indice);
+        voluntario.setLarTemporario(this);
     }
     
     public void adicionarPet(Pet pet){
-        pets.add(pet);
+        pet.setLarTemporario(this);
     }
-    
-    public Pet getPet(int indice){
-        return pets.get(indice);
-    }
+
 
     @Override
     public String toString() {
         return "LarTemporario{" 
                 + "nome=" + nome 
                 + ", endereco=" + endereco
-                + ", fundador=" + fundador 
-                + ", voluntarios=" + voluntarios 
-                + ", Pets=" + pets
+                + ", fundador=" + fundador
                 + '}';
     }
     

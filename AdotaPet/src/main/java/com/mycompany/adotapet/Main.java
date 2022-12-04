@@ -62,19 +62,19 @@ public class Main {
         raca.setEspecie(especie);
         System.out.println("> " + raca);
 
-        Medicamento medicamento = new Medicamento("Vacina para raiva");
-        Aplicacao aplicacao = new Aplicacao(medicamento, LocalDate.now(), "Necessita de outra dose", 1F);
-        System.out.println("> " + aplicacao);
-
-        Pet pet = new Pet("Maik", raca, null, LocalDate.of(2020, Month.AUGUST, 28), (byte) 10, true, false, "Muito agitado");
-        pet.setAdotado(true);
+        Pet pet = new Pet("Maik", raca, null, LocalDate.of(2020, Month.AUGUST, 28), 10.0f, true, false, "Muito agitado");
         System.out.println("> " + pet);
 
         Voluntario voluntario = new Voluntario(null, "Breno", 123456789010L, fone, endereco);
         System.out.println("> " + voluntario);
+        
+        Medicamento medicamento = new Medicamento("Vacina para raiva");
+        Aplicacao aplicacao = new Aplicacao(medicamento,voluntario,pet, LocalDate.now(), "Necessita de outra dose", 1F);
+        System.out.println("> " + aplicacao);
 
-        LarTemporario larTemporario = new LarTemporario("AdotaPet", endereco, voluntario);
+        LarTemporario larTemporario = new LarTemporario("AdotaPet", endereco);
         larTemporario.adicionarPet(pet);
+        larTemporario.setFundador(voluntario);
         System.out.println("> " + larTemporario);
 
         Tutor tutor = new Tutor("Pedro", 123456789010L, fone, endereco);

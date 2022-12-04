@@ -45,6 +45,18 @@ public class Tutor extends Usuario{
     
     //</editor-fold>
     
+    //<editor-fold defaultstate="collapsed" desc="getters/setters">
+
+    public List<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
+    }
+    
+    //</editor-fold>
+    
     public void adicionarPet(Pet pet){
         pets.add(pet);
     }

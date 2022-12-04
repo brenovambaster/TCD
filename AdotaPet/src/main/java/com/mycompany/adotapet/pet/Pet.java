@@ -22,6 +22,7 @@ import com.mycompany.adotapet.aplicacao.Aplicacao;
 import com.mycompany.adotapet.entidade.Entidade;
 import com.mycompany.adotapet.larTemporario.LarTemporario;
 import com.mycompany.adotapet.raca.Raca;
+import com.mycompany.adotapet.tutor.Tutor;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -33,24 +34,25 @@ import java.util.List;
  */
 public class Pet extends Entidade{
     private String nome;
-    private boolean adotado;
     private Raca raca;
     private LarTemporario larTemporario;
     private LocalDate nascimento;
-    private Byte peso;
+    private Float peso;
     private Boolean macho;
     private boolean castrado;
     private String comentario;
     private boolean vivo;
     private List<Aplicacao> medicamentos;
+    private Tutor tutor;
     
     //<editor-fold defaultstate="collapsed" desc="constructors">
 
     public Pet() {
         medicamentos = new ArrayList<>();
+        vivo = true;
     }
 
-    public Pet(String nome, Raca raca, LarTemporario larTemporario, LocalDate nascimento, Byte peso, Boolean macho, boolean castrado, String comentario) {
+    public Pet(String nome, Raca raca, LarTemporario larTemporario, LocalDate nascimento, Float peso, Boolean macho, boolean castrado, String comentario) {
         this();
         this.nome = nome.length() > 35 ? nome.substring(0, 35) : nome;
         this.raca = raca;
@@ -76,14 +78,6 @@ public class Pet extends Entidade{
         }else{
             this.nome = nome;
         }
-    }
-
-    public boolean isAdotado() {
-        return adotado;
-    }
-
-    public void setAdotado(boolean adotado) {
-        this.adotado = adotado;
     }
 
     public Raca getRaca() {
@@ -114,15 +108,15 @@ public class Pet extends Entidade{
         return (byte) nascimento.until(LocalDate.now(), ChronoUnit.YEARS);
     }
 
-    public Byte getPeso() {
+    public Float getPeso() {
         return peso;
     }
 
-    public void setPeso(Byte peso) {
+    public void setPeso(Float peso) {
         this.peso = peso;
     }
 
-    public Boolean getMacho() {
+    public Boolean isMacho() {
         return macho;
     }
 
@@ -165,6 +159,14 @@ public class Pet extends Entidade{
     public void setMedicamentos(List<Aplicacao> medicamentos) {
         this.medicamentos = medicamentos;
     }
+
+    public Tutor getTutor() {
+        return tutor;
+    }
+
+    public void setTutor(Tutor tutor) {
+        this.tutor = tutor;
+    }
     
     //</editor-fold>
     
@@ -179,8 +181,7 @@ public class Pet extends Entidade{
     @Override
     public String toString() {
         return "Pet{" 
-                + "nome=" + nome 
-                + ", adotado=" + adotado 
+                + "nome=" + nome
                 + ", raca=" + raca 
                 + ", idade=" + getIdade()
                 + ", larTemporario=" + larTemporario 

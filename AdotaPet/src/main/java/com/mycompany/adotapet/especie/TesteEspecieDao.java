@@ -34,30 +34,30 @@ public class TesteEspecieDao {
         especie.setNome("Cachorro");   
         
         //salvando
-        Long idEspecie = new EspecieDao().saveOrUpdate(especie);
+        Long idEspecie = new EspecieDAO().saveOrUpdate(especie);
         especie.setId(idEspecie);
         System.out.println("> "+ especie);
         
         //modifica
         especie.setNome("Gato");
-        new EspecieDao().saveOrUpdate(especie);
+        new EspecieDAO().saveOrUpdate(especie);
         
         //pega tudo do bd
-        List<Especie> especies = new EspecieDao().findAll();
+        List<Especie> especies = new EspecieDAO().findAll();
         System.out.println("> " + especies);
         
         //marca como excluido
-        new EspecieDao().moveToTrash(idEspecie);
+        new EspecieDAO().moveToTrash(idEspecie);
         
         //pega tudo da lixeira
-        especies = new EspecieDao().findAllOnTrash();
+        especies = new EspecieDAO().findAllOnTrash();
         System.out.println("> " + especies);
         
         //desmarca como excluido
-        new EspecieDao().restoreFromTrash(idEspecie);
+        new EspecieDAO().restoreFromTrash(idEspecie);
         
         //pega tudo da lixeira
-        especies = new EspecieDao().findAll();
+        especies = new EspecieDAO().findAll();
         System.out.println("> " + especies);
         
     }

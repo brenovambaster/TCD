@@ -19,6 +19,7 @@
 package com.mycompany.adotapet.tutor;
 
 import com.mycompany.adotapet.endereco.EnderecoDAO;
+import com.mycompany.adotapet.pet.PetDAO;
 import com.mycompany.adotapet.repositorio.DAO;
 import com.mycompany.adotapet.repositorio.DbConnection;
 import com.mycompany.adotapet.telefone.TelefoneDAO;
@@ -120,6 +121,7 @@ public class TutorDAO extends DAO<Tutor>{
             tutor.setCpf(resultSet.getLong("cpf"));
             tutor.setTelefone(new TelefoneDAO().findById(resultSet.getLong("telefone_id")));
             tutor.setEndereco(new EnderecoDAO().findById(resultSet.getLong("endereco_id")));
+            tutor.setPets(new PetDAO().findByTutor(tutor.getId()));
             tutor.setExcluido(resultSet.getBoolean("excluido"));
         } catch (SQLException ex) {
             Logger.getLogger(TutorDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -152,7 +154,6 @@ public class TutorDAO extends DAO<Tutor>{
         } catch (Exception ex) {
             System.out.println("Exception: " + ex);
         }
-
         return null;
     }
 }
