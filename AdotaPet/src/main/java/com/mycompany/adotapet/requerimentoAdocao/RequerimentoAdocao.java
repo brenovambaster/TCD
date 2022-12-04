@@ -19,6 +19,7 @@ package com.mycompany.adotapet.requerimentoAdocao;
 
 import com.mycompany.adotapet.entidade.Entidade;
 import com.mycompany.adotapet.larTemporario.LarTemporario;
+import com.mycompany.adotapet.pet.Pet;
 import com.mycompany.adotapet.tutor.Tutor;
 import java.time.LocalDate;
 
@@ -31,14 +32,20 @@ public class RequerimentoAdocao extends Entidade{
     private Boolean aprovado;
     private LocalDate inicio;
     private LocalDate termino;
+    private Pet pet;
     private Tutor   tutor;
     private LarTemporario larTemporario;
     
-    public RequerimentoAdocao(LocalDate inicio, Tutor tutor, LarTemporario larTemporario) {
+    public RequerimentoAdocao(LocalDate inicio, Pet pet,Tutor tutor, LarTemporario larTemporario) {
         this.ativo = true;
         this.inicio = inicio;
+        this.pet = pet;
         this.tutor = tutor;
         this.larTemporario = larTemporario;
+    }
+
+    public RequerimentoAdocao() {
+        
     }
     
     
@@ -58,6 +65,10 @@ public class RequerimentoAdocao extends Entidade{
 
     public LocalDate getTermino() {
         return termino;
+    }
+
+    public Pet getPet() {
+        return pet;
     }
 
     public Tutor getTutor() {
@@ -84,6 +95,10 @@ public class RequerimentoAdocao extends Entidade{
         this.termino = termino;
     }
 
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
+
     public void setTutor(Tutor tutor) {
         this.tutor = tutor;
     }
@@ -100,6 +115,7 @@ public class RequerimentoAdocao extends Entidade{
                 + ", aprovado=" + aprovado 
                 + ", inicio=" + inicio 
                 + ", termino=" + termino 
+                + ", pet=" + pet
                 + ", tutor=" + tutor 
                 + ", larTemporario=" + larTemporario
                 +'}';
