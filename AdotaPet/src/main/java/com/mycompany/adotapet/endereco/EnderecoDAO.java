@@ -44,24 +44,24 @@ import java.util.logging.Logger;
   `excluido` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `tipoLogradouro_id` (`tipoLogradouro_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
  */
 public class EnderecoDAO extends DAO<Endereco> {
-    
+
     public static final String TABLE = "endereco";
-    
+
     @Override
     public String getSaveStatment() {
         return "INSERT INTO  " + TABLE + "  (tipoLogradouro_id, logradouro, numero, complemento,"
                 + " bairro, cidade, estado, cep ) VALUES(?,?,?,?,?,?,?,?)";
     }
-    
+
     @Override
     public String getUpdateStatment() {
         return "UPDATE " + TABLE + "  SET tipoLogradouro_id =? , logradouro=?,  numero=?, complemento=?,"
                 + " bairro=?, cidade=?, estado=?, cep=? WHERE id=? ";
     }
-    
+
     @Override
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Endereco e) {
         try {
@@ -73,45 +73,45 @@ public class EnderecoDAO extends DAO<Endereco> {
             pstmt.setString(6, e.getCidade());
             pstmt.setString(7, e.getEstado());
             pstmt.setInt(8, e.getCep());
-            
+
             if (e.getId() != null) {
                 pstmt.setLong(9, e.getId());
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @Override
     public String getFindByIdStatment() {
         return "SELECT * FROM " + TABLE + " WHERE id = ? ";
     }
-    
+
     @Override
     public String getFindAllStatment() {
         return "SELECT * FROM " + TABLE;
     }
-    
+
     @Override
     public String getFindAllOnTrashStatement() {
         return "SELECT * FROM " + TABLE + " WHERE excluido=true";
     }
-    
+
     @Override
     public String getMoveToTrashStatement() {
         return "UPDATE  " + TABLE + " SET excluido=true WHERE id=?";
     }
-    
+
     @Override
     public String getRestoreFromTrashStatement() {
         return "UPDATE  " + TABLE + " SET excluido=false WHERE id=?";
     }
-    
+
     @Override
     public Endereco extractObject(ResultSet resultSet) {
         Endereco end = null;
-        
+
         end = new Endereco();
         try {
             end.setId(resultSet.getLong("id"));
@@ -129,8 +129,8 @@ public class EnderecoDAO extends DAO<Endereco> {
         } catch (Exception ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return end;
     }
-    
+
 }
