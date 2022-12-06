@@ -50,12 +50,12 @@ public class CredencialDAO extends DAO<Credencial> {
     @Override
 
     public String getSaveStatment() {
-        return "INSERT INTO " + TABLE + " (email, senha, usuario_id) values (?, MD5(?), ? ) ";
+        return "INSERT INTO " + TABLE + " (email, senha) values (?, MD5(?)) ";
     }
 
     @Override
     public String getUpdateStatment() {
-        return "UPDATE  " + TABLE + "  email=?, senha=MD5(?), usuario_id=? WHERE id=? ";
+        return "UPDATE  " + TABLE + " SET  email=?, senha=MD5(?)  WHERE id=? ";
     }
 
     @Override
@@ -64,10 +64,9 @@ public class CredencialDAO extends DAO<Credencial> {
         try {
             pstmt.setString(1, e.getEmail());
             pstmt.setString(2, e.getSenha());
-            pstmt.setLong(3, e.getUsuario().getId());
 
             if (e.getId() != null) {
-                pstmt.setLong(4, e.getId());
+                pstmt.setLong(3, e.getId());
             }
 
         } catch (SQLException ex) {
@@ -93,7 +92,7 @@ public class CredencialDAO extends DAO<Credencial> {
 
     @Override
     public String getMoveToTrashStatement() {
-        return "UPDATE  " + TABLE + " SET ativo=true WHERE id=?";
+        return "UPDATE  " + TABLE + " SET ativo=false WHERE id=?";
     }
 
     @Override
@@ -109,7 +108,6 @@ public class CredencialDAO extends DAO<Credencial> {
             cred.setEmail(resultSet.getString("email"));
             cred.setSenha(resultSet.getString("senha"));
             cred.setAtivo(resultSet.getBoolean("ativo"));
-            cred.setUsuario(new TutorDAO().findById(resultSet.getLong("usuario_id")));
         } catch (SQLException ex) {
             Logger.getLogger(CredencialDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {

@@ -50,9 +50,9 @@ public class Main {
 
         TipoLogradouro logradouro = new TipoLogradouro("Rua");
         System.out.println(logradouro);
-        
-        String estado= "MG";
-        Endereco endereco = new Endereco(logradouro, "2", 678, "casa", "Monte", "Montes Claros", estado , 4567);
+
+        String estado = "MG";
+        Endereco endereco = new Endereco(logradouro, "2", 678, "casa", "Monte", "Montes Claros", estado, 4567);
         System.out.println("> " + endereco);
 
         Especie especie = new Especie();
@@ -67,9 +67,9 @@ public class Main {
 
         Voluntario voluntario = new Voluntario(null, "Breno", 123456789010L, fone, endereco);
         System.out.println("> " + voluntario);
-        
+
         Medicamento medicamento = new Medicamento("Vacina para raiva");
-        Aplicacao aplicacao = new Aplicacao(medicamento,voluntario,pet, LocalDate.now(), "Necessita de outra dose", 1F);
+        Aplicacao aplicacao = new Aplicacao(medicamento, voluntario, pet, LocalDate.now(), "Necessita de outra dose", 1F);
         System.out.println("> " + aplicacao);
 
         LarTemporario larTemporario = new LarTemporario("AdotaPet", endereco);
@@ -81,7 +81,7 @@ public class Main {
         tutor.adicionarPet(pet);
         System.out.println("> " + tutor);
 
-        Credencial cred = new Credencial("brenovambaster@gmail.com", "teste", true, voluntario);
+        Credencial cred = new Credencial("brenovambaster@gmail.com", "teste", true);
         System.out.println(cred);
 
         RequerimentoAdocao reqAd = new RequerimentoAdocao(LocalDate.of(2020, Month.DECEMBER, 25), pet, tutor, larTemporario);

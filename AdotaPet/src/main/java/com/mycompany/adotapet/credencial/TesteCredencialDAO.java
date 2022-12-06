@@ -17,14 +17,7 @@
  */
 package com.mycompany.adotapet.credencial;
 
-import com.mycompany.adotapet.endereco.Endereco;
-import com.mycompany.adotapet.telefone.Telefone;
-import com.mycompany.adotapet.endereco.EnderecoDAO;
-import com.mycompany.adotapet.telefone.Telefone;
-import com.mycompany.adotapet.telefone.TelefoneDAO;
-import com.mycompany.adotapet.tipoLogradouro.TipoLogradouro;
-import com.mycompany.adotapet.tipoLogradouro.TipoLogradouroDAO;
-import com.mycompany.adotapet.tutor.Tutor;
+import java.util.List;
 
 /**
  * Classe TesteCredencialDAO
@@ -35,22 +28,32 @@ public class TesteCredencialDAO {
 
     public static void main(String[] args) throws Exception {
 
-        //<editor-fold defaultstate="collapsed" desc="Criando Endereco">
-        TipoLogradouro logr = new TipoLogradouro("Casa principal");
-        Long id_logr = new TipoLogradouroDAO().saveOrUpdate(logr);
-        logr.setId(id_logr);
-
-        Endereco end1 = new Endereco(logr, "Rua Juca Prates", 12, "Atrás do Automóvel Club", "Centro",
-                "Montes Claros", "MG", 39400078);
-        Long id_endr = new EnderecoDAO().saveOrUpdate(end1);
-        end1.setId(id_endr);
+        //<editor-fold defaultstate="collapsed" desc="Criando credencial">
+        Credencial cred = new Credencial("breno@gmail", "1234", true);
+        Long id_cred = new CredencialDAO().saveOrUpdate(cred);
+        cred.setId(id_cred);
         //</editor-fold>
 
-        //<editor-fold defaultstate="collapsed" desc="Criando Telefone">
-        Telefone fone1 = new Telefone((short) 33, 33999056, false);
-        Long id_fone1 = new TelefoneDAO().saveOrUpdate(fone1);
-        fone1.setId(id_fone1);
-        //</editor-fold>
+        // alterando  cred e salvando
+        cred.setEmail("brenovambaster@gmail.com");
+        new CredencialDAO().saveOrUpdate(cred);
+
+        // pesquisar por ID e por todos
+        System.out.println("> Pesquisar por id: " + new CredencialDAO().findById(id_cred));
+        List<Credencial> credenciais = new CredencialDAO().findAll();
+        System.out.println("> Credendiais: " + credenciais);
+
+        //  listar lixeira
+        credenciais = new CredencialDAO().findAllOnTrash();
+        System.out.println("> Lixeira: " + credenciais);
+
+        // mover para lixeira e listar lixeira;
+        new CredencialDAO().moveToTrash(id_cred);
+        System.out.println("> Movido para Lixeira " + new CredencialDAO().findById(id_cred));
+
+        // restaurar da lixeira
+        new CredencialDAO().restoreFromTrash(id_cred);
+        System.out.println("> Restaurado da Lixeira " + new CredencialDAO().findById(id_cred));
 
     }
 
