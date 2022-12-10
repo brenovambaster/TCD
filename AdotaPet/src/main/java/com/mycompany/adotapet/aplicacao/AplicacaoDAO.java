@@ -165,30 +165,4 @@ public class AplicacaoDAO extends DAO<Aplicacao>{
         }
         return null;
     }
-    
-    public Aplicacao findById(Long id) {
-
-        try ( PreparedStatement preparedStatement
-                = DbConnection.getConexao().prepareStatement(
-                        getFindByIdStatment())) {
-
-            // Assemble the SQL statement with the id
-            preparedStatement.setLong(1, id);
-
-            // Show the full sentence
-            System.out.println(">> SQL: " + preparedStatement);
-
-            // Performs the query on the database
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            // Returns the respective object if exists
-            if (resultSet.next()) {
-                return extractObject(resultSet);
-            }
-
-        } catch (Exception ex) {
-            System.out.println("Exception: " + ex);
-        }
-        return null;
-    }
 }

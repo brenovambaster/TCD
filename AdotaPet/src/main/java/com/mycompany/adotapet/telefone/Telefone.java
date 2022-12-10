@@ -26,7 +26,7 @@ import com.mycompany.adotapet.entidade.Entidade;
  */
 public class Telefone extends Entidade {
 
-    private Short DDD;
+    private Short ddd;
     private Integer numero;
     private Boolean mensagem;
 
@@ -35,21 +35,20 @@ public class Telefone extends Entidade {
     }
 
     public Telefone(Short DDD, Integer numero, Boolean mensagem) {
-        this.DDD = DDD;
+        this.ddd = DDD;
         this.numero = numero;
         this.mensagem = mensagem;
-        setId(null);
     }
 
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public Short getDDD() {
-        return DDD;
+        return ddd;
     }
 
     public void setDDD(Short DDD) {
-        this.DDD = DDD;
+        this.ddd = DDD;
     }
 
     public Integer getNumero() {
@@ -73,7 +72,7 @@ public class Telefone extends Entidade {
     @Override
     public String toString() {
         return "Telefone{" 
-                + "DDD=" + DDD 
+                + "ddd = " + ddd 
                 + ", numero=" + numero 
                 + ", mensagem=" + mensagem 
                 + ", " + super.toString() 

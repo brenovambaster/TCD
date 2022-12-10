@@ -35,7 +35,7 @@ import java.util.logging.Logger;
 /**
   CREATE TABLE `requerimentoadocao` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lartemporario_id` int(11) NOT NULL,
+  `idLartemporario` int(11) NOT NULL,
   `lartemporario` varchar(35),
   `tutor_id` int(11) NOT NULL,
   `tutor` varchar(35),
@@ -47,7 +47,7 @@ import java.util.logging.Logger;
   `termino` datetime DEFAULT NULL,
   `excluido` tinyint(1) DEFAULT '0',
   CONSTRAINT PRIMARY KEY (`id`),
-  CONSTRAINT FOREGEIN KEY (`lartemporario_id`) REFERENCES lartemporario (id),
+  CONSTRAINT FOREGEIN KEY (`idLartemporario`) REFERENCES lartemporario (id),
   CONSTRAINT FOREGEIN KEY (`tutor_id`) REFERENCES tutor (id),
   CONSTRAINT FOREIGN key (`pet_id`) references pet(id)
   ) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 
@@ -60,7 +60,7 @@ public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao>{
     @Override
     public String getSaveStatment() {
         return " INSERT INTO " + TABLE 
-                + "(lartemporario_id,lartemporario,tutor_id,tutor,pet_id,pet,inicio) values (?,?,?,?,?,?,?);";
+                + "(idLartemporario,lartemporario,tutor_id,tutor,pet_id,pet,inicio) values (?,?,?,?,?,?,?);";
     }
 
     @Override
@@ -119,13 +119,11 @@ public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao>{
 
     @Override
     public RequerimentoAdocao extractObject(ResultSet resultSet) {
-        RequerimentoAdocao reqAd = null;
         
-        
-        reqAd= new RequerimentoAdocao();
+        RequerimentoAdocao reqAd = new RequerimentoAdocao();
         try {
             reqAd.setId(resultSet.getLong("id"));
-            reqAd.setLarTemporario(new LarTemporarioDAO().findById(resultSet.getLong("lartemporario_id")));
+            reqAd.setLarTemporario(new LarTemporarioDAO().findById(resultSet.getLong("idLartemporario")));
             reqAd.setTutor(new TutorDAO().findById(resultSet.getLong("tutor_id")));
             reqAd.setPet(new PetDAO().findById(resultSet.getLong("pet_id")));
             reqAd.setAtivo(resultSet.getBoolean("ativo"));
