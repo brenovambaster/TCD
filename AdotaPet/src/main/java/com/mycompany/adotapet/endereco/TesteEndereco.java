@@ -62,6 +62,6 @@ public class TesteEndereco {
         // Restore from trash
         new EnderecoDAO().restoreFromTrash(id_endr);
         System.out.println("Restore from trash" + new EnderecoDAO().findById(id_endr));
-    
+
     }
 }

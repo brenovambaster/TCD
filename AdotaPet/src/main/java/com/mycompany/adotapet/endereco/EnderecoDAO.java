@@ -51,21 +51,21 @@ import java.util.logging.Logger;
  */
 
 public class EnderecoDAO extends DAO<Endereco> {
-    
+
     public static final String TABLE = "endereco";
-    
+
     @Override
     public String getSaveStatment() {
         return "INSERT INTO  " + TABLE + "  (idTipoLogradouro, logradouro, numero, complemento,"
                 + " bairro, cidade, estado, cep ) VALUES(?,?,?,?,?,?,?,?)";
     }
-    
+
     @Override
     public String getUpdateStatment() {
         return "UPDATE " + TABLE + "  SET idTipoLogradouro =? , logradouro=?,  numero=?, complemento=?,"
                 + " bairro=?, cidade=?, estado=?, cep=? WHERE id=? ";
     }
-    
+
     @Override
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Endereco e) {
         try {
@@ -77,45 +77,45 @@ public class EnderecoDAO extends DAO<Endereco> {
             pstmt.setString(6, e.getCidade());
             pstmt.setString(7, e.getEstado());
             pstmt.setInt(8, e.getCep());
-            
+
             if (e.getId() != null) {
                 pstmt.setLong(9, e.getId());
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @Override
     public String getFindByIdStatment() {
         return "SELECT * FROM " + TABLE + " WHERE id = ? ";
     }
-    
+
     @Override
     public String getFindAllStatment() {
         return "SELECT * FROM " + TABLE;
     }
-    
+
     @Override
     public String getFindAllOnTrashStatement() {
         return "SELECT * FROM " + TABLE + " WHERE excluido=true";
     }
-    
+
     @Override
     public String getMoveToTrashStatement() {
         return "UPDATE  " + TABLE + " SET excluido=true WHERE id=?";
     }
-    
+
     @Override
     public String getRestoreFromTrashStatement() {
         return "UPDATE  " + TABLE + " SET excluido=false WHERE id=?";
     }
-    
+
     @Override
     public Endereco extractObject(ResultSet resultSet) {
         Endereco end = null;
-        
+
         end = new Endereco();
         try {
             end.setId(resultSet.getLong("id"));
@@ -133,8 +133,8 @@ public class EnderecoDAO extends DAO<Endereco> {
         } catch (Exception ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return end;
     }
-    
+
 }
