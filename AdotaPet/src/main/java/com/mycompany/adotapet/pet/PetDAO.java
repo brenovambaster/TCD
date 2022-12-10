@@ -160,9 +160,7 @@ public class PetDAO extends DAO<Pet>{
     
     @Override
     public Pet extractObject(ResultSet resultSet) {
-        Pet pet = null;
-        
-        pet = new Pet();
+        Pet pet = new Pet();
         try {
             pet.setId(resultSet.getLong("id"));
             pet.setNome(resultSet.getString("nome"));

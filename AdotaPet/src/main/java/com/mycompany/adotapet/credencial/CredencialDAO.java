@@ -18,10 +18,6 @@
 package com.mycompany.adotapet.credencial;
 
 import com.mycompany.adotapet.repositorio.DAO;
-import com.mycompany.adotapet.usuario.Usuario;
-import com.mycompany.adotapet.tutor.Tutor;
-import com.mycompany.adotapet.tutor.TutorDAO;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,7 +37,7 @@ CREATE TABLE `credencial` (
   `ativo` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB
  */
 public class CredencialDAO extends DAO<Credencial> {
 

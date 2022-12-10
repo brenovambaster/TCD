@@ -22,6 +22,7 @@ import com.mycompany.adotapet.repositorio.DbConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -79,6 +80,10 @@ public class EspecieDAO extends DAO<Especie> {
     
     public String getFindByNameStatment() {
         return "SELECT * FROM " + TABLE + " WHERE nome = ?";
+    }
+    
+    public String getFindByPartialNameStatment() {
+        return "SELECT * FROM " + TABLE + " WHERE nome LIKE = ?";
     }
 
     @Override
@@ -143,6 +148,30 @@ public class EspecieDAO extends DAO<Especie> {
         } catch (Exception ex) {
             System.out.println("Exception: " + ex);
         }
+        return null;
+    }
+    
+    public List<Especie> findAllByPartialName(String partialName) {
+
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConexao().prepareStatement(
+                        getFindByPartialNameStatment())) {
+
+            preparedStatement.setString(1, "%" + partialName + "%");
+
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            // Performs the query on the database
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Returns the respective object
+            return extractObjects(resultSet);
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
+
         return null;
     }
 }
