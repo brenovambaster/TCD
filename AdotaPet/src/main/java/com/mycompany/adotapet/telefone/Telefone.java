@@ -34,8 +34,8 @@ public class Telefone extends Entidade {
     public Telefone() {
     }
 
-    public Telefone(Short DDD, Integer numero, Boolean mensagem) {
-        this.ddd = DDD;
+    public Telefone(Short ddd, Integer numero, Boolean mensagem) {
+        this.ddd = ddd;
         this.numero = numero;
         this.mensagem = mensagem;
     }
