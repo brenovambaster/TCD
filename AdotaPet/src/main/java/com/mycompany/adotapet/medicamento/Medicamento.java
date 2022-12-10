@@ -32,8 +32,8 @@ public class Medicamento extends Entidade{
     public Medicamento() {
     }
 
-    public Medicamento(String nome) {
-        this.nome = nome;
+    public Medicamento(String nome) throws Exception {
+        setNome(nome);
     }
     
     //</editor-fold>
@@ -44,8 +44,12 @@ public class Medicamento extends Entidade{
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public final void setNome(String nome) throws Exception {
+        if (nome.trim().length() > 35 || nome.trim().length() == 0 || nome == null){
+            throw new IllegalArgumentException ("Nome não pode ter mais que 35 caracteres ou vazio!");
+        }else{
+            this.nome = nome.trim();
+        }
     }
     
     //</editor-fold>

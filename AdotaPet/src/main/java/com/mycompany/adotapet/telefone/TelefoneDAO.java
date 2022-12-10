@@ -27,7 +27,8 @@ import java.util.logging.Logger;
 
 /**
  *
- * <pre>CREATE TABLE `telefone` (
+ * <pre>
+ * CREATE TABLE `telefone` (
  * `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
  * `ddd` tinyint(4) NOT NULL,
  * `numero` int(11) NOT NULL,
@@ -36,8 +37,10 @@ import java.util.logging.Logger;
  * PRIMARY KEY (`id`),
  * UNIQUE KEY `id` (`id`),
  * UNIQUE KEY `numero` (`numero`)
- * ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4</pre> Classe TelefoneDAO
- *
+ * ) ENGINE=InnoDB
+ * </pre>
+ * 
+ * Classe TelefoneDAO
  * @author Pedro Dias
  */
 public class TelefoneDAO extends DAO<Telefone> {

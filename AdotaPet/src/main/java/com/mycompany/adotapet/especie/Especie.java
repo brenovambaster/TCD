@@ -32,8 +32,8 @@ public class Especie extends Entidade{
     public Especie() {
     }
 
-    public Especie(String nome) {
-        this.nome = nome.length() > 35 ? nome.substring(0, 35) : nome;
+    public Especie(String nome) throws Exception {
+        setNome(nome);
     }
     //</editor-fold>
     
@@ -43,11 +43,11 @@ public class Especie extends Entidade{
         return nome;
     }
 
-    public void setNome(String nome) throws Exception {
-        if (nome == null || nome.length() > 35){
-            throw new Exception ("Nome não pode ter mais que 35 caracteres ou vazio!");
+    public final void setNome(String nome) throws Exception {
+        if (nome.trim().length() > 35 || nome.trim().length() == 0){
+            throw new IllegalArgumentException ("Nome não pode ter mais que 35 caracteres ou vazio!");
         }else{
-            this.nome = nome;
+            this.nome = nome.trim();
         }
     }
     //</editor-fold>

@@ -26,39 +26,43 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * <pre>
+ * CREATE TABLE `endereco` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `idTipoLogradouro` bigint(20) unsigned NOT NULL,
+  `logradouro` varchar(35) NOT NULL,
+  `numero` int(11) NOT NULL,
+  `complemento` varchar(35) NOT NULL,
+  `bairro` varchar(35) NOT NULL,
+  `cidade` varchar(35) NOT NULL,
+  `estado` varchar(2) NOT NULL,
+  `cep` int(11) NOT NULL,
+  `excluido` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `idTipoLogradouro` (`idTipoLogradouro`),
+  CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`idTipoLogradouro`) REFERENCES `tipologradouro` (`id`)
+) ENGINE=InnoDB
+ * </pre>
+ *
  * Classe EnderecoDAO
  *
  * @author Breno Vambaster C. L
  */
-/*
-  CREATE TABLE `endereco` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tipoLogradouro_id` int(11) NOT NULL,
-  `logradouro` varchar(35) NOT NULL,
-  `numero` int(7) NOT NULL,
-  `complemento` varchar(35) NOT NULL,
-  `bairro` varchar(30) NOT NULL,
-  `cidade` varchar(30) NOT NULL,
-  `estado` varchar(2) NOT NULL,
-  `cep` int(11) NOT NULL,
-  `excluido` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `tipoLogradouro_id` (`tipoLogradouro_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
- */
+
 public class EnderecoDAO extends DAO<Endereco> {
     
     public static final String TABLE = "endereco";
     
     @Override
     public String getSaveStatment() {
-        return "INSERT INTO  " + TABLE + "  (tipoLogradouro_id, logradouro, numero, complemento,"
+        return "INSERT INTO  " + TABLE + "  (idTipoLogradouro, logradouro, numero, complemento,"
                 + " bairro, cidade, estado, cep ) VALUES(?,?,?,?,?,?,?,?)";
     }
     
     @Override
     public String getUpdateStatment() {
-        return "UPDATE " + TABLE + "  SET tipoLogradouro_id =? , logradouro=?,  numero=?, complemento=?,"
+        return "UPDATE " + TABLE + "  SET idTipoLogradouro =? , logradouro=?,  numero=?, complemento=?,"
                 + " bairro=?, cidade=?, estado=?, cep=? WHERE id=? ";
     }
     
@@ -115,7 +119,7 @@ public class EnderecoDAO extends DAO<Endereco> {
         end = new Endereco();
         try {
             end.setId(resultSet.getLong("id"));
-            end.setTipoLogradouro(new TipoLogradouroDAO().findById(resultSet.getLong("tipologradouro_id")));
+            end.setTipoLogradouro(new TipoLogradouroDAO().findById(resultSet.getLong("idTipoLogradouro")));
             end.setLogadouro(resultSet.getString("logradouro"));
             end.setNumero(resultSet.getInt("numero"));
             end.setComplemento(resultSet.getString("complemento"));

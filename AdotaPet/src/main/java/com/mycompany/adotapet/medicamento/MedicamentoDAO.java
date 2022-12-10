@@ -26,14 +26,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * <pre>CREATE TABLE `medicamento` (
+ * <pre>
+ * CREATE TABLE `medicamento` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(35) NOT NULL,
   `excluido` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `nome` (`nome`)
-) ENGINE=InnoDB</pre>
+) ENGINE=InnoDB
+* </pre>
  *
  * Classe MedicamentoDAO
  *
@@ -111,6 +113,8 @@ public class MedicamentoDAO extends DAO<Medicamento> {
             med.setExcluido(resultSet.getBoolean("excluido"));
             med.setNome(resultSet.getString("nome"));
         } catch (SQLException ex) {
+            Logger.getLogger(MedicamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(MedicamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 

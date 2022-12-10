@@ -20,16 +20,12 @@ package com.mycompany.adotapet.medicamento;
 import java.util.List;
 
 /**
- * Classe TesteMedicamento medicamento | CREATE TABLE `medicamento` ( `id`
- * int(11) NOT NULL AUTO_INCREMENT, `nome` varchar(35) NOT NULL, `excluido`
- * tinyint(1) DEFAULT '0', PRIMARY KEY (`id`) ) ENGINE=MyISAM AUTO_INCREMENT=12
- * DEFAULT CHARSET=latin1
  *
  * @author Breno Vambaster C. L
  */
 public class TesteMedicamento {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Medicamento med = new Medicamento("Nimesulida");
 
         //salvando

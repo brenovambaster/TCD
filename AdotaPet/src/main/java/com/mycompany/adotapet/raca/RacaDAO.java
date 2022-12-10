@@ -17,7 +17,6 @@
  */
 package com.mycompany.adotapet.raca;
 
-import com.mycompany.adotapet.especie.Especie;
 import com.mycompany.adotapet.especie.EspecieDAO;
 import com.mycompany.adotapet.repositorio.DAO;
 import com.mycompany.adotapet.repositorio.DbConnection;
@@ -28,17 +27,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * <pre>CREATE TABLE `raca` (
+ * <pre>
+ * CREATE TABLE `raca` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(35) NOT NULL,
-  `especie_id` bigint(20) unsigned NOT NULL,
+  `idEspecie` bigint(20) unsigned NOT NULL,
   `excluido` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `nome` (`nome`),
-  KEY `especie_id` (`especie_id`),
-  CONSTRAINT `raca_ibfk_1` FOREIGN KEY (`especie_id`) REFERENCES `especie` (`id`)
-) ENGINE=InnoDB</pre>
+  KEY `idEspecie` (`idEspecie`),
+  CONSTRAINT `raca_ibfk_1` FOREIGN KEY (`idEspecie`) REFERENCES `especie` (`id`)
+) ENGINE=InnoDB
+ * </pre>
  * 
  * Classe RacaDAO
  *
@@ -51,12 +52,12 @@ public class RacaDAO extends DAO<Raca> {
 
     @Override
     public String getSaveStatment() {
-        return " INSERT INTO " + TABLE + " (nome, excluido, especie_id) values (?, ?,?)";
+        return " INSERT INTO " + TABLE + " (nome, excluido, idEspecie) values (?, ?,?)";
     }
 
     @Override
     public String getUpdateStatment() {
-        return "UPDATE " + TABLE + " SET nome=?, excluido=?, especie_id=? WHERE id= ? ";
+        return "UPDATE " + TABLE + " SET nome=?, excluido=?, idEspecie =? WHERE id= ? ";
     }
 
     @Override
@@ -113,7 +114,7 @@ public class RacaDAO extends DAO<Raca> {
         try {
             raca = new Raca();
             raca.setId(resultSet.getLong("id"));
-            raca.setEspecie(new EspecieDAO().findById(resultSet.getLong("especie_id")));
+            raca.setEspecie(new EspecieDAO().findById(resultSet.getLong("idEspecie")));
             raca.setExcluido(resultSet.getBoolean("excluido"));
             raca.setNome(resultSet.getString("nome"));
         } catch (SQLException ex) {

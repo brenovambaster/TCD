@@ -162,7 +162,7 @@ public class VoluntarioDAO extends DAO<Voluntario>{
             voluntario.setEndereco(new EnderecoDAO().findById(resultSet.getLong("endereco_id")));
             
             //verifica se esta associado a um LarTemporario
-            BigInteger idLartemporario = (BigInteger)resultSet.getObject("lartemporario_id");
+            Long idLartemporario = (Long)resultSet.getObject("lartemporario_id");
             if(idLartemporario != null){
                 voluntario.setLarTemporario(new LarTemporarioDAO().findById(resultSet.getLong("lartemporario_id"))); 
             }else{

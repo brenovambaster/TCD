@@ -26,14 +26,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * <pre>CREATE TABLE `especie` (
+ * <pre>
+ * CREATE TABLE `especie` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(35) NOT NULL,
   `excluido` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `nome` (`nome`)
-) ENGINE=InnoDB</pre> 
+) ENGINE=InnoDB
+ * </pre> 
  * Classe EspecieDao
  *
  * @author Pedro Dias
@@ -44,12 +46,12 @@ public class EspecieDAO extends DAO<Especie> {
 
     @Override
     public String getSaveStatment() {
-        return "insert into " + TABLE + "(nome) values(?)";
+        return "INSERT INTO " + TABLE + "(nome) VALUES(?)";
     }
 
     @Override
     public String getUpdateStatment() {
-        return "update " + TABLE + " set nome = ? where id = ?";
+        return "UPDATE " + TABLE + " SET nome = ? where id = ?";
     }
 
     @Override
@@ -72,31 +74,31 @@ public class EspecieDAO extends DAO<Especie> {
 
     @Override
     public String getFindByIdStatment() {
-        return "select * from " + TABLE + " where id = ?";
+        return "SELECT * FROM " + TABLE + " WHERE id = ?";
     }
     
     public String getFindByNameStatment() {
-        return "select * from " + TABLE + " where nome = ?";
+        return "SELECT * FROM " + TABLE + " WHERE nome = ?";
     }
 
     @Override
     public String getFindAllStatment() {
-        return "select * from " + TABLE;
+        return "SELECT * FROM " + TABLE;
     }
 
     @Override
     public String getFindAllOnTrashStatement() {
-        return "select * from " + TABLE + " where excluido = true";
+        return "SELECT * FROM " + TABLE + " WHERE excluido = true";
     }
 
     @Override
     public String getMoveToTrashStatement() {
-        return "update " + TABLE + " set excluido = true where id = ?";
+        return "UPDATE " + TABLE + " SET excluido = true WHERE id = ?";
     }
 
     @Override
     public String getRestoreFromTrashStatement() {
-        return "update " + TABLE + " set excluido = false where id = ?";
+        return "UPDATE " + TABLE + " SET excluido = false WHERE id = ?";
     }
 
     @Override
