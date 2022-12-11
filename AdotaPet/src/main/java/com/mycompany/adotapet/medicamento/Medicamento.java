@@ -45,7 +45,7 @@ public class Medicamento extends Entidade{
     }
 
     public final void setNome(String nome) throws Exception {
-        if (nome.trim().length() > 35 || nome.trim().length() == 0 || nome == null){
+        if (nome == null||nome.trim().length() > 35 || nome.trim().length() == 0){
             throw new IllegalArgumentException ("Nome não pode ter mais que 35 caracteres ou vazio!");
         }else{
             this.nome = nome.trim();

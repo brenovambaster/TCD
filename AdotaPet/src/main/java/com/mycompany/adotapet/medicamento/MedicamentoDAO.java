@@ -105,10 +105,9 @@ public class MedicamentoDAO extends DAO<Medicamento> {
 
     @Override
     public Medicamento extractObject(ResultSet resultSet) {
-        Medicamento med = null;
+        Medicamento med = new Medicamento();
 
         try {
-            med = new Medicamento();
             med.setId(resultSet.getLong("id"));
             med.setExcluido(resultSet.getBoolean("excluido"));
             med.setNome(resultSet.getString("nome"));
