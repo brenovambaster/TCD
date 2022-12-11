@@ -52,16 +52,16 @@ public class Pet extends Entidade{
         vivo = true;
     }
 
-    public Pet(String nome, Raca raca, LarTemporario larTemporario, LocalDate nascimento, Float peso, Boolean macho, boolean castrado, String comentario) {
+    public Pet(String nome, Raca raca, LarTemporario larTemporario, LocalDate nascimento, Float peso, Boolean macho, boolean castrado, String comentario) throws Exception {
         this();
-        this.nome = nome.length() > 35 ? nome.substring(0, 35) : nome;
+        setNome(nome);
         this.raca = raca;
         this.larTemporario = larTemporario;
         this.nascimento = nascimento;
         this.peso = peso;
         this.macho = macho;
         this.castrado = castrado;
-        this.comentario = comentario.length() > 200 ? comentario.substring(0, 200) : comentario;
+        setComentario(comentario);
     }
         
     //</editor-fold>
@@ -72,11 +72,11 @@ public class Pet extends Entidade{
         return nome;
     }
 
-    public void setNome(String nome) throws Exception {
-    if (nome == null || nome.length() > 35){
-            throw new Exception ("Nome não pode ter mais que 35 caracteres ou vazio!");
+    public final void setNome(String nome) throws Exception {
+    if (nome == null || nome.trim().length() > 35 || nome.trim().length() == 0){
+            throw new IllegalArgumentException ("Nome não pode ter mais que 35 caracteres ou vazio!");
         }else{
-            this.nome = nome;
+            this.nome = nome.trim();
         }
     }
 
@@ -136,11 +136,11 @@ public class Pet extends Entidade{
         return comentario;
     }
 
-    public void setComentario(String comentario) throws Exception {
-        if(comentario.length() > 200){
-            throw new Exception ("Comentario não pode ter mais que 200 caracateres!");
+    public final void setComentario(String comentario) throws Exception {
+        if(comentario.trim().length() > 200){
+            throw new IllegalArgumentException ("Comentario não pode ter mais que 200 caracateres!");
         }else{
-            this.comentario = comentario;
+            this.comentario = comentario.trim();
         }
     }
 

@@ -37,9 +37,9 @@ import java.util.logging.Logger;
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idLartemporario` int(11) NOT NULL,
   `lartemporario` varchar(35),
-  `tutor_id` int(11) NOT NULL,
+  `idTutor` int(11) NOT NULL,
   `tutor` varchar(35),
-  `pet_id` int(11) NOT NULL, 
+  `idPet` int(11) NOT NULL, 
   `pet` varchar(35),
   `ativo` tinyint(1) DEFAULT '1',
   `aprovado` tinyint(1) DEFAULT '0',
@@ -48,8 +48,8 @@ import java.util.logging.Logger;
   `excluido` tinyint(1) DEFAULT '0',
   CONSTRAINT PRIMARY KEY (`id`),
   CONSTRAINT FOREGEIN KEY (`idLartemporario`) REFERENCES lartemporario (id),
-  CONSTRAINT FOREGEIN KEY (`tutor_id`) REFERENCES tutor (id),
-  CONSTRAINT FOREIGN key (`pet_id`) references pet(id)
+  CONSTRAINT FOREGEIN KEY (`idTutor`) REFERENCES tutor (id),
+  CONSTRAINT FOREIGN key (`idPet`) references pet(id)
   ) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 
   */
 
@@ -60,7 +60,7 @@ public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao>{
     @Override
     public String getSaveStatment() {
         return " INSERT INTO " + TABLE 
-                + "(idLartemporario,lartemporario,tutor_id,tutor,pet_id,pet,inicio) values (?,?,?,?,?,?,?);";
+                + "(idLartemporario,lartemporario,idTutor,tutor,idPet,pet,inicio) values (?,?,?,?,?,?,?);";
     }
 
     @Override
@@ -124,8 +124,8 @@ public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao>{
         try {
             reqAd.setId(resultSet.getLong("id"));
             reqAd.setLarTemporario(new LarTemporarioDAO().findById(resultSet.getLong("idLartemporario")));
-            reqAd.setTutor(new TutorDAO().findById(resultSet.getLong("tutor_id")));
-            reqAd.setPet(new PetDAO().findById(resultSet.getLong("pet_id")));
+            reqAd.setTutor(new TutorDAO().findById(resultSet.getLong("idTutor")));
+            reqAd.setPet(new PetDAO().findById(resultSet.getLong("idPet")));
             reqAd.setAtivo(resultSet.getBoolean("ativo"));
             reqAd.setInicio(resultSet.getDate("inicio").toLocalDate());
 

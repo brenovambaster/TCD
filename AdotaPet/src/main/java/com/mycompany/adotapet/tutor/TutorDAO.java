@@ -34,16 +34,16 @@ import java.util.logging.Logger;
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(35) NOT NULL,
   `cpf` bigint(20) unsigned NOT NULL,
-  `telefone_id` bigint(20) unsigned NOT NULL,
-  `endereco_id` bigint(20) unsigned NOT NULL,
+  `idTelefone` bigint(20) unsigned NOT NULL,
+  `idEndereco` bigint(20) unsigned NOT NULL,
   `excluido` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `cpf` (`cpf`),
-  KEY `telefone_id` (`telefone_id`),
-  KEY `endereco_id` (`endereco_id`),
-  CONSTRAINT `tutor_ibfk_1` FOREIGN KEY (`telefone_id`) REFERENCES `telefone` (`id`),
-  CONSTRAINT `tutor_ibfk_2` FOREIGN KEY (`endereco_id`) REFERENCES `endereco` (`id`)
+  KEY `idTelefone` (`idTelefone`),
+  KEY `idEndereco` (`idEndereco`),
+  CONSTRAINT `tutor_ibfk_1` FOREIGN KEY (`idTelefone`) REFERENCES `telefone` (`id`),
+  CONSTRAINT `tutor_ibfk_2` FOREIGN KEY (`idEndereco`) REFERENCES `endereco` (`id`)
 ) ENGINE=InnoDB</pre>
  * Classe TutorDAO
  * @author Pedro Dias
@@ -54,12 +54,12 @@ public class TutorDAO extends DAO<Tutor>{
 
     @Override
     public String getSaveStatment() {
-        return "INSERT INTO " + TABLE + " (nome, cpf, telefone_id, endereco_id) VALUES (?,?,?,?)";
+        return "INSERT INTO " + TABLE + " (nome, cpf, idTelefone, idEndereco) VALUES (?,?,?,?)";
     }
 
     @Override
     public String getUpdateStatment() {
-        return "UPDATE " + TABLE + " SET nome = ?, cpf = ?, telefone_id = ?, endereco_id = ? WHERE id = ?";
+        return "UPDATE " + TABLE + " SET nome = ?, cpf = ?, idTelefone = ?, idEndereco = ? WHERE id = ?";
     }
 
     @Override
@@ -119,8 +119,8 @@ public class TutorDAO extends DAO<Tutor>{
             tutor.setId(resultSet.getLong("id"));
             tutor.setNome(resultSet.getString("nome"));
             tutor.setCpf(resultSet.getLong("cpf"));
-            tutor.setTelefone(new TelefoneDAO().findById(resultSet.getLong("telefone_id")));
-            tutor.setEndereco(new EnderecoDAO().findById(resultSet.getLong("endereco_id")));
+            tutor.setTelefone(new TelefoneDAO().findById(resultSet.getLong("idTelefone")));
+            tutor.setEndereco(new EnderecoDAO().findById(resultSet.getLong("idEndereco")));
             tutor.setPets(new PetDAO().findByTutor(tutor.getId()));
             tutor.setExcluido(resultSet.getBoolean("excluido"));
         } catch (SQLException ex) {

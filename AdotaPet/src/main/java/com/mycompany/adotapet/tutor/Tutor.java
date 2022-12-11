@@ -38,7 +38,7 @@ public class Tutor extends Usuario{
         pets = new ArrayList<>();
     }
 
-    public Tutor(String nome, Long cpf, Telefone telefone, Endereco endereco) {
+    public Tutor(String nome, Long cpf, Telefone telefone, Endereco endereco) throws Exception {
         super(nome, cpf, telefone, endereco);
         pets = new ArrayList<>();
     }

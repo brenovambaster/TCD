@@ -23,7 +23,6 @@ import com.mycompany.adotapet.larTemporario.LarTemporarioDAO;
 import com.mycompany.adotapet.repositorio.DAO;
 import com.mycompany.adotapet.repositorio.DbConnection;
 import com.mycompany.adotapet.telefone.TelefoneDAO;
-import java.math.BigInteger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,19 +35,19 @@ import java.util.logging.Logger;
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(35) NOT NULL,
   `cpf` bigint(20) unsigned NOT NULL,
-  `telefone_id` bigint(20) unsigned NOT NULL,
-  `endereco_id` bigint(20) unsigned NOT NULL,
-  `lartemporario_id` bigint(20) unsigned DEFAULT NULL,
+  `idTelefone` bigint(20) unsigned NOT NULL,
+  `idEndereco` bigint(20) unsigned NOT NULL,
+  `idLartemporario` bigint(20) unsigned DEFAULT NULL,
   `excluido` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `cpf` (`cpf`),
-  KEY `telefone_id` (`telefone_id`),
-  KEY `endereco_id` (`endereco_id`),
-  KEY `lartemporario_id` (`lartemporario_id`),
-  CONSTRAINT `voluntario_ibfk_1` FOREIGN KEY (`telefone_id`) REFERENCES `telefone` (`id`),
-  CONSTRAINT `voluntario_ibfk_2` FOREIGN KEY (`endereco_id`) REFERENCES `endereco` (`id`),
-  CONSTRAINT `voluntario_ibfk_3` FOREIGN KEY (`lartemporario_id`) REFERENCES `lartemporario` (`id`)
+  KEY `idTelefone` (`idTelefone`),
+  KEY `idEndereco` (`idEndereco`),
+  KEY `idLartemporario` (`idLartemporario`),
+  CONSTRAINT `voluntario_ibfk_1` FOREIGN KEY (`idTelefone`) REFERENCES `telefone` (`id`),
+  CONSTRAINT `voluntario_ibfk_2` FOREIGN KEY (`idEndereco`) REFERENCES `endereco` (`id`),
+  CONSTRAINT `voluntario_ibfk_3` FOREIGN KEY (`idLartemporario`) REFERENCES `lartemporario` (`id`)
 ) ENGINE=InnoDB</pre>
  * Classe VoluntarioDAO
  * @author Pedro Dias
@@ -59,16 +58,16 @@ public class VoluntarioDAO extends DAO<Voluntario>{
 
     @Override
     public String getSaveStatment() {
-        return "INSERT INTO " + TABLE + " (nome, cpf, telefone_id, endereco_id) VALUES (?,?,?,?)";
+        return "INSERT INTO " + TABLE + " (nome, cpf, idTelefone, idEndereco) VALUES (?,?,?,?)";
     }
 
     @Override
     public String getUpdateStatment() {
-        return "UPDATE " + TABLE + " SET nome = ?, cpf = ?, telefone_id = ?, endereco_id = ? WHERE id = ?";
+        return "UPDATE " + TABLE + " SET nome = ?, cpf = ?, idTelefone = ?, idEndereco = ? WHERE id = ?";
     }
     
     public String getAddLarTemporarioStatment() {
-        return "UPDATE " + TABLE + " SET lartemporario_id = ? WHERE id = ?";
+        return "UPDATE " + TABLE + " SET idLartemporario = ? WHERE id = ?";
     }
 
     @Override
@@ -125,7 +124,7 @@ public class VoluntarioDAO extends DAO<Voluntario>{
     }
     
     public String getFindByLarTemporarioIdStatment() {
-        return "SELECT * FROM " + TABLE + " WHERE lartemporario_id = ?";
+        return "SELECT * FROM " + TABLE + " WHERE idLartemporario = ?";
     }
 
     @Override
@@ -158,13 +157,13 @@ public class VoluntarioDAO extends DAO<Voluntario>{
             voluntario.setId(resultSet.getLong("id"));
             voluntario.setNome(resultSet.getString("nome"));
             voluntario.setCpf(resultSet.getLong("cpf"));
-            voluntario.setTelefone(new TelefoneDAO().findById(resultSet.getLong("telefone_id")));
-            voluntario.setEndereco(new EnderecoDAO().findById(resultSet.getLong("endereco_id")));
+            voluntario.setTelefone(new TelefoneDAO().findById(resultSet.getLong("idTelefone")));
+            voluntario.setEndereco(new EnderecoDAO().findById(resultSet.getLong("idEndereco")));
             
             //verifica se esta associado a um LarTemporario
-            Long idLartemporario = (Long)resultSet.getObject("lartemporario_id");
+            Long idLartemporario = (Long)resultSet.getObject("idLartemporario");
             if(idLartemporario != null){
-                voluntario.setLarTemporario(new LarTemporarioDAO().findById(resultSet.getLong("lartemporario_id"))); 
+                voluntario.setLarTemporario(new LarTemporarioDAO().findById(resultSet.getLong("idLartemporario"))); 
             }else{
                 voluntario.setLarTemporario(null);
             }

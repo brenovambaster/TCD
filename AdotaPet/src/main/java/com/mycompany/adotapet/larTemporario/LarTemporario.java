@@ -37,8 +37,8 @@ public class LarTemporario extends Entidade {
     public LarTemporario() {
     }
 
-    public LarTemporario(String nome, Endereco endereco) {
-        this.nome = nome.length() > 45 ? nome.substring(0, 45) : nome;
+    public LarTemporario(String nome, Endereco endereco) throws Exception {
+        setNome(nome);
         this.endereco = endereco;
     }
     
@@ -50,11 +50,11 @@ public class LarTemporario extends Entidade {
         return nome;
     }
 
-    public void setNome(String nome) throws Exception {
-        if (nome == null || nome.length() > 45){
-            throw new Exception ("Nome não pode ter mais que 45 caracteres ou vazio!");
+    public final void setNome(String nome) throws Exception {
+        if (nome == null || nome.trim().length() > 45 || nome.trim().length() == 0){
+            throw new IllegalArgumentException ("Nome não pode ter mais que 45 caracteres ou vazio!");
         }else{
-            this.nome = nome;
+            this.nome = nome.trim();
         }
     }
 

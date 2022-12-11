@@ -32,15 +32,15 @@ import java.util.logging.Logger;
  * <pre>CREATE TABLE `lartemporario` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(35) NOT NULL,
-  `endereco_id` bigint(20) unsigned NOT NULL,
+  `idEndereco` bigint(20) unsigned NOT NULL,
   `excluido` tinyint(1) DEFAULT 0,
-  `voluntario_id` bigint(20) unsigned NOT NULL,
+  `idVoluntario` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
-  KEY `endereco_id` (`endereco_id`),
-  KEY `voluntario_id` (`voluntario_id`),
-  CONSTRAINT `lartemporario_ibfk_1` FOREIGN KEY (`endereco_id`) REFERENCES `endereco` (`id`),
-  CONSTRAINT `lartemporario_ibfk_2` FOREIGN KEY (`voluntario_id`) REFERENCES `voluntario` (`id`)
+  KEY `idEndereco` (`idEndereco`),
+  KEY `idVoluntario` (`idVoluntario`),
+  CONSTRAINT `lartemporario_ibfk_1` FOREIGN KEY (`idEndereco`) REFERENCES `endereco` (`id`),
+  CONSTRAINT `lartemporario_ibfk_2` FOREIGN KEY (`idVoluntario`) REFERENCES `voluntario` (`id`)
 ) ENGINE=InnoDB</pre>
  *
  * Classe LarTemporarioDAO
@@ -52,12 +52,12 @@ public class LarTemporarioDAO extends DAO<LarTemporario>{
     
     @Override
     public String getSaveStatment() {
-        return "INSERT INTO " + TABLE + "  (nome, endereco_id, voluntario_id) VALUES (?,?,?)";
+        return "INSERT INTO " + TABLE + "  (nome, idEndereco, idVoluntario) VALUES (?,?,?)";
     }
     
     @Override
     public String getUpdateStatment() {
-        return "UPDATE " + TABLE + "  SET nome = ? , endereco_id = ?,  voluntario_id = ? WHERE id = ? ";
+        return "UPDATE " + TABLE + "  SET nome = ? , idEndereco = ?,  idVoluntario = ? WHERE id = ? ";
     }
     
     @Override
@@ -107,14 +107,12 @@ public class LarTemporarioDAO extends DAO<LarTemporario>{
     
     @Override
     public LarTemporario extractObject(ResultSet resultSet) {
-        LarTemporario larTemporario = null;
-        
-        larTemporario = new LarTemporario();
+        LarTemporario larTemporario = new LarTemporario();
         try {
             larTemporario.setId(resultSet.getLong("id"));
             larTemporario.setNome(resultSet.getString("nome"));
-            larTemporario.setEndereco(new EnderecoDAO().findById(resultSet.getLong("endereco_id")));
-            larTemporario.setFundador(new VoluntarioDAO().findById(resultSet.getLong("voluntario_id")));
+            larTemporario.setEndereco(new EnderecoDAO().findById(resultSet.getLong("idEndereco")));
+            larTemporario.setFundador(new VoluntarioDAO().findById(resultSet.getLong("idVoluntario")));
             larTemporario.setExcluido(resultSet.getBoolean("excluido"));
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);

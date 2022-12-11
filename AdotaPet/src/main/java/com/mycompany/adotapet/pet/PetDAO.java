@@ -36,24 +36,24 @@ import java.util.logging.Logger;
  * <pre>CREATE TABLE `pet` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(35) NOT NULL,
-  `raca_id` bigint(20) unsigned NOT NULL,
-  `lartemporario_id` bigint(20) unsigned NOT NULL,
+  `idRaca` bigint(20) unsigned NOT NULL,
+  `idLartemporario` bigint(20) unsigned NOT NULL,
   `nascimento` date DEFAULT NULL,
   `peso` float DEFAULT NULL,
   `macho` tinyint(1) NOT NULL,
   `castrado` tinyint(1) DEFAULT 0,
   `comentario` varchar(200) DEFAULT NULL,
   `vivo` tinyint(1) DEFAULT 1,
-  `tutor_id` bigint(20) unsigned DEFAULT NULL,
+  `idTutor` bigint(20) unsigned DEFAULT NULL,
   `excluido` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
-  KEY `raca_id` (`raca_id`),
-  KEY `lartemporario_id` (`lartemporario_id`),
-  KEY `tutor_id` (`tutor_id`),
-  CONSTRAINT `pet_ibfk_1` FOREIGN KEY (`raca_id`) REFERENCES `raca` (`id`),
-  CONSTRAINT `pet_ibfk_2` FOREIGN KEY (`lartemporario_id`) REFERENCES `lartemporario` (`id`),
-  CONSTRAINT `pet_ibfk_3` FOREIGN KEY (`tutor_id`) REFERENCES `tutor` (`id`)
+  KEY `idRaca` (`idRaca`),
+  KEY `idLartemporario` (`idLartemporario`),
+  KEY `idTutor` (`idTutor`),
+  CONSTRAINT `pet_ibfk_1` FOREIGN KEY (`idRaca`) REFERENCES `raca` (`id`),
+  CONSTRAINT `pet_ibfk_2` FOREIGN KEY (`idLartemporario`) REFERENCES `lartemporario` (`id`),
+  CONSTRAINT `pet_ibfk_3` FOREIGN KEY (`idTutor`) REFERENCES `tutor` (`id`)
 ) ENGINE=InnoDB</pre>
  * Classe PetDAO
  * @author Pedro Dias
@@ -63,18 +63,18 @@ public class PetDAO extends DAO<Pet>{
     
     @Override
     public String getSaveStatment() {
-        return "INSERT INTO " + TABLE + "  (nome, raca_id, lartemporario_id, nascimento, peso, macho, castrado, comentario, vivo) "
+        return "INSERT INTO " + TABLE + "  (nome, idRaca, idLartemporario, nascimento, peso, macho, castrado, comentario, vivo) "
                 + "VALUES(?,?,?,?,?,?,?,?,?);";
     }
     
     @Override
     public String getUpdateStatment() {
-        return "UPDATE " + TABLE + "  SET nome = ? , raca_id = ?,  lartemporario_id = ?, nascimento = ?, peso = ?"
+        return "UPDATE " + TABLE + "  SET nome = ? , idRaca = ?,  idLartemporario = ?, nascimento = ?, peso = ?"
                 + ", macho = ?, castrado = ?, comentario = ?, vivo = ? WHERE id = ? ";
     }
     
     public String getAddTutorStatment() {
-        return "UPDATE " + TABLE + "  SET tutor_id WHERE id = ? ";
+        return "UPDATE " + TABLE + "  SET idTutor WHERE id = ? ";
     }
     
     @Override
@@ -131,11 +131,11 @@ public class PetDAO extends DAO<Pet>{
     }
     
     public String getFindByTutorStatment() {
-        return "SELECT * FROM " + TABLE + " WHERE tutor_id = ? ";
+        return "SELECT * FROM " + TABLE + " WHERE idTutor = ? ";
     }
     
     public String getFindByLarTemporarioStatment() {
-        return "SELECT * FROM " + TABLE + " WHERE tutor_id = ? ";
+        return "SELECT * FROM " + TABLE + " WHERE idTutor = ? ";
     }
     
     @Override
@@ -164,7 +164,7 @@ public class PetDAO extends DAO<Pet>{
         try {
             pet.setId(resultSet.getLong("id"));
             pet.setNome(resultSet.getString("nome"));
-            pet.setLarTemporario(new LarTemporarioDAO().findById(resultSet.getLong("lartemporario_id")));
+            pet.setLarTemporario(new LarTemporarioDAO().findById(resultSet.getLong("idLartemporario")));
             pet.setNascimento(resultSet.getDate("nascimento").toLocalDate());
             pet.setPeso(resultSet.getFloat("peso"));
             pet.setMacho(resultSet.getBoolean("macho"));
@@ -173,9 +173,9 @@ public class PetDAO extends DAO<Pet>{
             pet.setVivo(resultSet.getBoolean("vivo"));
             
             //verifica se tem Tutor
-            BigInteger idTutor = (BigInteger)resultSet.getObject("tutor_id");
+            BigInteger idTutor = (BigInteger)resultSet.getObject("idTutor");
             if(idTutor != null){
-                pet.setTutor(new TutorDAO().findById(resultSet.getLong("tutor_id")));
+                pet.setTutor(new TutorDAO().findById(resultSet.getLong("idTutor")));
             }else{
                 pet.setTutor(null);
             }

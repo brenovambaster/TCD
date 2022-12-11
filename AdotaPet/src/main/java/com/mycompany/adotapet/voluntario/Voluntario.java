@@ -35,7 +35,7 @@ public class Voluntario extends Usuario{
     public Voluntario() {
     }
 
-    public Voluntario(LarTemporario larTemporario, String nome, Long cpf, Telefone telefone, Endereco endereco) {
+    public Voluntario(LarTemporario larTemporario, String nome, Long cpf, Telefone telefone, Endereco endereco) throws Exception {
         super(nome, cpf, telefone, endereco);
         this.larTemporario = larTemporario;
     }

@@ -37,8 +37,8 @@ public abstract class Usuario extends Entidade{
     public Usuario() {
     }
 
-    public Usuario(String nome, Long cpf, Telefone telefone, Endereco endereco) {
-        this.nome = nome.length() > 35 ? nome.substring(0, 35) : nome;
+    public Usuario(String nome, Long cpf, Telefone telefone, Endereco endereco) throws Exception {
+        setNome(nome);
         this.cpf = cpf;
         this.telefone = telefone;
         this.endereco = endereco;
@@ -52,11 +52,11 @@ public abstract class Usuario extends Entidade{
         return nome;
     }
 
-    public void setNome(String nome) throws Exception{
-    if (nome == null || nome.length() > 35){
-            throw new Exception ("Nome não pode ter mais que 35 caracteres ou vazio!");
+    public final void setNome(String nome) throws Exception{
+    if (nome == null || nome.trim().length() > 35 || nome.trim().length() == 0){
+            throw new IllegalArgumentException ("Nome não pode ter mais que 35 caracteres ou vazio!");
         }else{
-            this.nome = nome;
+            this.nome = nome.trim();
         }
     }
 
