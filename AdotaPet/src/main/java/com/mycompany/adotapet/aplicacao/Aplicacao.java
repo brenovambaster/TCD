@@ -46,7 +46,7 @@ public class Aplicacao extends Entidade{
         this.responsavelAplicacao = responsavelAplicacao;
         this.pet = pet;
         this.data = data;
-        this.anotacao = anotacao.length() > 200 ? anotacao.substring(0, 200) : anotacao;
+        this.anotacao = anotacao.trim().length() > 200 ? anotacao.trim().substring(0, 200) : anotacao.trim();
         this.qtdDose = qtdDose;
     }
 
@@ -75,10 +75,10 @@ public class Aplicacao extends Entidade{
     }
 
     public void setAnotacao(String anotacao) throws Exception {
-        if(anotacao.length() > 200){
+        if(anotacao.trim().length() > 200){
             throw new Exception ("Anotação não pode ter mais que 200 caracateres!");
         }else{
-            this.anotacao = anotacao;
+            this.anotacao = anotacao.trim();
         }
     }
 

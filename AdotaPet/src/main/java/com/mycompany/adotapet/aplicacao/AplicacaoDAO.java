@@ -33,20 +33,20 @@ import java.util.logging.Logger;
 /**
  * <pre>CREATE TABLE `aplicacao` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `medicamento_id` bigint(20) unsigned NOT NULL,
-  `voluntario_id` bigint(20) unsigned NOT NULL,
-  `pet_id` bigint(20) unsigned NOT NULL,
+  `idMedicamento` bigint(20) unsigned NOT NULL,
+  `idVoluntario` bigint(20) unsigned NOT NULL,
+  `idPet` bigint(20) unsigned NOT NULL,
   `data` date NOT NULL,
   `anotacao` varchar(200) DEFAULT NULL,
   `qtdDose` float DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
-  KEY `medicamento_id` (`medicamento_id`),
-  KEY `voluntario_id` (`voluntario_id`),
-  KEY `pet_id` (`pet_id`),
-  CONSTRAINT `aplicacao_ibfk_1` FOREIGN KEY (`medicamento_id`) REFERENCES `medicamento` (`id`),
-  CONSTRAINT `aplicacao_ibfk_2` FOREIGN KEY (`voluntario_id`) REFERENCES `voluntario` (`id`),
-  CONSTRAINT `aplicacao_ibfk_3` FOREIGN KEY (`pet_id`) REFERENCES `pet` (`id`)
+  KEY `idMedicamento` (`idMedicamento`),
+  KEY `idVoluntario` (`idVoluntario`),
+  KEY `idPet` (`idPet`),
+  CONSTRAINT `aplicacao_ibfk_1` FOREIGN KEY (`idMedicamento`) REFERENCES `medicamento` (`id`),
+  CONSTRAINT `aplicacao_ibfk_2` FOREIGN KEY (`idVoluntario`) REFERENCES `voluntario` (`id`),
+  CONSTRAINT `aplicacao_ibfk_3` FOREIGN KEY (`idPet`) REFERENCES `pet` (`id`)
 ) ENGINE=InnoDB</pre>
  *
  * Classe AplicacaoDAO
@@ -58,13 +58,13 @@ public class AplicacaoDAO extends DAO<Aplicacao>{
 
     @Override
     public String getSaveStatment() {
-        return "INSERT INTO " + TABLE + " (medicamento_id, voluntario_id, pet_id, data, anotacao, qtdDose)"
+        return "INSERT INTO " + TABLE + " (idMedicamento, idVoluntario, idPet, data, anotacao, qtdDose)"
                 + " VALUES (?,?,?,?,?,?)";
     }
 
     @Override
     public String getUpdateStatment() {
-        return "UPDATE " + TABLE + " SET medicamento_id = ?, voluntario_id = ?, pet_id = ?, data = ?, "
+        return "UPDATE " + TABLE + " SET idMedicamento = ?, idVoluntario = ?, idPet = ?, data = ?, "
                 + "anotacao = ?, qtdDose = ? WHERE id = ?";
     }
 
@@ -94,7 +94,7 @@ public class AplicacaoDAO extends DAO<Aplicacao>{
     }
     
     public String getFindByPetStatment() {
-        return "SELECT * FROM " + TABLE + " WHERE pet_id = ?";
+        return "SELECT * FROM " + TABLE + " WHERE idPet = ?";
     }
 
     @Override
@@ -120,14 +120,13 @@ public class AplicacaoDAO extends DAO<Aplicacao>{
     @Override
     public Aplicacao extractObject(ResultSet resultSet) {
 
-        Aplicacao aplicacao = null;
+        Aplicacao aplicacao = new Aplicacao();
 
         try {
-            aplicacao = new Aplicacao();
             aplicacao.setId(resultSet.getLong("id"));
-            aplicacao.setMedicamento(new MedicamentoDAO().findById(resultSet.getLong("medicamento_id")));
-            aplicacao.setResponsavelAplicacao(new VoluntarioDAO().findById(resultSet.getLong("voluntario_id")));
-            aplicacao.setPet(new PetDAO().findById(resultSet.getLong("pet_id")));
+            aplicacao.setMedicamento(new MedicamentoDAO().findById(resultSet.getLong("idMedicamento")));
+            aplicacao.setResponsavelAplicacao(new VoluntarioDAO().findById(resultSet.getLong("idVoluntario")));
+            aplicacao.setPet(new PetDAO().findById(resultSet.getLong("idPet")));
             aplicacao.setData(resultSet.getDate("data").toLocalDate());
             aplicacao.setAnotacao(resultSet.getString("anotacao"));
             aplicacao.setQtdDose(resultSet.getFloat("qtdDose"));
