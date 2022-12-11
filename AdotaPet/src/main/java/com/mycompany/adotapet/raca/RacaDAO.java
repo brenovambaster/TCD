@@ -114,10 +114,9 @@ public class RacaDAO extends DAO<Raca> {
 
     @Override
     public Raca extractObject(ResultSet resultSet) {
-        Raca raca = null;
+        Raca raca = new Raca();
 
         try {
-            raca = new Raca();
             raca.setId(resultSet.getLong("id"));
             raca.setEspecie(new EspecieDAO().findById(resultSet.getLong("idEspecie")));
             raca.setExcluido(resultSet.getBoolean("excluido"));

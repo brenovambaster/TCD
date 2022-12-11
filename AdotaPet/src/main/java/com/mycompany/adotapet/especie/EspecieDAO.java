@@ -109,10 +109,9 @@ public class EspecieDAO extends DAO<Especie> {
     @Override
     public Especie extractObject(ResultSet resultSet) {
 
-        Especie especie = null;
+        Especie especie = new Especie();
 
         try {
-            especie = new Especie();
             especie.setId(resultSet.getLong("id"));
             especie.setNome(resultSet.getString("nome"));
             especie.setExcluido(resultSet.getBoolean("excluido"));
