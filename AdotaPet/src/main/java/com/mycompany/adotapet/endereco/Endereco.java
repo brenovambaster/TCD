@@ -24,7 +24,7 @@ import com.mycompany.adotapet.tipoLogradouro.TipoLogradouro;
  * 
  * <pre>CREATE TABLE `endereco` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `tipologradouro_id` bigint(20) unsigned NOT NULL,
+  `idTipologradouro` bigint(20) unsigned NOT NULL,
   `logradouro` varchar(35) NOT NULL,
   `numero` int(11) NOT NULL,
   `complemento` varchar(35) NOT NULL,
@@ -35,8 +35,8 @@ import com.mycompany.adotapet.tipoLogradouro.TipoLogradouro;
   `excluido` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
-  KEY `tipologradouro_id` (`tipologradouro_id`),
-  CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`tipologradouro_id`) REFERENCES `tipologradouro` (`id`)
+  KEY `idTipologradouro` (`idTipologradouro`),
+  CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`idTipologradouro`) REFERENCES `tipologradouro` (`id`)
 ) ENGINE=InnoDB DEFAULT</pre>
  * Classe Endereco
  *
@@ -84,11 +84,11 @@ public class Endereco extends Entidade {
         return logradouro;
     }
     
-    public void setLogadouro(String logradouro) throws Exception {
-        if (logradouro.length() >= 35) {
-            throw new Exception("Nome do logradouro não pode exceder 45 caracteres");
+    public final void setLogadouro(String logradouro) throws Exception {
+        if (logradouro == null || logradouro.trim().length() >= 35 || logradouro.trim().length() == 0) {
+            throw new IllegalArgumentException("Nome do logradouro não pode exceder 35 caracteres");
         } else {
-            this.logradouro = logradouro;
+            this.logradouro = logradouro.trim();
         }
     }
     
@@ -104,11 +104,11 @@ public class Endereco extends Entidade {
         return complemento;
     }
     
-    public void setComplemento(String complemento) throws Exception {
-        if (complemento.length() >= 35) {
-            throw new Exception("Nome do complemento não pode exceder 45 caracteres");
+    public final void setComplemento(String complemento) throws Exception {
+        if (complemento == null || complemento.trim().length() >= 35 || complemento.trim().length() == 0) {
+            throw new IllegalArgumentException("Nome do complemento não pode exceder 35 caracteres");
         } else {
-            this.complemento = complemento;
+            this.complemento = complemento.trim();
         }
     }
     
@@ -116,11 +116,11 @@ public class Endereco extends Entidade {
         return bairro;
     }
     
-    public void setBairro(String bairro) throws Exception {
-        if (bairro.length() >= 35) {
-            throw new Exception("Nome do bairro não pode exceder 20 caracteres");
+    public final void setBairro(String bairro) throws Exception {
+        if (bairro == null || bairro.trim().length() >= 35 || bairro.trim().length() == 0) {
+            throw new IllegalArgumentException("Nome do bairro não pode exceder 35 caracteres");
         } else {
-            this.bairro = bairro;
+            this.bairro = bairro.trim();
         }
     }
     
@@ -128,11 +128,11 @@ public class Endereco extends Entidade {
         return cidade;
     }
     
-    public void setCidade(String cidade) throws Exception {
-        if (cidade.length() >= 35) {
-            throw new Exception("Nome da cidade não pode exceder 35 caracteres");
+    public final void setCidade(String cidade) throws Exception {
+        if (cidade == null || cidade.trim().length() >= 35 || cidade.trim().length() == 0) {
+            throw new IllegalArgumentException("Nome da cidade não pode exceder 35 caracteres");
         } else {
-            this.cidade = cidade;
+            this.cidade = cidade.trim();
         }
     }
     
@@ -140,11 +140,11 @@ public class Endereco extends Entidade {
         return estado;
     }
     
-    public void setEstado(String estado) throws Exception {
-        if (estado.length() <= 2) {
-            this.estado = estado;
-        } else {
-            throw new Exception("Estado deve conter apenas 2 caracteres");
+    public final void setEstado(String estado) throws Exception {
+        if (estado == null || estado.trim().length() > 2 || estado.trim().length() == 0) {
+            throw new IllegalArgumentException("Estado deve conter apenas 2 caracteres");    
+        } else{
+            this.estado = estado.trim();
         }
     }
     
