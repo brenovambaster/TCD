@@ -19,6 +19,7 @@ package com.mycompany.adotapet.credencial;
 
 import com.mycompany.adotapet.entidade.Entidade;
 import com.mycompany.adotapet.usuario.Usuario;
+
 /**
  * Classe Credencial
  *
@@ -43,17 +44,16 @@ public class Credencial extends Entidade {
     }
 
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="getters/setters">
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) throws Exception {
-        if (email == null || email.length() > 35) {
-            throw new Exception("Email não pode ter mais que 35 caracteres ou vazio!");
+        if (email == null || email.trim().length() > 45 || email.trim().length() == 0) {
+            throw new IllegalArgumentException("Email não pode ter mais que 35 caracteres ou vazio!");
         } else {
-            this.email = email;
+            this.email = email.trim();
         }
     }
 
@@ -62,7 +62,11 @@ public class Credencial extends Entidade {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+        if (senha == null || senha.trim().length() == 0) {
+            throw new IllegalArgumentException("Senha não pode ser vazia");
+        } else {
+            this.senha = senha.trim();
+        }
     }
 
     public boolean isAtivo() {
