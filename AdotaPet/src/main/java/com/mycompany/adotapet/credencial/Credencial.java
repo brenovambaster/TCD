@@ -49,6 +49,10 @@ public class Credencial extends Entidade {
         return email;
     }
 
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     public void setEmail(String email) throws Exception {
         if (email == null || email.trim().length() > 45 || email.trim().length() == 0) {
             throw new IllegalArgumentException("Email não pode ter mais que 35 caracteres ou vazio!");
