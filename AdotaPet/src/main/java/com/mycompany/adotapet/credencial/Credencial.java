@@ -19,7 +19,6 @@ package com.mycompany.adotapet.credencial;
 
 import com.mycompany.adotapet.entidade.Entidade;
 import com.mycompany.adotapet.usuario.Usuario;
-
 /**
  * Classe Credencial
  *
@@ -30,6 +29,7 @@ public class Credencial extends Entidade {
     private String email;
     private String senha;
     private boolean ativo;
+    private Usuario usuario;
 
     //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Credencial() {
@@ -43,6 +43,7 @@ public class Credencial extends Entidade {
     }
 
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="getters/setters">
     public String getEmail() {
         return email;
