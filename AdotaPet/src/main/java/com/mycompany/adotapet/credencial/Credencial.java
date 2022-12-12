@@ -49,6 +49,10 @@ public class Credencial extends Entidade {
         return email;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
