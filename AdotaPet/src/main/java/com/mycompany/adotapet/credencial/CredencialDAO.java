@@ -18,6 +18,9 @@
 package com.mycompany.adotapet.credencial;
 
 import com.mycompany.adotapet.repositorio.DAO;
+import com.mycompany.adotapet.repositorio.DbConnection;
+import com.mycompany.adotapet.tutor.TutorDAO;
+import com.mycompany.adotapet.voluntario.VoluntarioDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,28 +28,40 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Classe CredencialDAO
+ * <pre>CREATE TABLE `credencial` (
+ * `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+ * `email` varchar(45) NOT NULL,
+ * `senha` varchar(32) NOT NULL,
+ * `ativo` tinyint(1) NOT NULL DEFAULT 1,
+ * `idTutor` bigint(20) unsigned DEFAULT NULL,
+ * `idVoluntario` bigint(20) unsigned DEFAULT NULL,
+ * PRIMARY KEY (`id`),
+ * UNIQUE KEY `email` (`email`),
+ * UNIQUE KEY `email_2` (`email`),
+ * KEY `idTutor` (`idTutor`),
+ * KEY `idVoluntario` (`idVoluntario`),
+ * CONSTRAINT `credencial_ibfk_1` FOREIGN KEY (`idTutor`) REFERENCES `tutor` (`id`),
+ * CONSTRAINT `credencial_ibfk_2` FOREIGN KEY (`idVoluntario`) REFERENCES `voluntario` (`id`)
+ * ) ENGINE=InnoDB
+ * </pre> Classe CredencialDAO
  *
  * @author Breno Vambaster C. L
- */
-/*
-CREATE TABLE `credencial` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `email` varchar(40) NOT NULL,
-  `senha` varchar(40) NOT NULL,
-  `ativo` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB
  */
 public class CredencialDAO extends DAO<Credencial> {
 
     public static final String TABLE = "credencial";
 
     @Override
-
     public String getSaveStatment() {
         return "INSERT INTO " + TABLE + " (email, senha) values (?, MD5(?)) ";
+    }
+
+    public String getSaveTutorStatment() {
+        return "INSERT INTO " + TABLE + " (email, senha, idTutor) values (?, MD5(?), ?) ";
+    }
+
+    public String getSaveVoluntarioStatment() {
+        return "INSERT INTO " + TABLE + " (email, senha, idVoluntario) values (?, MD5(?), ?) ";
     }
 
     @Override
@@ -76,6 +91,10 @@ public class CredencialDAO extends DAO<Credencial> {
         return "SELECT * FROM " + TABLE + " WHERE id = ? ";
     }
 
+    public String getFindByEmailSenhaStatment() {
+        return "SELECT * FROM " + TABLE + " WHERE email = ? AND senha = md5(?)";
+    }
+
     @Override
     public String getFindAllStatment() {
         return "SELECT * FROM " + TABLE;
@@ -100,17 +119,54 @@ public class CredencialDAO extends DAO<Credencial> {
     public Credencial extractObject(ResultSet resultSet) {
         Credencial cred = new Credencial();
         try {
+            Long idTutor, idVoluntario;
             cred.setId(resultSet.getLong("id"));
             cred.setEmail(resultSet.getString("email"));
             cred.setSenha(resultSet.getString("senha"));
             cred.setAtivo(resultSet.getBoolean("ativo"));
+            idTutor = (Long) resultSet.getObject("idTutor");
+            idVoluntario = (Long) resultSet.getObject("idVoluntario");
+            if (idTutor == null) {
+                if (idVoluntario != null) {
+                    cred.setUsuario(new VoluntarioDAO().findById(idVoluntario));
+                }
+            } else {
+                cred.setUsuario(new TutorDAO().findById(idTutor));
+            }
+            cred.getUsuario().setCredencial(cred);
         } catch (SQLException ex) {
             Logger.getLogger(CredencialDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(CredencialDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return cred;
+    }
+
+    public Credencial findByEmailSenha(Credencial credencial) {
+
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConexao().prepareStatement(
+                        getFindByEmailSenhaStatment())) {
+
+            // Assemble the SQL statement with the id
+            preparedStatement.setString(1, credencial.getEmail());
+            preparedStatement.setString(2, credencial.getSenha());
+
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            // Performs the query on the database
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Returns the respective object if exists
+            if (resultSet.next()) {
+                return extractObject(resultSet);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
+        return null;
     }
 
 }

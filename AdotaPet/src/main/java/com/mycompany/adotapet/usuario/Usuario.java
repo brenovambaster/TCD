@@ -18,6 +18,7 @@
 
 package com.mycompany.adotapet.usuario;
 
+import com.mycompany.adotapet.credencial.Credencial;
 import com.mycompany.adotapet.endereco.Endereco;
 import com.mycompany.adotapet.entidade.Entidade;
 import com.mycompany.adotapet.telefone.Telefone;
@@ -31,6 +32,7 @@ public abstract class Usuario extends Entidade{
     private Long cpf;
     private Telefone telefone;
     private Endereco endereco;
+    private Credencial credencial;
     
     //<editor-fold defaultstate="collapsed" desc="constructors">
 
@@ -82,6 +84,14 @@ public abstract class Usuario extends Entidade{
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public Credencial getCredencial() {
+        return credencial;
+    }
+
+    public void setCredencial(Credencial credencial) {
+        this.credencial = credencial;
     }
     
     //</editor-fold>
