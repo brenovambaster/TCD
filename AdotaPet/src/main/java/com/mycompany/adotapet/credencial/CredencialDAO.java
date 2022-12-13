@@ -19,8 +19,10 @@ package com.mycompany.adotapet.credencial;
 
 import com.mycompany.adotapet.repositorio.DAO;
 import com.mycompany.adotapet.repositorio.DbConnection;
+import com.mycompany.adotapet.tutor.Tutor;
 import com.mycompany.adotapet.tutor.TutorDAO;
 import com.mycompany.adotapet.voluntario.VoluntarioDAO;
+import java.math.BigInteger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -85,6 +87,34 @@ public class CredencialDAO extends DAO<Credencial> {
         }
 
     }
+    
+    public void SaveTutorStatement(Credencial e, Tutor tutor) {
+
+        try (PreparedStatement preparedStatement
+                = DbConnection.getConexao().prepareStatement(
+                        getFindByEmailSenhaStatment())){
+            preparedStatement.setString(1, e.getEmail());
+            preparedStatement.setString(2, e.getSenha());
+            preparedStatement.setLong(3, tutor.getId());
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CredencialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void composeUpdateStatement(PreparedStatement pstmt, Credencial e) {
+
+        try {
+            pstmt.setString(1, e.getEmail());
+            pstmt.setString(2, e.getSenha());
+            pstmt.setLong(3, e.getId());
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CredencialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
     @Override
     public String getFindByIdStatment() {
@@ -124,16 +154,17 @@ public class CredencialDAO extends DAO<Credencial> {
             cred.setEmail(resultSet.getString("email"));
             cred.setSenha(resultSet.getString("senha"));
             cred.setAtivo(resultSet.getBoolean("ativo"));
-            idTutor = (Long) resultSet.getObject("idTutor");
-            idVoluntario = (Long) resultSet.getObject("idVoluntario");
+            idTutor = (Long)resultSet.getObject("idTutor");
+            idVoluntario = (Long)resultSet.getObject("idVoluntario");
             if (idTutor == null) {
                 if (idVoluntario != null) {
                     cred.setUsuario(new VoluntarioDAO().findById(idVoluntario));
+                    cred.getUsuario().setCredencial(cred);
                 }
             } else {
                 cred.setUsuario(new TutorDAO().findById(idTutor));
+                cred.getUsuario().setCredencial(cred);
             }
-            cred.getUsuario().setCredencial(cred);
         } catch (SQLException ex) {
             Logger.getLogger(CredencialDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
@@ -142,7 +173,7 @@ public class CredencialDAO extends DAO<Credencial> {
         return cred;
     }
 
-    public Credencial findByEmailSenha(Credencial credencial) {
+    public Credencial autenticar(Credencial credencial) {
 
         try ( PreparedStatement preparedStatement
                 = DbConnection.getConexao().prepareStatement(
@@ -168,5 +199,5 @@ public class CredencialDAO extends DAO<Credencial> {
         }
         return null;
     }
-
+    
 }
