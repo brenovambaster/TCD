@@ -103,6 +103,7 @@ public class CadastroTutor extends javax.swing.JFrame {
         lblLogradouro4 = new javax.swing.JLabel();
         lblLogradouro5 = new javax.swing.JLabel();
         lblLogradouro6 = new javax.swing.JLabel();
+        txtNome = new com.mycompany.adotapet.repositorio.MyJTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro Tutor");
@@ -180,6 +181,12 @@ public class CadastroTutor extends javax.swing.JFrame {
         lblLogradouro6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         lblLogradouro6.setText("CEP:");
 
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PnlPrincipalLayout = new javax.swing.GroupLayout(PnlPrincipal);
         PnlPrincipal.setLayout(PnlPrincipalLayout);
         PnlPrincipalLayout.setHorizontalGroup(
@@ -192,13 +199,13 @@ public class CadastroTutor extends javax.swing.JFrame {
                             .addComponent(lblEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblCpf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblSenha)
+                            .addComponent(lblDdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(PnlPrincipalLayout.createSequentialGroup()
-                                .addGroup(PnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblSenha))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(lblDdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(100, 100, 100)
+                                .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(49, 49, 49)
                         .addComponent(lblNumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(224, 224, 224)
                         .addComponent(ckbMensagem)
@@ -240,7 +247,9 @@ public class CadastroTutor extends javax.swing.JFrame {
             PnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PnlPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
@@ -493,5 +502,6 @@ public class CadastroTutor extends javax.swing.JFrame {
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblTelefone;
     private javax.swing.JLabel lblTipoLogradouro;
+    private com.mycompany.adotapet.repositorio.MyJTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }
