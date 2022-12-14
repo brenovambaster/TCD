@@ -22,7 +22,6 @@ import com.mycompany.adotapet.repositorio.DbConnection;
 import com.mycompany.adotapet.tutor.Tutor;
 import com.mycompany.adotapet.tutor.TutorDAO;
 import com.mycompany.adotapet.voluntario.VoluntarioDAO;
-import java.math.BigInteger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

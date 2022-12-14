@@ -17,8 +17,12 @@
  */
 package com.mycompany.adotapet.gui;
 
+import com.mycompany.adotapet.credencial.Credencial;
+import com.mycompany.adotapet.credencial.CredencialDAO;
 import com.mycompany.adotapet.endereco.Endereco;
+import com.mycompany.adotapet.endereco.EnderecoDAO;
 import com.mycompany.adotapet.telefone.Telefone;
+import com.mycompany.adotapet.telefone.TelefoneDAO;
 import com.mycompany.adotapet.tipoLogradouro.TipoLogradouro;
 import com.mycompany.adotapet.tipoLogradouro.TipoLogradouroDAO;
 import com.mycompany.adotapet.tutor.Tutor;
@@ -487,6 +491,25 @@ public class CadastroTutor extends javax.swing.JFrame {
             Telefone telefone = new Telefone();
             telefone.setDDD(Short.valueOf(txtDdd.getText()));
             telefone.setNumero(Integer.getInteger(txtDdd.getText(), null));
+            telefone.setMensagem(ckbMensagem.isSelected());
+            
+            Credencial credencial = new Credencial();
+            credencial.setEmail(txtEmail.getText());
+            credencial.setSenha(txtEmail.getText());
+            
+            Tutor tutor = new Tutor();
+            tutor.setNome(txtNome.getText());
+            tutor.setCpf(Long.valueOf(txtNome.getText()));
+            tutor.setTelefone(telefone);
+            tutor.setEndereco(endereco);
+            tutor.setCredencial(credencial);
+            
+            credencial.setUsuario(tutor);
+            
+            new CredencialDAO().SaveTutorStatement(credencial, tutor);
+            new EnderecoDAO().saveOrUpdate(endereco);
+            new TelefoneDAO().saveOrUpdate(telefone);
+            new TutorDAO().saveOrUpdate(tutor);
             
             new TutorDAO().saveOrUpdate(new Tutor());
         } catch (Exception e) {

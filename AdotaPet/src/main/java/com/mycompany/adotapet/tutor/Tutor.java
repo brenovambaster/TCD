@@ -18,6 +18,7 @@
 
 package com.mycompany.adotapet.tutor;
 
+import com.mycompany.adotapet.credencial.Credencial;
 import com.mycompany.adotapet.endereco.Endereco;
 import com.mycompany.adotapet.pet.Pet;
 import com.mycompany.adotapet.telefone.Telefone;
