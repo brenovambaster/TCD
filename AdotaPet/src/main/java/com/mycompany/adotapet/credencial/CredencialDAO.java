@@ -147,8 +147,8 @@ public class CredencialDAO extends DAO<Credencial> {
 
     @Override
     public Credencial extractObject(ResultSet resultSet) {
-        Credencial cred = new Credencial();
         try {
+            Credencial cred = new Credencial();
             Long idTutor, idVoluntario;
             cred.setId(resultSet.getLong("id"));
             cred.setEmail(resultSet.getString("email"));
@@ -156,21 +156,24 @@ public class CredencialDAO extends DAO<Credencial> {
             cred.setAtivo(resultSet.getBoolean("ativo"));
             idTutor = (Long)resultSet.getObject("idTutor");
             idVoluntario = (Long)resultSet.getObject("idVoluntario");
+            // verifica se essa credencial é de tutor ou de voluntario
             if (idTutor == null) {
                 if (idVoluntario != null) {
                     cred.setUsuario(new VoluntarioDAO().findById(idVoluntario));
+                    //passa o enedereço da credencial 
                     cred.getUsuario().setCredencial(cred);
                 }
             } else {
                 cred.setUsuario(new TutorDAO().findById(idTutor));
                 cred.getUsuario().setCredencial(cred);
             }
+            return cred;
         } catch (SQLException ex) {
             Logger.getLogger(CredencialDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(CredencialDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return cred;
+        return null;
     }
 
     public Credencial autenticar(Credencial credencial) {

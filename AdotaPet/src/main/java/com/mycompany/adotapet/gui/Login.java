@@ -19,7 +19,6 @@ package com.mycompany.adotapet.gui;
 
 import com.mycompany.adotapet.credencial.Credencial;
 import com.mycompany.adotapet.credencial.CredencialDAO;
-import java.security.Principal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -69,6 +68,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        txtEmail.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+
+        pwdSenha.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         pwdSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pwdSenhaActionPerformed(evt);
@@ -108,7 +110,7 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(pwdSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

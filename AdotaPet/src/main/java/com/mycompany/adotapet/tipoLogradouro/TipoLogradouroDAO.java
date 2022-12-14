@@ -42,7 +42,7 @@ import java.util.logging.Logger;
 
 public class TipoLogradouroDAO extends DAO<TipoLogradouro> {
 
-    public static final String TABLE = "TipoLogradouro";
+    public static final String TABLE = "tipologradouro";
 
     @Override
     public String getSaveStatment() {

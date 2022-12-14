@@ -38,13 +38,13 @@ import java.sql.ResultSet;
 import java.util.List;
 
 /**
- * Interface IDAO
+ * Interface IDao
  *
  * @author Luis Guisso &lt;luis dot guisso at ifnmg dot edu dot br&gt;
  * @version 0.1, 2022-10-24
  * @param <T> Data type
  */
-public interface IDAO<T> {
+public interface IDao<T> {
 
     // Save
     public String getSaveStatment();

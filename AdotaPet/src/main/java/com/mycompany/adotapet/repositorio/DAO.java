@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.text.html.parser.Entity;
 
 /**
  * Class Dao
@@ -51,7 +52,7 @@ import java.util.logging.Logger;
  * @param <T> Entity data type
  */
 public abstract class DAO<T>
-        implements IDAO<T> {
+        implements IDao<T> {
 
     public static final String DB = "adotapet";
 
@@ -61,8 +62,8 @@ public abstract class DAO<T>
         // Primary key
         Long id = 0L;
 
-        //Checa se é para salvar ou editar. Se id==null, é para salvar
-        if (((Entidade) e).getId() == null || ((Entidade) e).getId() == 0) {
+        if (((Entidade) e).getId() == null
+                || ((Entidade) e).getId() == 0) {
 
             // Insert a new register
             // try-with-resources
@@ -150,7 +151,7 @@ public abstract class DAO<T>
 
     @Override
     public List<T> findAll() {
-        //
+            //
         try ( PreparedStatement preparedStatement
                 = DbConnection.getConexao().prepareStatement(
                         getFindAllStatment())) {
@@ -171,9 +172,9 @@ public abstract class DAO<T>
         return null;
     }
 
-    @Override
+        @Override
     public List<T> findAllOnTrash() {
-        //
+            //
         try ( PreparedStatement preparedStatement
                 = DbConnection.getConexao().prepareStatement(
                         getFindAllOnTrashStatement())) {
@@ -193,7 +194,7 @@ public abstract class DAO<T>
 
         return null;
     }
-
+    
     @Override
     public List<T> extractObjects(ResultSet resultSet) {
         List<T> objects = new ArrayList<>();
@@ -210,43 +211,44 @@ public abstract class DAO<T>
     }
 
     @Override
-    public void moveToTrash(Long id) {
-        try ( PreparedStatement preparedStatement
-                = DbConnection.getConexao().prepareStatement(
-                        getMoveToTrashStatement())) {
+    public void moveToTrash(Long id){
+            try ( PreparedStatement preparedStatement
+                    = DbConnection.getConexao().prepareStatement(
+                            getMoveToTrashStatement())) {
 
-            // Assemble the SQL statement with the id
-            preparedStatement.setLong(1, id);
+                // Assemble the SQL statement with the id
+                preparedStatement.setLong(1, id);
+                
+                // Show the full sentence
+                System.out.println(">> SQL: " + preparedStatement);
 
-            // Show the full sentence
-            System.out.println(">> SQL: " + preparedStatement);
+                // Performs the update on the database
+                preparedStatement.executeUpdate();
 
-            // Performs the update on the database
-            preparedStatement.executeUpdate();
-
-        } catch (Exception ex) {
-            System.out.println("Exception: " + ex);
-        }
+            } catch (Exception ex) {
+                System.out.println("Exception: " + ex);
+            }
     }
 
     @Override
-    public void restoreFromTrash(Long id) {
-        try ( PreparedStatement preparedStatement
-                = DbConnection.getConexao().prepareStatement(
-                        getRestoreFromTrashStatement())) {
+    public void restoreFromTrash(Long id){
+            try ( PreparedStatement preparedStatement
+                    = DbConnection.getConexao().prepareStatement(
+                            getRestoreFromTrashStatement())) {
 
-            // Assemble the SQL statement with the id
-            preparedStatement.setLong(1, id);
+                // Assemble the SQL statement with the id
+                preparedStatement.setLong(1, id);
+                                
+                // Show the full sentence
+                System.out.println(">> SQL: " + preparedStatement);
 
-            // Show the full sentence
-            System.out.println(">> SQL: " + preparedStatement);
+                // Performs the update on the database
+                preparedStatement.executeUpdate();
 
-            // Performs the update on the database
-            preparedStatement.executeUpdate();
-
-        } catch (Exception ex) {
-            System.out.println("Exception: " + ex);
-        }
+            } catch (Exception ex) {
+                System.out.println("Exception: " + ex);
+            }
     }
 
+    
 }
