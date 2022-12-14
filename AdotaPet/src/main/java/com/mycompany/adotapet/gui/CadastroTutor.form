@@ -92,23 +92,11 @@
                               </Group>
                               <Component id="lblDdd" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtNome" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtSenha" alignment="1" max="32767" attributes="0"/>
-                              <Component id="txtCpf" alignment="1" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="txtDdd" min="-2" pref="82" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="lblNumero" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtNumeroTelefone" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="ckbMensagem" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="lblNumero" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
+                          <Component id="ckbMensagem" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                       </Group>
                       <Component id="lblTelefone" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
@@ -117,36 +105,20 @@
                               <Component id="lblLogradouro2" max="32767" attributes="0"/>
                               <Component id="lblLogradouro" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="txtEstado" min="-2" pref="201" max="-2" attributes="0"/>
-                                      <Component id="txtBairro" min="-2" pref="201" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="lblLogradouro4" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="txtCidade" min="-2" pref="201" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="txtCep" alignment="1" min="-2" pref="201" max="-2" attributes="0"/>
-                                  </Group>
+                                  <EmptySpace min="-2" pref="225" max="-2" attributes="0"/>
+                                  <Component id="lblLogradouro4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="-2" pref="225" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="txtNumeroCasa" min="-2" pref="201" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
                                           <Component id="lblLogradouro1" min="-2" pref="119" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtComplemento" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <Component id="txtLogradouro" min="-2" pref="201" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="lblTipoLogradouro" pref="138" max="32767" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="cboTipoLogradouro" min="-2" pref="155" max="-2" attributes="0"/>
@@ -176,33 +148,19 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblNome" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="txtNome" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtEmail" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="lblEmail" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="lblNome" min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <Component id="lblEmail" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblSenha" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtSenha" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="lblSenha" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblCpf" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="txtCpf" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="lblCpf" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Component id="lblTelefone" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblDdd" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="txtDdd" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="lblNumero" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="txtNumeroTelefone" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="ckbMensagem" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -210,34 +168,27 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblLogradouro" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="txtLogradouro" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="lblTipoLogradouro" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="cboTipoLogradouro" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblLogradouro2" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="txtNumeroCasa" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="lblLogradouro1" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="txtComplemento" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblLogradouro3" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="txtBairro" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="lblLogradouro4" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="txtCidade" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblLogradouro5" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="txtEstado" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="lblLogradouro6" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="txtCep" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnCadastrar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -260,11 +211,6 @@
             <Property name="text" type="java.lang.String" value="Email:"/>
           </Properties>
         </Component>
-        <Component class="com.mycompany.componetepersonalizado.MyJTextField" name="txtNome">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNomeActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="lblSenha">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -272,16 +218,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Senha:"/>
           </Properties>
-        </Component>
-        <Component class="com.mycompany.componetepersonalizado.MyJTextField" name="txtSenha">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSenhaActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="com.mycompany.componetepersonalizado.MyJTextField" name="txtEmail">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmailActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCpf">
           <Properties>
@@ -291,11 +227,6 @@
             <Property name="text" type="java.lang.String" value="CPF:"/>
           </Properties>
         </Component>
-        <Component class="com.mycompany.componetepersonalizado.MyJTextField" name="txtCpf">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCpfActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="lblEndereco">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -303,11 +234,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Endere&#xe7;o:"/>
           </Properties>
-        </Component>
-        <Component class="com.mycompany.componetepersonalizado.MyJTextField" name="txtDdd">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDddActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDdd">
           <Properties>
@@ -324,11 +250,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="N&#xfa;mero:"/>
           </Properties>
-        </Component>
-        <Component class="com.mycompany.componetepersonalizado.MyJTextField" name="txtNumeroTelefone">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNumeroTelefoneActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="ckbMensagem">
           <Properties>
@@ -353,11 +274,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Logradouro:"/>
           </Properties>
-        </Component>
-        <Component class="com.mycompany.componetepersonalizado.MyJTextField" name="txtLogradouro">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtLogradouroActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTipoLogradouro">
           <Properties>
@@ -400,16 +316,6 @@
             <Property name="text" type="java.lang.String" value="N&#xfa;mero:"/>
           </Properties>
         </Component>
-        <Component class="com.mycompany.componetepersonalizado.MyJTextField" name="txtNumeroCasa">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNumeroCasaActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="com.mycompany.componetepersonalizado.MyJTextField" name="txtComplemento">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtComplementoActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="lblLogradouro3">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -417,11 +323,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Bairro:"/>
           </Properties>
-        </Component>
-        <Component class="com.mycompany.componetepersonalizado.MyJTextField" name="txtBairro">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtBairroActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCadastrar">
           <Properties>
@@ -442,11 +343,6 @@
             <Property name="text" type="java.lang.String" value="Cidade"/>
           </Properties>
         </Component>
-        <Component class="com.mycompany.componetepersonalizado.MyJTextField" name="txtCidade">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCidadeActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="lblLogradouro5">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -455,11 +351,6 @@
             <Property name="text" type="java.lang.String" value="Estado:"/>
           </Properties>
         </Component>
-        <Component class="com.mycompany.componetepersonalizado.MyJTextField" name="txtEstado">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEstadoActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="lblLogradouro6">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -467,11 +358,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="CEP:"/>
           </Properties>
-        </Component>
-        <Component class="com.mycompany.componetepersonalizado.MyJTextField" name="txtCep">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCepActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
