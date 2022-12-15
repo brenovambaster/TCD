@@ -15,7 +15,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
 package com.mycompany.adotapet.larTemporario;
 
 import com.mycompany.adotapet.endereco.Endereco;
@@ -25,15 +24,16 @@ import com.mycompany.adotapet.voluntario.Voluntario;
 
 /**
  * Classe LarTemporario
+ *
  * @author Pedro Dias
  */
 public class LarTemporario extends Entidade {
+
     private String nome;
     private Endereco endereco;
     private Voluntario fundador;
-    
-    //<editor-fold defaultstate="collapsed" desc="constructor">
 
+    //<editor-fold defaultstate="collapsed" desc="constructor">
     public LarTemporario() {
     }
 
@@ -41,19 +41,17 @@ public class LarTemporario extends Entidade {
         setNome(nome);
         this.endereco = endereco;
     }
-    
-    //</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="getters/setters">
 
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="getters/setters">
     public String getNome() {
         return nome;
     }
 
     public final void setNome(String nome) throws Exception {
-        if (nome == null || nome.trim().length() > 45 || nome.trim().length() == 0){
-            throw new IllegalArgumentException ("Nome não pode ter mais que 45 caracteres ou vazio!");
-        }else{
+        if (nome == null || nome.trim().length() > 45 || nome.trim().length() == 0) {
+            throw new IllegalArgumentException("Nome não pode ter mais que 45 caracteres ou vazio!");
+        } else {
             this.nome = nome.trim();
         }
     }
@@ -73,27 +71,23 @@ public class LarTemporario extends Entidade {
     public void setFundador(Voluntario fundador) {
         this.fundador = fundador;
     }
-    
+
     //</editor-fold>
-    
-    public void adicionarVoluntario(Voluntario voluntario){
+    public void adicionarVoluntario(Voluntario voluntario) {
         voluntario.setLarTemporario(this);
     }
-    
-    public void adicionarPet(Pet pet){
+
+    public void adicionarPet(Pet pet) {
         pet.setLarTemporario(this);
     }
 
-
     @Override
     public String toString() {
-        return "LarTemporario{" 
-                + "nome=" + nome 
+        return "LarTemporario{"
+                + "nome=" + nome
                 + ", endereco=" + endereco
                 + ", fundador=" + fundador
                 + '}';
     }
-    
-    
-    
+
 }

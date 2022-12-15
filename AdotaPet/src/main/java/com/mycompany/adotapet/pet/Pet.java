@@ -15,7 +15,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
 package com.mycompany.adotapet.pet;
 
 import com.mycompany.adotapet.aplicacao.Aplicacao;
@@ -30,9 +29,11 @@ import java.util.List;
 
 /**
  * Classe Pet
+ *
  * @author Pedro Dias
  */
-public class Pet extends Entidade{
+public class Pet extends Entidade {
+
     private String nome;
     private Raca raca;
     private LarTemporario larTemporario;
@@ -44,9 +45,8 @@ public class Pet extends Entidade{
     private boolean vivo;
     private List<Aplicacao> medicamentos;
     private Tutor tutor;
-    
-    //<editor-fold defaultstate="collapsed" desc="constructors">
 
+    //<editor-fold defaultstate="collapsed" desc="constructors">
     public Pet() {
         medicamentos = new ArrayList<>();
         vivo = true;
@@ -63,19 +63,17 @@ public class Pet extends Entidade{
         this.castrado = castrado;
         setComentario(comentario);
     }
-        
+
     //</editor-fold>
-
     //<editor-fold defaultstate="collapsed" desc="getters/setters">
-
     public String getNome() {
         return nome;
     }
 
     public final void setNome(String nome) throws Exception {
-    if (nome == null || nome.trim().length() > 35 || nome.trim().length() == 0){
-            throw new IllegalArgumentException ("Nome não pode ter mais que 35 caracteres ou vazio!");
-        }else{
+        if (nome == null || nome.trim().length() > 35 || nome.trim().length() == 0) {
+            throw new IllegalArgumentException("Nome não pode ter mais que 35 caracteres ou vazio!");
+        } else {
             this.nome = nome.trim();
         }
     }
@@ -103,8 +101,8 @@ public class Pet extends Entidade{
     public void setNascimento(LocalDate nascimento) {
         this.nascimento = nascimento;
     }
-    
-    public Byte getIdade(){
+
+    public Byte getIdade() {
         return (byte) nascimento.until(LocalDate.now(), ChronoUnit.YEARS);
     }
 
@@ -137,9 +135,9 @@ public class Pet extends Entidade{
     }
 
     public final void setComentario(String comentario) throws Exception {
-        if(comentario.trim().length() > 200){
-            throw new IllegalArgumentException ("Comentario não pode ter mais que 200 caracateres!");
-        }else{
+        if (comentario.trim().length() > 200) {
+            throw new IllegalArgumentException("Comentario não pode ter mais que 200 caracateres!");
+        } else {
             this.comentario = comentario.trim();
         }
     }
@@ -167,34 +165,32 @@ public class Pet extends Entidade{
     public void setTutor(Tutor tutor) {
         this.tutor = tutor;
     }
-    
+
     //</editor-fold>
-    
-    public void adicionarMedicamento(Aplicacao aplicacao){
+    public void adicionarMedicamento(Aplicacao aplicacao) {
         medicamentos.add(aplicacao);
     }
-    
-    public Aplicacao getMedicamento(int indice){
+
+    public Aplicacao getMedicamento(int indice) {
         return medicamentos.get(indice);
     }
 
     @Override
     public String toString() {
-        return "Pet{" 
+        return "Pet{"
                 + "nome=" + nome
-                + ", raca=" + raca 
+                + ", raca=" + raca
                 + ", idade=" + getIdade()
-                + ", larTemporario=" + larTemporario 
-                + ", nascimento=" + nascimento 
-                + ", peso=" + peso 
-                + ", macho=" + macho 
-                + ", castrado=" + castrado 
-                + ", comentario=" + comentario 
-                + ", vivo=" + vivo 
-                + ", medicamentos=" + medicamentos 
+                + ", larTemporario=" + larTemporario
+                + ", nascimento=" + nascimento
+                + ", peso=" + peso
+                + ", macho=" + macho
+                + ", castrado=" + castrado
+                + ", comentario=" + comentario
+                + ", vivo=" + vivo
+                + ", medicamentos=" + medicamentos
                 + ", " + super.toString()
                 + '}';
     }
-    
-    
+
 }

@@ -15,7 +15,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
 package com.mycompany.adotapet.voluntario;
 
 import com.mycompany.adotapet.endereco.Endereco;
@@ -25,13 +24,14 @@ import com.mycompany.adotapet.usuario.Usuario;
 
 /**
  * Classe Voluntario
+ *
  * @author Pedro Dias
  */
-public class Voluntario extends Usuario{
+public class Voluntario extends Usuario {
+
     private LarTemporario larTemporario;
 
     //<editor-fold defaultstate="collapsed" desc="constructors">
-    
     public Voluntario() {
     }
 
@@ -39,11 +39,9 @@ public class Voluntario extends Usuario{
         super(nome, cpf, telefone, endereco);
         this.larTemporario = larTemporario;
     }
-    
-    //</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="getters/setters">
 
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="getters/setters">
     public LarTemporario getLarTemporario() {
         return larTemporario;
     }
@@ -51,12 +49,11 @@ public class Voluntario extends Usuario{
     public void setLarTemporario(LarTemporario larTemporario) {
         this.larTemporario = larTemporario;
     }
-        
-    //</editor-fold>
 
+    //</editor-fold>
     @Override
     public String toString() {
-        return "Voluntario{" 
+        return "Voluntario{"
                 + super.toString()
                 + '}';
     }

@@ -15,7 +15,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
 package com.mycompany.adotapet.pet;
 
 import com.mycompany.adotapet.aplicacao.AplicacaoDAO;
@@ -34,49 +33,50 @@ import java.util.logging.Logger;
 
 /**
  * <pre>CREATE TABLE `pet` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `nome` varchar(35) NOT NULL,
-  `idRaca` bigint(20) unsigned NOT NULL,
-  `idLartemporario` bigint(20) unsigned NOT NULL,
-  `nascimento` date DEFAULT NULL,
-  `peso` float DEFAULT NULL,
-  `macho` tinyint(1) NOT NULL,
-  `castrado` tinyint(1) DEFAULT 0,
-  `comentario` varchar(200) DEFAULT NULL,
-  `vivo` tinyint(1) DEFAULT 1,
-  `idTutor` bigint(20) unsigned DEFAULT NULL,
-  `excluido` tinyint(1) DEFAULT 0,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`),
-  KEY `idRaca` (`idRaca`),
-  KEY `idLartemporario` (`idLartemporario`),
-  KEY `idTutor` (`idTutor`),
-  CONSTRAINT `pet_ibfk_1` FOREIGN KEY (`idRaca`) REFERENCES `raca` (`id`),
-  CONSTRAINT `pet_ibfk_2` FOREIGN KEY (`idLartemporario`) REFERENCES `lartemporario` (`id`),
-  CONSTRAINT `pet_ibfk_3` FOREIGN KEY (`idTutor`) REFERENCES `tutor` (`id`)
-) ENGINE=InnoDB</pre>
- * Classe PetDAO
+ * `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+ * `nome` varchar(35) NOT NULL,
+ * `idRaca` bigint(20) unsigned NOT NULL,
+ * `idLartemporario` bigint(20) unsigned NOT NULL,
+ * `nascimento` date DEFAULT NULL,
+ * `peso` float DEFAULT NULL,
+ * `macho` tinyint(1) NOT NULL,
+ * `castrado` tinyint(1) DEFAULT 0,
+ * `comentario` varchar(200) DEFAULT NULL,
+ * `vivo` tinyint(1) DEFAULT 1,
+ * `idTutor` bigint(20) unsigned DEFAULT NULL,
+ * `excluido` tinyint(1) DEFAULT 0,
+ * PRIMARY KEY (`id`),
+ * UNIQUE KEY `id` (`id`),
+ * KEY `idRaca` (`idRaca`),
+ * KEY `idLartemporario` (`idLartemporario`),
+ * KEY `idTutor` (`idTutor`),
+ * CONSTRAINT `pet_ibfk_1` FOREIGN KEY (`idRaca`) REFERENCES `raca` (`id`),
+ * CONSTRAINT `pet_ibfk_2` FOREIGN KEY (`idLartemporario`) REFERENCES `lartemporario` (`id`),
+ * CONSTRAINT `pet_ibfk_3` FOREIGN KEY (`idTutor`) REFERENCES `tutor` (`id`)
+ * ) ENGINE=InnoDB</pre> Classe PetDAO
+ *
  * @author Pedro Dias
  */
-public class PetDAO extends DAO<Pet>{
+public class PetDAO extends DAO<Pet> {
+
     public static final String TABLE = "pet";
-    
+
     @Override
     public String getSaveStatment() {
         return "INSERT INTO " + TABLE + "  (nome, idRaca, idLartemporario, nascimento, peso, macho, castrado, comentario, vivo) "
                 + "VALUES(?,?,?,?,?,?,?,?,?);";
     }
-    
+
     @Override
     public String getUpdateStatment() {
         return "UPDATE " + TABLE + "  SET nome = ? , idRaca = ?,  idLartemporario = ?, nascimento = ?, peso = ?"
                 + ", macho = ?, castrado = ?, comentario = ?, vivo = ? WHERE id = ? ";
     }
-    
+
     public String getAddTutorStatment() {
         return "UPDATE " + TABLE + "  SET idTutor WHERE id = ? ";
     }
-    
+
     @Override
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Pet e) {
         try {
@@ -89,26 +89,26 @@ public class PetDAO extends DAO<Pet>{
             pstmt.setObject(7, e.isCastrado(), java.sql.Types.BOOLEAN);
             pstmt.setString(8, e.getComentario());
             pstmt.setObject(9, e.isVivo(), java.sql.Types.BOOLEAN);
-            
+
             if (e.getId() != null) {
                 pstmt.setLong(9, e.getId());
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public void adicionarLarTemporario(Pet e) {
-        
+
         //checa se o voluntario já foi criado e está associado a um LarTemporario
-        if (e.getTutor()!= null && e.getId() != null) {
+        if (e.getTutor() != null && e.getId() != null) {
 
             // try-with-resources
             try ( PreparedStatement preparedStatement
                     = DbConnection.getConexao().prepareStatement(
                             getAddTutorStatment())) {
-                
+
                 preparedStatement.setObject(1, e.getTutor().getId(), java.sql.Types.BIGINT);
                 preparedStatement.setLong(2, e.getId());
 
@@ -124,40 +124,40 @@ public class PetDAO extends DAO<Pet>{
             }
         }
     }
-    
+
     @Override
     public String getFindByIdStatment() {
         return "SELECT * FROM " + TABLE + " WHERE id = ? ";
     }
-    
+
     public String getFindByTutorStatment() {
         return "SELECT * FROM " + TABLE + " WHERE idTutor = ? ";
     }
-    
+
     public String getFindByLarTemporarioStatment() {
         return "SELECT * FROM " + TABLE + " WHERE idTutor = ? ";
     }
-    
+
     @Override
     public String getFindAllStatment() {
         return "SELECT * FROM " + TABLE;
     }
-    
+
     @Override
     public String getFindAllOnTrashStatement() {
         return "SELECT * FROM " + TABLE + " WHERE excluido = true";
     }
-    
+
     @Override
     public String getMoveToTrashStatement() {
         return "UPDATE  " + TABLE + " SET excluido = true WHERE id = ?";
     }
-    
+
     @Override
     public String getRestoreFromTrashStatement() {
         return "UPDATE  " + TABLE + " SET excluido = false WHERE id=?";
     }
-    
+
     @Override
     public Pet extractObject(ResultSet resultSet) {
         Pet pet = new Pet();
@@ -171,12 +171,12 @@ public class PetDAO extends DAO<Pet>{
             pet.setCastrado(resultSet.getBoolean("castrado"));
             pet.setComentario(resultSet.getString("comentario"));
             pet.setVivo(resultSet.getBoolean("vivo"));
-            
+
             //verifica se tem Tutor
-            BigInteger idTutor = (BigInteger)resultSet.getObject("idTutor");
-            if(idTutor != null){
+            BigInteger idTutor = (BigInteger) resultSet.getObject("idTutor");
+            if (idTutor != null) {
                 pet.setTutor(new TutorDAO().findById(resultSet.getLong("idTutor")));
-            }else{
+            } else {
                 pet.setTutor(null);
             }
             pet.setMedicamentos(new AplicacaoDAO().findByPet(pet.getId()));
@@ -184,10 +184,10 @@ public class PetDAO extends DAO<Pet>{
             Logger.getLogger(PetDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(PetDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        }
         return pet;
-    }  
-    
+    }
+
     public List<Pet> findByTutor(Long id) {
 
         try ( PreparedStatement preparedStatement
