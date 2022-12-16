@@ -22,6 +22,8 @@ import com.mycompany.adotapet.credencial.Credencial;
 import com.mycompany.adotapet.endereco.Endereco;
 import com.mycompany.adotapet.entidade.Entidade;
 import com.mycompany.adotapet.telefone.Telefone;
+import com.mycompany.adotapet.tutor.TutorDAO;
+import com.mycompany.adotapet.voluntario.VoluntarioDAO;
 
 /**
  * Classe Usuario
@@ -96,29 +98,12 @@ public abstract class Usuario extends Entidade{
     
     //</editor-fold>
     
-    public boolean validaCpf(Long cpf){
-        Long cpfAuxiliar = cpf/100;
-        Long soma = 0L;
-        for (int i = 2; i <= 10; i++){
-            soma = soma + (cpfAuxiliar%10)*i;
-            cpfAuxiliar = cpfAuxiliar/10;
+    public static void validarUsuario(Usuario usuario) throws Exception {
+        Usuario usuario2 = new TutorDAO().findByCpf(usuario.getCpf());
+        Usuario usuario3 = new VoluntarioDAO().findByCpf(usuario.getCpf());
+        if (usuario2 != null || usuario3 != null) {
+            throw new Exception("Usuario ja cadastrado!");
         }
-        Long resto = soma*10%11;
-        resto = resto == 10 ? 0:resto;
-        if (resto == (cpf/10)%10){
-            soma = 0L;
-            cpfAuxiliar = cpf/10;
-            for (int i = 2; i <= 11; i++){
-            soma = soma + (cpfAuxiliar%10)*i;
-            cpfAuxiliar = cpfAuxiliar/10;
-            }
-            resto = soma*10%11;
-            resto = resto == 10 ? 0:resto;
-            if(resto == cpf%10){
-                return true;
-            }
-        }
-        return false;
     }
 
     @Override

@@ -69,6 +69,13 @@ public class Telefone extends Entidade {
     
     //</editor-fold>
     
+    public static void validarTelefone(Telefone telefone) throws Exception {
+        Telefone telefone2 = new TelefoneDAO().findByNumber(telefone.getNumero());
+        if (telefone2 != null) {
+            throw new Exception("Telefone ja cadastrado!");
+        }
+    }
+    
     @Override
     public String toString() {
         return "Telefone{" 
