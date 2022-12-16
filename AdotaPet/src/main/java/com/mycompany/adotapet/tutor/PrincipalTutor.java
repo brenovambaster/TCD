@@ -23,10 +23,13 @@ package com.mycompany.adotapet.tutor;
  */
 public class PrincipalTutor extends javax.swing.JFrame {
 
+    private Tutor tutorLogado;
+
     /**
      * Creates new form PrincipalTutor
      */
-    public PrincipalTutor() {
+    public PrincipalTutor(Tutor tutor) {
+        tutorLogado = tutor;
         initComponents();
     }
 
@@ -68,11 +71,6 @@ public class PrincipalTutor extends javax.swing.JFrame {
         jMenuAdocao.setText("Adoção");
 
         jMenuItemAdotarPet.setText("Adotar Pet");
-        jMenuItemAdotarPet.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItemAdotarPetMouseClicked(evt);
-            }
-        });
         jMenuItemAdotarPet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemAdotarPetActionPerformed(evt);
@@ -101,14 +99,8 @@ public class PrincipalTutor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemAdotarPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAdotarPetActionPerformed
-       new ListaPetAdocao().setVisible(true);
+        ListaPetAdocao.getInstance(tutorLogado).setVisible(true);
     }//GEN-LAST:event_jMenuItemAdotarPetActionPerformed
-
-    private void jMenuItemAdotarPetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemAdotarPetMouseClicked
-        // TODO add your handling code here:
-        new ListaPetAdocao().setVisible(true);
-
-    }//GEN-LAST:event_jMenuItemAdotarPetMouseClicked
 
     /**
      * @param args the command line arguments
@@ -140,7 +132,7 @@ public class PrincipalTutor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PrincipalTutor().setVisible(true);
+                new PrincipalTutor(new Tutor()).setVisible(true);
             }
         });
     }

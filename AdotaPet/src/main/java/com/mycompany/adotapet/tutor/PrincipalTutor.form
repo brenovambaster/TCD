@@ -24,7 +24,6 @@
                 <Property name="text" type="java.lang.String" value="Adotar Pet"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenuItemAdotarPetMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemAdotarPetActionPerformed"/>
               </Events>
             </MenuItem>

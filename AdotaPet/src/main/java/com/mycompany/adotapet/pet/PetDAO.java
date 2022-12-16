@@ -20,6 +20,7 @@ package com.mycompany.adotapet.pet;
 import com.mycompany.adotapet.aplicacao.AplicacaoDAO;
 import com.mycompany.adotapet.endereco.EnderecoDAO;
 import com.mycompany.adotapet.larTemporario.LarTemporarioDAO;
+import com.mycompany.adotapet.raca.RacaDAO;
 import com.mycompany.adotapet.repositorio.DAO;
 import com.mycompany.adotapet.repositorio.DbConnection;
 import com.mycompany.adotapet.tutor.TutorDAO;
@@ -163,6 +164,7 @@ public class PetDAO extends DAO<Pet> {
         Pet pet = new Pet();
         try {
             pet.setId(resultSet.getLong("id"));
+            pet.setRaca(new RacaDAO().findById(resultSet.getLong("idRaca")));
             pet.setNome(resultSet.getString("nome"));
             pet.setLarTemporario(new LarTemporarioDAO().findById(resultSet.getLong("idLartemporario")));
             pet.setNascimento(resultSet.getDate("nascimento").toLocalDate());
@@ -196,6 +198,28 @@ public class PetDAO extends DAO<Pet> {
 
             // Assemble the SQL statement with the id
             preparedStatement.setLong(1, id);
+
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            // Performs the query on the database
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Returns the respective object if exists
+            if (resultSet.next()) {
+                return extractObjects(resultSet);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
+        return null;
+    }
+
+    public List<Pet> findByPetAvaliable() {
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConexao().prepareStatement(
+                        "SELECT * FROM " + TABLE + " WHERE idTutor=NULL")) {
 
             // Show the full sentence
             System.out.println(">> SQL: " + preparedStatement);

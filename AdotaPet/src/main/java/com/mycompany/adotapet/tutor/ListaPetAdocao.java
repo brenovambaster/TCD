@@ -32,11 +32,21 @@ public class ListaPetAdocao extends javax.swing.JFrame {
      * Creates new form ListaPetAdocao
      */
     private DefaultListModel<Pet> lstPetModel;
+    private Tutor tutorLogado;
+    public static ListaPetAdocao instance;
 
-    public ListaPetAdocao() {
+    public static ListaPetAdocao getInstance(Tutor tutor) {
+        if (instance == null) {
+            return instance = new ListaPetAdocao(tutor);
+        } else {
+            return instance;
+        }
+    }
+
+    public ListaPetAdocao(Tutor tutor) {
         // deve-se trocar o type parameters  (propiedades -> code -> type paramentrs) para <Pet>
         // trocar o model para lstPetModel
-
+        tutorLogado = tutor;
         lstPetModel = new DefaultListModel<>();
         List<Pet> pets = new PetDAO().findAll();
         lstPetModel.addAll(pets);
@@ -141,8 +151,7 @@ public class ListaPetAdocao extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListaPetAdocao().setVisible(true);
-
+                new ListaPetAdocao(new Tutor()).setVisible(true);
             }
         });
     }
