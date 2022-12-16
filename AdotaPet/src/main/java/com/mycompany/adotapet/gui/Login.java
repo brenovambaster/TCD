@@ -50,6 +50,8 @@ public class Login extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         txtEmail = new javax.swing.JTextField();
         pwdSenha = new javax.swing.JPasswordField();
+        btnCadastrarTutor = new javax.swing.JButton();
+        btnCadastrarVoluntario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -77,24 +79,46 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        btnCadastrarTutor.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnCadastrarTutor.setText("Cadastrar Tutor");
+        btnCadastrarTutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarTutorActionPerformed(evt);
+            }
+        });
+
+        btnCadastrarVoluntario.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnCadastrarVoluntario.setText("Cadastrar Voluntário");
+        btnCadastrarVoluntario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarVoluntarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlPrinciaplLayout = new javax.swing.GroupLayout(pnlPrinciapl);
         pnlPrinciapl.setLayout(pnlPrinciaplLayout);
         pnlPrinciaplLayout.setHorizontalGroup(
             pnlPrinciaplLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrinciaplLayout.createSequentialGroup()
+            .addGroup(pnlPrinciaplLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlPrinciaplLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlPrinciaplLayout.createSequentialGroup()
+                .addGroup(pnlPrinciaplLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPrinciaplLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlPrinciaplLayout.createSequentialGroup()
+                    .addGroup(pnlPrinciaplLayout.createSequentialGroup()
                         .addComponent(lblSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(pwdSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlPrinciaplLayout.createSequentialGroup()
+                        .addComponent(pwdSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE))
+                    .addGroup(pnlPrinciaplLayout.createSequentialGroup()
                         .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtEmail)))
+                        .addComponent(txtEmail))
+                    .addGroup(pnlPrinciaplLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(btnCadastrarTutor)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCadastrarVoluntario)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlPrinciaplLayout.setVerticalGroup(
@@ -110,7 +134,11 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(pwdSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addGroup(pnlPrinciaplLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCadastrarTutor)
+                    .addComponent(btnCadastrarVoluntario))
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -146,7 +174,7 @@ public class Login extends javax.swing.JFrame {
         credencial.setSenha(String.valueOf(pwdSenha.getPassword()));
 
         Credencial credencialAutenticada = new CredencialDAO().autenticar(credencial);
-        
+
         if (credencialAutenticada != null) {
             System.out.println(">> Autenticado: " + credencialAutenticada);
             //new Principal(usuarioAutenticado).setVisible(true);
@@ -163,6 +191,14 @@ public class Login extends javax.swing.JFrame {
     private void pwdSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwdSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pwdSenhaActionPerformed
+
+    private void btnCadastrarVoluntarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarVoluntarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCadastrarVoluntarioActionPerformed
+
+    private void btnCadastrarTutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarTutorActionPerformed
+        CadastroTutor.getInstance().setVisible(true);
+    }//GEN-LAST:event_btnCadastrarTutorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,6 +236,8 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCadastrarTutor;
+    private javax.swing.JButton btnCadastrarVoluntario;
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblSenha;

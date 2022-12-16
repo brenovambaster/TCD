@@ -202,4 +202,29 @@ public class CredencialDAO extends DAO<Credencial> {
         return null;
     }
     
+    public Credencial findByEmail(Credencial credencial) {
+
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConexao().prepareStatement("SELECT * FROM " + TABLE + " WHERE email = ?")) {
+
+            // Assemble the SQL statement with the id
+            preparedStatement.setString(1, credencial.getEmail());
+
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            // Performs the query on the database
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Returns the respective object if exists
+            if (resultSet.next()) {
+                return extractObject(resultSet);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
+        return null;
+    }
+    
 }
