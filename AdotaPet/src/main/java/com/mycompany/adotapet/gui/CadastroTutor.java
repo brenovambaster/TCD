@@ -385,14 +385,9 @@ public class CadastroTutor extends javax.swing.JFrame {
             Tutor tutor = new Tutor();
             tutor.setNome(txtNome.getText());
             tutor.setCpf(Long.parseLong(txtCpf.getText()));
-            Telefone telefone2 = new TelefoneDAO().findByNumber(telefone.getNumero());
-            if (telefone2 != null) {
-                throw new Exception("Numero ja cadastrado");
-            }
-            Credencial credencial2 = new CredencialDAO().findByEmail(credencial);
-            if (credencial2 != null) {
-                throw new Exception("Email ja cadastrado");
-            }
+            Tutor.validarUsuario(tutor);
+            Telefone.validarTelefone(telefone);
+            Credencial.validarCredencial(credencial);
             tutor.setTelefone(telefone);;
             tutor.setEndereco(endereco);
             tutor.setCredencial(credencial);
@@ -430,8 +425,15 @@ public class CadastroTutor extends javax.swing.JFrame {
                 case "setNome":
                     component = txtLogradouro;
                     break;
-                case "CadastroTutor":
-                    
+                case "validarCredencial":
+                    component = txtEmail;
+                    break;
+                case "validarTelefone":
+                    component = txtTelefoneNumero;
+                    break;
+                case "validarUsuario":
+                    component = txtCpf;
+                    break;
                 default:
                     throw new AssertionError();
             }

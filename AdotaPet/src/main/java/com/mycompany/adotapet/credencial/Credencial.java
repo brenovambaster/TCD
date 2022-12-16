@@ -86,6 +86,13 @@ public class Credencial extends Entidade {
     }
 
     //</editor-fold>
+    public static void validarCredencial(Credencial credencial) throws Exception {
+        Credencial credencial2 = new CredencialDAO().findByEmail(credencial);
+        if (credencial2 != null) {
+            throw new Exception("Email ja cadastrado!");
+        }
+    }
+
     @Override
     public String toString() {
         return "Credencial{"
