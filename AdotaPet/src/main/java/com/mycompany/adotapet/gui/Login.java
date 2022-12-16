@@ -177,7 +177,7 @@ public class Login extends javax.swing.JFrame {
 
         if (credencialAutenticada != null) {
             System.out.println(">> Autenticado: " + credencialAutenticada);
-            //new Principal(usuarioAutenticado).setVisible(true);
+            
             dispose();
         } else {
             System.out.println(">> Não autenticado.");

@@ -21,6 +21,8 @@ import com.mycompany.adotapet.repositorio.DAO;
 import com.mycompany.adotapet.repositorio.DbConnection;
 import com.mycompany.adotapet.tutor.Tutor;
 import com.mycompany.adotapet.tutor.TutorDAO;
+import com.mycompany.adotapet.usuario.Usuario;
+import com.mycompany.adotapet.voluntario.Voluntario;
 import com.mycompany.adotapet.voluntario.VoluntarioDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -86,15 +88,40 @@ public class CredencialDAO extends DAO<Credencial> {
         }
 
     }
-    
-    public void SaveTutorStatement(Credencial e, Tutor tutor) {
 
-        try (PreparedStatement preparedStatement
+    public void SaveTutor(Credencial e, Tutor tutor) {
+
+        try ( PreparedStatement preparedStatement
                 = DbConnection.getConexao().prepareStatement(
-                        getFindByEmailSenhaStatment())){
+                        getSaveTutorStatment())) {
             preparedStatement.setString(1, e.getEmail());
             preparedStatement.setString(2, e.getSenha());
             preparedStatement.setLong(3, tutor.getId());
+
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CredencialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void SaveVoluntario(Credencial e, Voluntario voluntario) {
+
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConexao().prepareStatement(
+                        getSaveVoluntarioStatment())) {
+            preparedStatement.setString(1, e.getEmail());
+            preparedStatement.setString(2, e.getSenha());
+            preparedStatement.setLong(3, voluntario.getId());
+
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            preparedStatement.executeUpdate();
 
         } catch (SQLException ex) {
             Logger.getLogger(CredencialDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -153,8 +180,9 @@ public class CredencialDAO extends DAO<Credencial> {
             cred.setEmail(resultSet.getString("email"));
             cred.setSenha(resultSet.getString("senha"));
             cred.setAtivo(resultSet.getBoolean("ativo"));
-            idTutor = (Long)resultSet.getObject("idTutor");
-            idVoluntario = (Long)resultSet.getObject("idVoluntario");
+            idTutor = (Long) resultSet.getObject("idTutor");
+            idVoluntario = (Long) resultSet.getObject("idVoluntario");
+            System.out.println(">> " + idTutor + ":" + idVoluntario);
             // verifica se essa credencial é de tutor ou de voluntario
             if (idTutor == null) {
                 if (idVoluntario != null) {
@@ -201,7 +229,7 @@ public class CredencialDAO extends DAO<Credencial> {
         }
         return null;
     }
-    
+
     public Credencial findByEmail(Credencial credencial) {
 
         try ( PreparedStatement preparedStatement
@@ -226,5 +254,40 @@ public class CredencialDAO extends DAO<Credencial> {
         }
         return null;
     }
-    
+
+    public boolean isTutor(Usuario usuario) {
+
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConexao().prepareStatement(
+                        getFindByIdStatment())) {
+
+            // Assemble the SQL statement with the id
+            preparedStatement.setLong(1, usuario.getId());
+
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            // Performs the query on the database
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Returns the respective object if exists
+            if (resultSet.next()) {
+                Long idTutor, idVoluntario;
+                idTutor = (Long) resultSet.getObject("idTutor");
+                idVoluntario = (Long) resultSet.getObject("idVoluntario");
+                if (idTutor == null) {
+                    if (idVoluntario != null) {
+                        return false;
+                    }
+                } else {
+                    return true;
+                }
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
+
+        return false;
+    }
 }

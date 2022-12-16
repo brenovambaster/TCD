@@ -397,7 +397,7 @@ public class CadastroTutor extends javax.swing.JFrame {
             telefone.setId(new TelefoneDAO().saveOrUpdate(telefone));
             tutor.setId(new TutorDAO().saveOrUpdate(tutor));
             credencial.setUsuario(tutor);
-            new CredencialDAO().SaveTutorStatement(credencial, tutor);
+            new CredencialDAO().SaveTutor(credencial, tutor);
 
             dispose();
         } catch (Exception ex) {
