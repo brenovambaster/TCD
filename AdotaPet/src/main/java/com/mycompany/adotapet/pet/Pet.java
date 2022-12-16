@@ -177,20 +177,17 @@ public class Pet extends Entidade {
 
     @Override
     public String toString() {
-        return "Pet{"
-                + "nome=" + nome
-                + ", raca=" + raca
+        return "Nome: " + nome
+                + " ,Raca:" + raca.getNome()
+                + " ,Especie: " + raca.getEspecie().getNome()
                 + ", idade=" + getIdade()
-                + ", larTemporario=" + larTemporario
                 + ", nascimento=" + nascimento
                 + ", peso=" + peso
                 + ", macho=" + macho
                 + ", castrado=" + castrado
                 + ", comentario=" + comentario
-                + ", vivo=" + vivo
-                + ", medicamentos=" + medicamentos
-                + ", " + super.toString()
-                + '}';
+                + ", vivo=" + vivo;
+
     }
 
 }
