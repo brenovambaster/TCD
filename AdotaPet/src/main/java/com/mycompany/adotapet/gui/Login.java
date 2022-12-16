@@ -71,8 +71,10 @@ public class Login extends javax.swing.JFrame {
         });
 
         txtEmail.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txtEmail.setText("bbb");
 
         pwdSenha.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        pwdSenha.setText("1");
         pwdSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pwdSenhaActionPerformed(evt);
@@ -177,7 +179,11 @@ public class Login extends javax.swing.JFrame {
 
         if (credencialAutenticada != null) {
             System.out.println(">> Autenticado: " + credencialAutenticada);
-            
+            if (new CredencialDAO().isTutor(credencial)){
+                System.out.println(">> Tutor");
+            }else{ 
+                System.out.println(">> Voluntario");
+            }
             dispose();
         } else {
             System.out.println(">> Não autenticado.");

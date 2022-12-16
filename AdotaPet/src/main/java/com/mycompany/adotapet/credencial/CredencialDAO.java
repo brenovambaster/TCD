@@ -24,6 +24,7 @@ import com.mycompany.adotapet.tutor.TutorDAO;
 import com.mycompany.adotapet.usuario.Usuario;
 import com.mycompany.adotapet.voluntario.Voluntario;
 import com.mycompany.adotapet.voluntario.VoluntarioDAO;
+import java.math.BigInteger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -175,23 +176,23 @@ public class CredencialDAO extends DAO<Credencial> {
     public Credencial extractObject(ResultSet resultSet) {
         try {
             Credencial cred = new Credencial();
-            Long idTutor, idVoluntario;
+            BigInteger idTutor, idVoluntario;
             cred.setId(resultSet.getLong("id"));
             cred.setEmail(resultSet.getString("email"));
             cred.setSenha(resultSet.getString("senha"));
             cred.setAtivo(resultSet.getBoolean("ativo"));
-            idTutor = (Long) resultSet.getObject("idTutor");
-            idVoluntario = (Long) resultSet.getObject("idVoluntario");
+            idTutor = (BigInteger) resultSet.getObject("idTutor");
+            idVoluntario = (BigInteger) resultSet.getObject("idVoluntario");
             System.out.println(">> " + idTutor + ":" + idVoluntario);
             // verifica se essa credencial é de tutor ou de voluntario
             if (idTutor == null) {
                 if (idVoluntario != null) {
-                    cred.setUsuario(new VoluntarioDAO().findById(idVoluntario));
+                    cred.setUsuario(new VoluntarioDAO().findById(resultSet.getLong("idVoluntario")));
                     //passa o enedereço da credencial 
                     cred.getUsuario().setCredencial(cred);
                 }
             } else {
-                cred.setUsuario(new TutorDAO().findById(idTutor));
+                cred.setUsuario(new TutorDAO().findById(resultSet.getLong("idTutor")));
                 cred.getUsuario().setCredencial(cred);
             }
             return cred;
@@ -255,14 +256,14 @@ public class CredencialDAO extends DAO<Credencial> {
         return null;
     }
 
-    public boolean isTutor(Usuario usuario) {
+    public boolean isTutor(Credencial credencial) {
 
         try ( PreparedStatement preparedStatement
-                = DbConnection.getConexao().prepareStatement(
-                        getFindByIdStatment())) {
+                = DbConnection.getConexao().prepareStatement(getFindByEmailSenhaStatment())) {
 
             // Assemble the SQL statement with the id
-            preparedStatement.setLong(1, usuario.getId());
+            preparedStatement.setString(1, credencial.getEmail());
+            preparedStatement.setString(2, credencial.getSenha());
 
             // Show the full sentence
             System.out.println(">> SQL: " + preparedStatement);
@@ -272,9 +273,10 @@ public class CredencialDAO extends DAO<Credencial> {
 
             // Returns the respective object if exists
             if (resultSet.next()) {
-                Long idTutor, idVoluntario;
-                idTutor = (Long) resultSet.getObject("idTutor");
-                idVoluntario = (Long) resultSet.getObject("idVoluntario");
+                BigInteger idTutor, idVoluntario;
+                idTutor = (BigInteger) resultSet.getObject("idTutor");
+                idVoluntario = (BigInteger) resultSet.getObject("idVoluntario");
+                System.out.println(">> " + idTutor + ":" + idVoluntario);
                 if (idTutor == null) {
                     if (idVoluntario != null) {
                         return false;

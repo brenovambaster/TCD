@@ -21,6 +21,7 @@ import com.mycompany.adotapet.endereco.Endereco;
 import com.mycompany.adotapet.entidade.Entidade;
 import com.mycompany.adotapet.pet.Pet;
 import com.mycompany.adotapet.voluntario.Voluntario;
+import java.util.List;
 
 /**
  * Classe LarTemporario
@@ -32,6 +33,8 @@ public class LarTemporario extends Entidade {
     private String nome;
     private Endereco endereco;
     private Voluntario fundador;
+    private List<Voluntario> voluntario;
+    private List<Pet> pets;
 
     //<editor-fold defaultstate="collapsed" desc="constructor">
     public LarTemporario() {
