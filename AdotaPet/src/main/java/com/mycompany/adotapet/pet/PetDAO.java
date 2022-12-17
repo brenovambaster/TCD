@@ -28,6 +28,7 @@ import java.math.BigInteger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -160,8 +161,8 @@ public class PetDAO extends DAO<Pet> {
 
     @Override
     public Pet extractObject(ResultSet resultSet) {
-        Pet pet = new Pet();
         try {
+            Pet pet = new Pet();
             pet.setId(resultSet.getLong("id"));
             pet.setRaca(new RacaDAO().findById(resultSet.getLong("idRaca")));
             pet.setNome(resultSet.getString("nome"));
@@ -177,11 +178,11 @@ public class PetDAO extends DAO<Pet> {
         } catch (Exception ex) {
             Logger.getLogger(PetDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return pet;
+        return null;
     }
 
     public List<Pet> findAllByTutor(Long id) {
-
+        
         try ( PreparedStatement preparedStatement
                 = DbConnection.getConexao().prepareStatement(
                         getFindByTutorStatment())) {
@@ -203,7 +204,8 @@ public class PetDAO extends DAO<Pet> {
         } catch (Exception ex) {
             System.out.println("Exception: " + ex);
         }
-        return null;
+        List<Pet> pets = new ArrayList<>();
+        return pets;
     }
 
     public List<Pet> findByPetAvaliable() {
