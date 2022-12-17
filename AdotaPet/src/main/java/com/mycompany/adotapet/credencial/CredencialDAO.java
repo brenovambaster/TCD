@@ -186,14 +186,15 @@ public class CredencialDAO extends DAO<Credencial> {
             System.out.println(">> " + idTutor + ":" + idVoluntario);
 
             // verifica se essa credencial é de tutor ou de voluntario
-            if (idTutor == null) {
-                if (idVoluntario != null) {
-                    cred.setUsuario(new VoluntarioDAO().findById(resultSet.getLong("idVoluntario")));
-                    //passa o enedereço da credencial 
-                    cred.getUsuario().setCredencial(cred);
-                }
+            if (idTutor == null && idVoluntario != null) {
+
+                cred.setUsuario(new VoluntarioDAO().findById(resultSet.getLong("idVoluntario")));
+                //passa o enedereço da credencial 
+                cred.getUsuario().setCredencial(cred);
+
             } else {
-                cred.setUsuario(new TutorDAO().findById(resultSet.getLong("idTutor")));
+                Tutor tutor = new TutorDAO().findById(resultSet.getLong("idTutor"));
+                cred.setUsuario(tutor);
                 cred.getUsuario().setCredencial(cred);
             }
             return cred;
