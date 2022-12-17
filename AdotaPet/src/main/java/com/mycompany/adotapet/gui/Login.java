@@ -22,6 +22,7 @@ import com.mycompany.adotapet.credencial.CredencialDAO;
 import com.mycompany.adotapet.tutor.PrincipalTutor;
 import com.mycompany.adotapet.tutor.Tutor;
 import com.mycompany.adotapet.voluntario.PrincipalVoluntario;
+import com.mycompany.adotapet.voluntario.Voluntario;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -186,7 +187,7 @@ public class Login extends javax.swing.JFrame {
                 System.out.println(">> Autenticado: " + credencialAutenticada.getUsuario());
                 new PrincipalTutor((Tutor) credencialAutenticada.getUsuario()).setVisible(true);
             } else {
-                new PrincipalVoluntario().setVisible(true);
+                new PrincipalVoluntario((Voluntario) credencialAutenticada.getUsuario()).setVisible(true);
             }
             dispose();
         } else {

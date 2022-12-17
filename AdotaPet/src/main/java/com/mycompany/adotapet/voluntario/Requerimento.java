@@ -17,7 +17,10 @@
  */
 package com.mycompany.adotapet.voluntario;
 
+import com.mycompany.adotapet.pet.PetDAO;
 import com.mycompany.adotapet.requerimentoAdocao.RequerimentoAdocao;
+import com.mycompany.adotapet.requerimentoAdocao.RequerimentoAdocaoDAO;
+import java.time.LocalDate;
 import javax.swing.DefaultListModel;
 
 /**
@@ -61,6 +64,7 @@ public class Requerimento extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstRequerimentos = new javax.swing.JList<>();
+        btnAceitar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -69,6 +73,14 @@ public class Requerimento extends javax.swing.JFrame {
 
         lstRequerimentos.setModel(lstRequerimentoModel);
         jScrollPane1.setViewportView(lstRequerimentos);
+
+        btnAceitar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnAceitar.setText("Aceitar");
+        btnAceitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceitarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -79,6 +91,10 @@ public class Requerimento extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAceitar)
+                .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,7 +103,9 @@ public class Requerimento extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnAceitar)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -103,6 +121,18 @@ public class Requerimento extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAceitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceitarActionPerformed
+        RequerimentoAdocao reqAd = new RequerimentoAdocao();
+        reqAd = lstRequerimentos.getSelectedValue();
+        reqAd.getPet().setTutor(reqAd.getTutor());
+        reqAd.getTutor().adicionarPet(reqAd.getPet());
+        reqAd.setAprovado(true);
+        reqAd.setTermino(LocalDate.now());
+        new PetDAO().adicionarTutor(reqAd.getPet());
+        new RequerimentoAdocaoDAO().saveOrUpdate(reqAd);
+        dispose();
+    }//GEN-LAST:event_btnAceitarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,6 +171,7 @@ public class Requerimento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceitar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
