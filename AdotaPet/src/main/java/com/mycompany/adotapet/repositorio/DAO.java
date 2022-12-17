@@ -206,7 +206,7 @@ public abstract class DAO<T>
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return objects.isEmpty() ? null : objects;
+        return objects;
     }
 
     @Override
