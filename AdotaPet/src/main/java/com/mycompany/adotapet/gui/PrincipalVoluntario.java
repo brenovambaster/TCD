@@ -15,12 +15,11 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package com.mycompany.adotapet.voluntario;
+package com.mycompany.adotapet.gui;
 
 import com.mycompany.adotapet.gui.CadastroPet;
 import com.mycompany.adotapet.gui.CadastroVoluntario;
-import com.mycompany.adotapet.tutor.MeuRequerimento;
-import com.mycompany.adotapet.tutor.MeusPets;
+import com.mycompany.adotapet.voluntario.Voluntario;
 
 /**
  *

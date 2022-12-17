@@ -19,9 +19,7 @@ package com.mycompany.adotapet.gui;
 
 import com.mycompany.adotapet.credencial.Credencial;
 import com.mycompany.adotapet.credencial.CredencialDAO;
-import com.mycompany.adotapet.tutor.PrincipalTutor;
 import com.mycompany.adotapet.tutor.Tutor;
-import com.mycompany.adotapet.voluntario.PrincipalVoluntario;
 import com.mycompany.adotapet.voluntario.Voluntario;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -75,10 +73,8 @@ public class Login extends javax.swing.JFrame {
         });
 
         txtEmail.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtEmail.setText("bbb");
 
         pwdSenha.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        pwdSenha.setText("1");
         pwdSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pwdSenhaActionPerformed(evt);

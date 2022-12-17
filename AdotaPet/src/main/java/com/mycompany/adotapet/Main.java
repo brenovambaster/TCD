@@ -29,6 +29,7 @@ import com.mycompany.adotapet.requerimentoAdocao.RequerimentoAdocao;
 import com.mycompany.adotapet.telefone.Telefone;
 import com.mycompany.adotapet.tipoLogradouro.TipoLogradouro;
 import com.mycompany.adotapet.tutor.Tutor;
+import com.mycompany.adotapet.usuario.Usuario;
 import com.mycompany.adotapet.voluntario.Voluntario;
 import java.time.LocalDate;
 import java.time.Month;
@@ -44,7 +45,7 @@ public class Main {
      */
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-
+        
         Telefone fone = new Telefone((short) 33, 999301145, true);
         System.out.println(fone);
 
