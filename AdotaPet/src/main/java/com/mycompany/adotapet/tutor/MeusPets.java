@@ -76,10 +76,13 @@ public class MeusPets extends javax.swing.JFrame {
         lstLista.setModel(lstPetsModel);
         jScrollPane1.setViewportView(lstLista);
 
+        jlbTitulo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jlbTitulo.setText("Meus pets: ");
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setText("Tutor logado: ");
 
+        lblTutor.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblTutor.setText(tutorLogado.getNome());
 
         javax.swing.GroupLayout jpnPrincipalLayout = new javax.swing.GroupLayout(jpnPrincipal);
@@ -110,7 +113,7 @@ public class MeusPets extends javax.swing.JFrame {
                 .addComponent(jlbTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

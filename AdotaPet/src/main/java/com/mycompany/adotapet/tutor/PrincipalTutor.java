@@ -75,7 +75,7 @@ public class PrincipalTutor extends javax.swing.JFrame {
         jPanelPrincipalLayout.setVerticalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrincipalLayout.createSequentialGroup()
-                .addContainerGap(242, Short.MAX_VALUE)
+                .addContainerGap(241, Short.MAX_VALUE)
                 .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTutor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -83,7 +83,9 @@ public class PrincipalTutor extends javax.swing.JFrame {
         );
 
         jMenuAdocao.setText("Adoção");
+        jMenuAdocao.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
+        jMenuItemAdotarPet.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jMenuItemAdotarPet.setText("Adotar Pet");
         jMenuItemAdotarPet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +94,7 @@ public class PrincipalTutor extends javax.swing.JFrame {
         });
         jMenuAdocao.add(jMenuItemAdotarPet);
 
+        jmnMeusPets.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jmnMeusPets.setText("Meus Pets");
         jmnMeusPets.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +103,7 @@ public class PrincipalTutor extends javax.swing.JFrame {
         });
         jMenuAdocao.add(jmnMeusPets);
 
+        jmnRequerimentos.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jmnRequerimentos.setText("Meus Requerimentos");
         jmnRequerimentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -80,6 +80,7 @@ public class ListaPetAdocao extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jButtonRequerimento.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButtonRequerimento.setText("Fazer requerimneto");
         jButtonRequerimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,14 +88,17 @@ public class ListaPetAdocao extends javax.swing.JFrame {
             }
         });
 
+        jLabelTitulo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabelTitulo.setText("Escolha um pet da lista para adotar");
 
         lstPets.setModel(lstPetModel);
         lstPets.setMaximumSize(new java.awt.Dimension(600, 600));
         jScrollPane1.setViewportView(lstPets);
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setText("Tutor logado: ");
 
+        lblTutor.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblTutor.setText(tutorLogado.getNome());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -121,7 +125,7 @@ public class ListaPetAdocao extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTutor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))

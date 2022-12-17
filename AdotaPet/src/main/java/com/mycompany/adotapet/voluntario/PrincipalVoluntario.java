@@ -62,10 +62,11 @@ public class PrincipalVoluntario extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGap(0, 276, Short.MAX_VALUE)
         );
 
         mnuRequerimentos.setText("Requerimentos");
+        mnuRequerimentos.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         mnuRequerimentos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 mnuRequerimentosMouseClicked(evt);
@@ -79,6 +80,7 @@ public class PrincipalVoluntario extends javax.swing.JFrame {
         jMenuBar1.add(mnuRequerimentos);
 
         mnuCadastroPet.setText("Cadastrar Pet");
+        mnuCadastroPet.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         mnuCadastroPet.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 mnuCadastroPetMouseClicked(evt);
