@@ -173,6 +173,7 @@ public class PetDAO extends DAO<Pet> {
             pet.setComentario(resultSet.getString("comentario"));
             pet.setVivo(resultSet.getBoolean("vivo"));
             pet.setMedicamentos(new AplicacaoDAO().findByPet(pet.getId()));
+            return pet;
         } catch (SQLException ex) {
             Logger.getLogger(PetDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
@@ -182,7 +183,7 @@ public class PetDAO extends DAO<Pet> {
     }
 
     public List<Pet> findAllByTutor(Long id) {
-        
+
         try ( PreparedStatement preparedStatement
                 = DbConnection.getConexao().prepareStatement(
                         getFindByTutorStatment())) {
