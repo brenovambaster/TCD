@@ -121,6 +121,7 @@ public class TutorDAO extends DAO<Tutor> {
             tutor.setTelefone(new TelefoneDAO().findById(resultSet.getLong("idTelefone")));
             tutor.setEndereco(new EnderecoDAO().findById(resultSet.getLong("idEndereco")));
             tutor.setPets(new PetDAO().findAllByTutor(tutor.getId()));
+            System.out.println(">> Petsssss"+tutor.getPets());
             for (Pet pet : tutor.getPets()) {
                 pet.setTutor(tutor);
             }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
@@ -197,6 +198,7 @@ public class TutorDAO extends DAO<Tutor> {
             tutor.setTelefone(new TelefoneDAO().findById(resultSet.getLong("idTelefone")));
             tutor.setEndereco(new EnderecoDAO().findById(resultSet.getLong("idEndereco")));
             tutor.setPets(new PetDAO().findAllByTutor(tutor.getId()));
+            System.out.println(">> Petsssss"+tutor.getPets());
             tutor.setRequerimentos(new RequerimentoAdocaoDAO().findAllByTutor(tutor));
             for (Pet pet : tutor.getPets()) {
                 pet.setTutor(tutor);

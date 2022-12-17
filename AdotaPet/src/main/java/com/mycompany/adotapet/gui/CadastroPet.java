@@ -216,6 +216,7 @@ public class CadastroPet extends javax.swing.JFrame {
             pet.setLarTemporario(lartemporario);
             pet.setRaca((Raca) cboRaca.getSelectedItem());
             new PetDAO().saveOrUpdate(pet);
+            JOptionPane.showMessageDialog(this, "Pet cadastrado!");
             dispose();
         } catch (Exception ex) {
             JComponent component = null;

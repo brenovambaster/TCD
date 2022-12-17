@@ -49,7 +49,7 @@ public class MeusPets extends javax.swing.JFrame {
     public MeusPets(Tutor tutor) {
         tutorLogado = tutor;
         lstPetsModel = new DefaultListModel<>();
-        List<Pet> pets = new PetDAO().findAllByTutor(tutorLogado.getId());
+        List<Pet> pets = tutorLogado.getPets();
         System.out.println(">>> PETS: " + pets);
         lstPetsModel.addAll(pets);
         initComponents();

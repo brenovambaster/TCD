@@ -74,7 +74,7 @@ public class PetDAO extends DAO<Pet> {
     }
 
     public String getAddTutorStatment() {
-        return "UPDATE " + TABLE + "  SET idTutor WHERE id = ? ";
+        return "UPDATE " + TABLE + "  SET idTutor = ? WHERE id = ? ";
     }
 
     @Override
@@ -172,12 +172,14 @@ public class PetDAO extends DAO<Pet> {
             pet.setVivo(resultSet.getBoolean("vivo"));
             pet.setMedicamentos(new AplicacaoDAO().findByPet(pet.getId()));
             pet.setLarTemporario(new LarTemporarioDAO().findByIdSemRelacionamento(resultSet.getLong("idLartemporario")));
+            System.out.println(">> Buscando" + pet);
             return pet;
         } catch (SQLException ex) {
             Logger.getLogger(PetDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(PetDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println(">> Erro");
         return null;
     }
 
@@ -197,9 +199,7 @@ public class PetDAO extends DAO<Pet> {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // Returns the respective object if exists
-            if (resultSet.next()) {
-                return extractObjects(resultSet);
-            }
+            return extractObjects(resultSet);
 
         } catch (Exception ex) {
             System.out.println("Exception: " + ex);
@@ -220,9 +220,7 @@ public class PetDAO extends DAO<Pet> {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // Returns the respective object if exists
-            if (resultSet.next()) {
-                return extractObjects(resultSet);
-            }
+            return extractObjects(resultSet);
 
         } catch (Exception ex) {
             System.out.println("Exception: " + ex);
@@ -247,9 +245,7 @@ public class PetDAO extends DAO<Pet> {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             // Returns the respective object if exists
-            if (resultSet.next()) {
-                return extractObjects(resultSet);
-            }
+            return extractObjects(resultSet);
 
         } catch (Exception ex) {
             System.out.println("Exception: " + ex);
