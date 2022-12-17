@@ -25,8 +25,6 @@ import com.mycompany.adotapet.telefone.Telefone;
 import com.mycompany.adotapet.telefone.TelefoneDAO;
 import com.mycompany.adotapet.tipoLogradouro.TipoLogradouro;
 import com.mycompany.adotapet.tipoLogradouro.TipoLogradouroDAO;
-import com.mycompany.adotapet.tutor.Tutor;
-import com.mycompany.adotapet.tutor.TutorDAO;
 import com.mycompany.adotapet.voluntario.Voluntario;
 import com.mycompany.adotapet.voluntario.VoluntarioDAO;
 import java.awt.Component;

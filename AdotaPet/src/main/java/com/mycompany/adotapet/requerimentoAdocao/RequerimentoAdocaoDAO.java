@@ -28,30 +28,26 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * <pre>CREATE TABLE `requerimento` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `aprovado` tinyint(1) DEFAULT 0,
+  `inicio` date DEFAULT NULL,
+  `termino` date DEFAULT NULL,
+  `idPet` bigint(20) unsigned NOT NULL,
+  `idTutor` bigint(20) unsigned NOT NULL,
+  `idLartemporario` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `idPet` (`idPet`),
+  KEY `idTutor` (`idTutor`),
+  KEY `idLartemporario` (`idLartemporario`),
+  CONSTRAINT `requerimento_ibfk_1` FOREIGN KEY (`idPet`) REFERENCES `pet` (`id`),
+  CONSTRAINT `requerimento_ibfk_2` FOREIGN KEY (`idTutor`) REFERENCES `tutor` (`id`),
+  CONSTRAINT `requerimento_ibfk_3` FOREIGN KEY (`idLartemporario`) REFERENCES `lartemporario` (`id`)
+) ENGINE=InnoDB</pre>
  *
  * @author Pedro Henrique
  */
-
-/**
-  CREATE TABLE `requerimentoadocao` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idLartemporario` int(11) NOT NULL,
-  `lartemporario` varchar(35),
-  `idTutor` int(11) NOT NULL,
-  `tutor` varchar(35),
-  `idPet` int(11) NOT NULL, 
-  `pet` varchar(35),
-  `ativo` tinyint(1) DEFAULT '1',
-  `aprovado` tinyint(1) DEFAULT '0',
-  `inicio` datetime NOT NULL,
-  `termino` datetime DEFAULT NULL,
-  `excluido` tinyint(1) DEFAULT '0',
-  CONSTRAINT PRIMARY KEY (`id`),
-  CONSTRAINT FOREGEIN KEY (`idLartemporario`) REFERENCES lartemporario (id),
-  CONSTRAINT FOREGEIN KEY (`idTutor`) REFERENCES tutor (id),
-  CONSTRAINT FOREIGN key (`idPet`) references pet(id)
-  ) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 
-  */
 
 public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao>{
 
@@ -60,13 +56,13 @@ public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao>{
     @Override
     public String getSaveStatment() {
         return " INSERT INTO " + TABLE 
-                + "(idLartemporario,lartemporario,idTutor,tutor,idPet,pet,inicio) values (?,?,?,?,?,?,?);";
+                + "(idLartemporario,idTutor,idPet,pet,inicio) values (?,?,?,?,?);";
     }
 
     @Override
     public String getUpdateStatment() {
         return "UPDATE " + TABLE 
-                + " ativo=?,SET aprovado=?,termino=? WHERE id= ? ";    
+                + " SET aprovado=?,termino=? WHERE id= ? ";    
     }
 
     @Override
@@ -78,7 +74,6 @@ public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao>{
             pstmt.setString(4, e.getTutor().getNome());
             pstmt.setLong(5, e.getPet().getId());
             pstmt.setString(6, e.getPet().getNome());
-            pstmt.setObject(7, e.getAtivo(), java.sql.Types.BOOLEAN);
             pstmt.setObject(8, e.getAprovado(), java.sql.Types.BOOLEAN);
             pstmt.setObject(9, e.getInicio(), java.sql.Types.DATE);
             pstmt.setObject(10, e.getTermino(), java.sql.Types.DATE);
@@ -123,10 +118,9 @@ public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao>{
         RequerimentoAdocao reqAd = new RequerimentoAdocao();
         try {
             reqAd.setId(resultSet.getLong("id"));
-            reqAd.setLarTemporario(new LarTemporarioDAO().findById(resultSet.getLong("idLartemporario")));
-            reqAd.setTutor(new TutorDAO().findById(resultSet.getLong("idTutor")));
-            reqAd.setPet(new PetDAO().findById(resultSet.getLong("idPet")));
-            reqAd.setAtivo(resultSet.getBoolean("ativo"));
+//            reqAd.setLarTemporario(new LarTemporarioDAO().findById(resultSet.getLong("idLartemporario")));
+//            reqAd.setTutor(new TutorDAO().findById(resultSet.getLong("idTutor")));
+//            reqAd.setPet(new PetDAO().findById(resultSet.getLong("idPet")));
             reqAd.setInicio(resultSet.getDate("inicio").toLocalDate());
 
         } catch (SQLException ex) {
