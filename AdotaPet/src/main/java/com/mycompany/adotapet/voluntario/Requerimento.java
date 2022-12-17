@@ -17,16 +17,34 @@
  */
 package com.mycompany.adotapet.voluntario;
 
+import com.mycompany.adotapet.requerimentoAdocao.RequerimentoAdocao;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Breno Vambaster C. L
  */
-public class PrincipalVoluntario extends javax.swing.JFrame {
+public class Requerimento extends javax.swing.JFrame {
+
+    private DefaultListModel<RequerimentoAdocao> lstRequerimentoModel;
+    private Voluntario voluntarioLogado;
+    public static Requerimento instance;
+
+    public static Requerimento getInstance(Voluntario voluntario) {
+        if (instance == null) {
+            return instance = new Requerimento(voluntario);
+        } else {
+            return instance;
+        }
+    }
 
     /**
-     * Creates new form PrincipalVoluntario
+     * Creates new form Requerimentos
      */
-    public PrincipalVoluntario() {
+    public Requerimento(Voluntario voluntario) {
+        voluntarioLogado = voluntario;
+        lstRequerimentoModel = new DefaultListModel<>();
+        lstRequerimentoModel.addAll(voluntario.getLarTemporario().getRequerimentos());
         initComponents();
     }
 
@@ -40,30 +58,37 @@ public class PrincipalVoluntario extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        mnuRequerimentos = new javax.swing.JMenu();
-        mnuCadastroPet = new javax.swing.JMenu();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lstRequerimentos = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel1.setText("Aceitar Requerimento de Adoção: ");
+
+        lstRequerimentos.setModel(lstRequerimentoModel);
+        jScrollPane1.setViewportView(lstRequerimentos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 611, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
-
-        mnuRequerimentos.setText("Requerimentos");
-        jMenuBar1.add(mnuRequerimentos);
-
-        mnuCadastroPet.setText("Cadastrar Pet");
-        jMenuBar1.add(mnuCadastroPet);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,7 +98,7 @@ public class PrincipalVoluntario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -96,28 +121,29 @@ public class PrincipalVoluntario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PrincipalVoluntario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Requerimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PrincipalVoluntario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Requerimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PrincipalVoluntario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Requerimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PrincipalVoluntario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Requerimento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PrincipalVoluntario().setVisible(true);
+                new Requerimento(new Voluntario()).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JMenu mnuCadastroPet;
-    private javax.swing.JMenu mnuRequerimentos;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<RequerimentoAdocao> lstRequerimentos;
     // End of variables declaration//GEN-END:variables
 }
