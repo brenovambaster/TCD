@@ -19,6 +19,8 @@ package com.mycompany.adotapet.tutor;
 
 import com.mycompany.adotapet.pet.Pet;
 import com.mycompany.adotapet.pet.PetDAO;
+import com.mycompany.adotapet.requerimentoAdocao.RequerimentoAdocao;
+import java.time.LocalDate;
 import java.util.List;
 import javax.swing.DefaultListModel;
 
@@ -134,7 +136,11 @@ public class ListaPetAdocao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRequerimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRequerimentoActionPerformed
-        // TODO add your handling code here:
+        try {
+            RequerimentoAdocao reqAd = new RequerimentoAdocao();
+            reqAd.setInicio(LocalDate.now());
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jButtonRequerimentoActionPerformed
 
     /**

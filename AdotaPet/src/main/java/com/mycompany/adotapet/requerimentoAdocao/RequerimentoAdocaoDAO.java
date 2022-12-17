@@ -142,7 +142,7 @@ public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao> {
                         "SELECT * FROM " + TABLE + " WHERE idTutor = ?")) {
 
             preparedStatement.setLong(1, tutor.getId());
-            
+
             // Show the full sentence
             System.out.println(">> SQL: " + preparedStatement);
 
@@ -165,7 +165,9 @@ public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao> {
             reqAd.setId(resultSet.getLong("id"));
             reqAd.setAprovado(resultSet.getBoolean("aprovado"));
             reqAd.setInicio(resultSet.getDate("inicio").toLocalDate());
-//            reqAd.setTermino(resultSet.getDate("termino").toLocalDate());
+            if (resultSet.getObject("termino") != null) {
+                reqAd.setTermino(resultSet.getDate("termino").toLocalDate());
+            }
             reqAd.setLarTemporario(new LarTemporarioDAO().findById(resultSet.getLong("idLartemporario")));
             reqAd.setTutor(tutor);
             reqAd.setPet(new PetDAO().findById(resultSet.getLong("idPet")));
@@ -224,7 +226,9 @@ public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao> {
             reqAd.setId(resultSet.getLong("id"));
             reqAd.setAprovado(resultSet.getBoolean("aprovado"));
             reqAd.setInicio(resultSet.getDate("inicio").toLocalDate());
-            reqAd.setTermino(resultSet.getDate("termino").toLocalDate());
+            if (resultSet.getObject("termino") != null) {
+                reqAd.setTermino(resultSet.getDate("termino").toLocalDate());
+            }
             reqAd.setLarTemporario(lartemporario);
             reqAd.setTutor(new TutorDAO().findById(resultSet.getLong("idTutor")));
             reqAd.setPet(new PetDAO().findById(resultSet.getLong("idPet")));

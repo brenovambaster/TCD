@@ -257,7 +257,6 @@ public class LarTemporarioDAO extends DAO<LarTemporario>{
             larTemporario.setNome(resultSet.getString("nome"));
             larTemporario.setEndereco(new EnderecoDAO().findById(resultSet.getLong("idEndereco")));
             larTemporario.setExcluido(resultSet.getBoolean("excluido"));
-            larTemporario.setRequerimentos(new RequerimentoAdocaoDAO().findAllByLarTemporario(larTemporario));
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
