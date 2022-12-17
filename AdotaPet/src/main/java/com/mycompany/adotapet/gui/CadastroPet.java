@@ -17,17 +17,56 @@
  */
 package com.mycompany.adotapet.gui;
 
+import com.mycompany.adotapet.larTemporario.LarTemporario;
+import com.mycompany.adotapet.pet.Pet;
+import com.mycompany.adotapet.pet.PetDAO;
+import com.mycompany.adotapet.raca.Raca;
+import com.mycompany.adotapet.raca.RacaDAO;
+import java.awt.Component;
+import java.awt.SystemColor;
+import java.time.LocalDate;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.ListCellRenderer;
+
 /**
  *
  * @author pedro
  */
 public class CadastroPet extends javax.swing.JFrame {
 
+    private static CadastroVoluntario instance;
+    private LarTemporario lartemporario;
+    private final DefaultComboBoxModel<Raca> boxModel
+            = new DefaultComboBoxModel<>();
+
     /**
      * Creates new form CadastroPet
      */
-    public CadastroPet() {
+    public CadastroPet(LarTemporario lartemporario) {
         initComponents();
+        cboRaca.setModel(boxModel);
+        this.lartemporario = lartemporario;
+        cboRaca.setRenderer(new CadastroPet.racaRender());
+        boxModel.addAll(new RacaDAO().findAll());
+
+        try {
+            cboRaca.setSelectedIndex(0);
+        } catch (Exception ex) {
+            System.out.println(">> " + ex.getMessage());
+        }
+    }
+    
+    public static CadastroVoluntario getInstance() {
+        if (instance == null) {
+            instance = new CadastroVoluntario();
+        }
+        return instance;
     }
 
     /**
@@ -39,15 +78,20 @@ public class CadastroPet extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        pnlPrincipal = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
         txtNome = new com.mycompany.adotapet.repositorio.MyJTextField();
         lblRaca = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cboRaca = new javax.swing.JComboBox<>();
         lbl = new javax.swing.JLabel();
         txtNascimento = new com.mycompany.adotapet.repositorio.MyJTextField();
-        lbl1 = new javax.swing.JLabel();
-        txtNascimento1 = new com.mycompany.adotapet.repositorio.MyJTextField();
+        lblPeso = new javax.swing.JLabel();
+        txtPeso = new com.mycompany.adotapet.repositorio.MyJTextField();
+        lblComentario = new javax.swing.JLabel();
+        txtComentario = new com.mycompany.adotapet.repositorio.MyJTextField();
+        cbkMacho = new javax.swing.JCheckBox();
+        cbkCastrado = new javax.swing.JCheckBox();
+        btnCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,59 +101,87 @@ public class CadastroPet extends javax.swing.JFrame {
         lblRaca.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblRaca.setText("Raca:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         lbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lbl.setText("Nascimento:");
 
-        lbl1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        lbl1.setText("Peso:");
+        lblPeso.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        lblPeso.setText("Peso:");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(lblRaca))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+        lblComentario.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        lblComentario.setText("Comentario:");
+
+        cbkMacho.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        cbkMacho.setText("Macho");
+
+        cbkCastrado.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        cbkCastrado.setText("Castrado");
+
+        btnCadastrar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlPrincipalLayout = new javax.swing.GroupLayout(pnlPrincipal);
+        pnlPrincipal.setLayout(pnlPrincipalLayout);
+        pnlPrincipalLayout.setHorizontalGroup(
+            pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCadastrar)
+                    .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                        .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblRaca)
                             .addComponent(lbl)
                             .addComponent(lblNome)
-                            .addComponent(lbl1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPeso)
+                            .addComponent(lblComentario))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNascimento1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(19, Short.MAX_VALUE))
+                            .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtComentario, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlPrincipalLayout.createSequentialGroup()
+                                .addComponent(cboRaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbkMacho)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbkCastrado)))))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlPrincipalLayout.setVerticalGroup(
+            pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPrincipalLayout.createSequentialGroup()
                 .addGap(13, 13, 13)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl1)
-                    .addComponent(txtNascimento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56)
-                .addComponent(lblRaca)
-                .addGap(2, 2, 2)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPeso)
+                    .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblComentario)
+                    .addComponent(txtComentario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblRaca)
+                        .addComponent(cboRaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbkMacho))
+                    .addComponent(cbkCastrado))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCadastrar)
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -118,64 +190,102 @@ public class CadastroPet extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        try {
+            Pet pet = new Pet();
+            pet.setNome(txtNome.getText());
+            pet.setComentario(txtComentario.getText());
+            pet.setCastrado(cbkCastrado.isSelected());
+            pet.setMacho(cbkMacho.isSelected());
+            pet.setPeso(Float.parseFloat(txtPeso.getText()));
+            pet.setNascimento(LocalDate.parse(txtNascimento.getText()));
+            pet.setLarTemporario(lartemporario);
+            pet.setRaca((Raca)cboRaca.getSelectedItem());
+            new PetDAO().saveOrUpdate(pet);
+            dispose();
+        } catch (Exception ex) {
+            JComponent component = null;
+
+            switch (ex.getStackTrace()[0].getMethodName()) {
+                case "setNome":
+                    component = txtNome;
+                    break;
+                case "setComentario":
+                    component = txtComentario;
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+
+            if (component instanceof JTextField) {
+                ((JTextField) component).selectAll();
+                component.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private class racaRender
+            extends JLabel
+            implements ListCellRenderer<Raca> {
+
+        @Override
+        public Component getListCellRendererComponent(
+                JList<? extends Raca> list, Raca value,
+                int index, boolean isSelected, boolean cellHasFocus) {
+            if (value == null) {
+                return this;
+            }
+
+            setOpaque(true);
+            setForeground(SystemColor.textText);
+            setBackground(SystemColor.text);
+            if (isSelected) {
+                setForeground(SystemColor.textHighlightText);
+                setBackground(SystemColor.textHighlight);
+            }
+
+            // The value to be rendered on the combo box
+            setText(value.getNome());
+
+            setBorder(BorderFactory.createEmptyBorder(0, 5, 1, 1));
+            return this;
+        }
+
+    }
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroPet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroPet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroPet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroPet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CadastroPet().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JCheckBox cbkCastrado;
+    private javax.swing.JCheckBox cbkMacho;
+    private javax.swing.JComboBox<Raca> cboRaca;
     private javax.swing.JLabel lbl;
-    private javax.swing.JLabel lbl1;
+    private javax.swing.JLabel lblComentario;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblPeso;
     private javax.swing.JLabel lblRaca;
+    private javax.swing.JPanel pnlPrincipal;
+    private com.mycompany.adotapet.repositorio.MyJTextField txtComentario;
     private com.mycompany.adotapet.repositorio.MyJTextField txtNascimento;
-    private com.mycompany.adotapet.repositorio.MyJTextField txtNascimento1;
     private com.mycompany.adotapet.repositorio.MyJTextField txtNome;
+    private com.mycompany.adotapet.repositorio.MyJTextField txtPeso;
     // End of variables declaration//GEN-END:variables
 }
