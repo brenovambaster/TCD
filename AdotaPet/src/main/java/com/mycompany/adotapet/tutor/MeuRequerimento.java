@@ -43,6 +43,8 @@ public class MeuRequerimento extends javax.swing.JFrame {
      */
     public MeuRequerimento(Tutor tutor) {
         tutorLogado = tutor;
+        lstRequerimentosModel = new DefaultListModel<>();
+        lstRequerimentosModel.addAll(tutor.getRequerimentos());
         System.out.println(">> " + tutor.getRequerimentos());
         initComponents();
     }
@@ -63,13 +65,13 @@ public class MeuRequerimento extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        pnlPrincipal.setMaximumSize(new java.awt.Dimension(600, 600));
+
+        lblTitulo.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblTitulo.setText("Meus Requerimentos");
 
-        lstRequerimentos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        lstRequerimentos.setModel(lstRequerimentosModel);
+        lstRequerimentos.setMaximumSize(new java.awt.Dimension(400, 600));
         jScrollPane1.setViewportView(lstRequerimentos);
 
         javax.swing.GroupLayout pnlPrincipalLayout = new javax.swing.GroupLayout(pnlPrincipal);
@@ -79,17 +81,17 @@ public class MeuRequerimento extends javax.swing.JFrame {
             .addGroup(pnlPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTitulo)
-                .addContainerGap(417, Short.MAX_VALUE))
+                .addContainerGap(410, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         pnlPrincipalLayout.setVerticalGroup(
             pnlPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPrincipalLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(22, 22, 22)
                 .addComponent(lblTitulo)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -145,7 +147,7 @@ public class MeuRequerimento extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JList<String> lstRequerimentos;
+    private javax.swing.JList<RequerimentoAdocao> lstRequerimentos;
     private javax.swing.JPanel pnlPrincipal;
     // End of variables declaration//GEN-END:variables
 }

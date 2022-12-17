@@ -27,15 +27,16 @@ import java.time.LocalDate;
  *
  * @author Pedro Henrique
  */
-public class RequerimentoAdocao extends Entidade{
+public class RequerimentoAdocao extends Entidade {
+
     private Boolean aprovado;
     private LocalDate inicio;
     private LocalDate termino;
     private Pet pet;
     private Tutor tutor;
     private LarTemporario larTemporario;
-    
-    public RequerimentoAdocao(LocalDate inicio, Pet pet,Tutor tutor, LarTemporario larTemporario) {
+
+    public RequerimentoAdocao(LocalDate inicio, Pet pet, Tutor tutor, LarTemporario larTemporario) {
         this.inicio = inicio;
         this.pet = pet;
         this.tutor = tutor;
@@ -43,12 +44,10 @@ public class RequerimentoAdocao extends Entidade{
     }
 
     public RequerimentoAdocao() {
-        
+
     }
-    
-    
+
     //<editor-fold defaultstate="collapsed" desc="getters/setters">
-    
     public Boolean isAtivo() {
         return termino == null ? true : false;
     }
@@ -104,13 +103,11 @@ public class RequerimentoAdocao extends Entidade{
 
     @Override
     public String toString() {
-        return "requerimentoAdocao{" 
-                + ", aprovado=" + aprovado 
-                + ", inicio=" + inicio 
-                + ", termino=" + termino 
-                + ", pet=" + pet
-                + ", tutor=" + tutor 
-                + ", larTemporario=" + larTemporario
-                +'}';
-    }    
+        return "Aprovado=" + aprovado
+                + "  ,inicio=" + inicio
+                + "  ,termino=" + termino
+                + "  ,pet=" + pet
+                + "  ,tutor=" + tutor
+                + ", larTemporario=" + larTemporario;
+    }
 }
