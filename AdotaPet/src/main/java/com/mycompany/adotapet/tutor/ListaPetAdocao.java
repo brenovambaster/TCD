@@ -73,7 +73,7 @@ public class ListaPetAdocao extends javax.swing.JFrame {
 
         popupMenu1.setLabel("popupMenu1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButtonRequerimento.setText("Fazer requerimneto");
         jButtonRequerimento.addActionListener(new java.awt.event.ActionListener() {
