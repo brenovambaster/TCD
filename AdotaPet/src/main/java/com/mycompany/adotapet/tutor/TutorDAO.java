@@ -15,10 +15,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
 package com.mycompany.adotapet.tutor;
 
 import com.mycompany.adotapet.endereco.EnderecoDAO;
+import com.mycompany.adotapet.pet.Pet;
 import com.mycompany.adotapet.pet.PetDAO;
 import com.mycompany.adotapet.repositorio.DAO;
 import com.mycompany.adotapet.repositorio.DbConnection;
@@ -31,25 +31,25 @@ import java.util.logging.Logger;
 
 /**
  * <pre>CREATE TABLE `tutor` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `nome` varchar(35) NOT NULL,
-  `cpf` bigint(20) unsigned NOT NULL,
-  `idTelefone` bigint(20) unsigned NOT NULL,
-  `idEndereco` bigint(20) unsigned NOT NULL,
-  `excluido` tinyint(1) DEFAULT 0,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`),
-  UNIQUE KEY `cpf` (`cpf`),
-  KEY `idTelefone` (`idTelefone`),
-  KEY `idEndereco` (`idEndereco`),
-  CONSTRAINT `tutor_ibfk_1` FOREIGN KEY (`idTelefone`) REFERENCES `telefone` (`id`),
-  CONSTRAINT `tutor_ibfk_2` FOREIGN KEY (`idEndereco`) REFERENCES `endereco` (`id`)
-) ENGINE=InnoDB</pre>
- * Classe TutorDAO
+ * `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+ * `nome` varchar(35) NOT NULL,
+ * `cpf` bigint(20) unsigned NOT NULL,
+ * `idTelefone` bigint(20) unsigned NOT NULL,
+ * `idEndereco` bigint(20) unsigned NOT NULL,
+ * `excluido` tinyint(1) DEFAULT 0,
+ * PRIMARY KEY (`id`),
+ * UNIQUE KEY `id` (`id`),
+ * UNIQUE KEY `cpf` (`cpf`),
+ * KEY `idTelefone` (`idTelefone`),
+ * KEY `idEndereco` (`idEndereco`),
+ * CONSTRAINT `tutor_ibfk_1` FOREIGN KEY (`idTelefone`) REFERENCES `telefone` (`id`),
+ * CONSTRAINT `tutor_ibfk_2` FOREIGN KEY (`idEndereco`) REFERENCES `endereco` (`id`)
+ * ) ENGINE=InnoDB</pre> Classe TutorDAO
+ *
  * @author Pedro Dias
  */
-public class TutorDAO extends DAO<Tutor>{
-    
+public class TutorDAO extends DAO<Tutor> {
+
     public static final String TABLE = "tutor";
 
     @Override
@@ -84,7 +84,7 @@ public class TutorDAO extends DAO<Tutor>{
     public String getFindByIdStatment() {
         return "SELECT * FROM " + TABLE + " WHERE id = ?";
     }
-    
+
     public String getFindByCpfStatment() {
         return "SELECT * FROM " + TABLE + " WHERE cpf = ?";
     }
@@ -122,6 +122,9 @@ public class TutorDAO extends DAO<Tutor>{
             tutor.setTelefone(new TelefoneDAO().findById(resultSet.getLong("idTelefone")));
             tutor.setEndereco(new EnderecoDAO().findById(resultSet.getLong("idEndereco")));
             tutor.setPets(new PetDAO().findAllByTutor(tutor.getId()));
+            for (Pet pet : tutor.getPets()) {
+                pet.setTutor(tutor);
+            }
             tutor.setExcluido(resultSet.getBoolean("excluido"));
         } catch (SQLException ex) {
             Logger.getLogger(TutorDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -130,7 +133,7 @@ public class TutorDAO extends DAO<Tutor>{
         }
         return tutor;
     }
-    
+
     public Tutor findByCpf(Long cpf) {
 
         try ( PreparedStatement preparedStatement
