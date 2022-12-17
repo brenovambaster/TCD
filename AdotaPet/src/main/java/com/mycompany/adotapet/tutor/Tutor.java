@@ -20,6 +20,7 @@ package com.mycompany.adotapet.tutor;
 
 import com.mycompany.adotapet.endereco.Endereco;
 import com.mycompany.adotapet.pet.Pet;
+import com.mycompany.adotapet.requerimentoAdocao.RequerimentoAdocao;
 import com.mycompany.adotapet.telefone.Telefone;
 import com.mycompany.adotapet.usuario.Usuario;
 import java.util.ArrayList;
@@ -28,19 +29,22 @@ import java.util.List;
 /**
  * Classe Tutor
  * @author Pedro Dias
- */
+ */                                                        
 public class Tutor extends Usuario{
     private List<Pet> pets;
+    private List<RequerimentoAdocao> requerimentos;                                                 
     
     //<editor-fold defaultstate="collapsed" desc="constructors">
-
+                           
     public Tutor() {
         pets = new ArrayList<>();
+        requerimentos = new ArrayList<>();                 
     }
 
     public Tutor(String nome, Long cpf, Telefone telefone, Endereco endereco) throws Exception {
         super(nome, cpf, telefone, endereco);
         pets = new ArrayList<>();
+        requerimentos = new ArrayList<>();
     }
     
     //</editor-fold>
@@ -53,6 +57,14 @@ public class Tutor extends Usuario{
 
     public void setPets(List<Pet> pets) {
         this.pets = pets;
+    }
+
+    public List<RequerimentoAdocao> getRequerimentos() {
+        return requerimentos;
+    }
+
+    public void setRequerimentos(List<RequerimentoAdocao> requerimentos) {
+        this.requerimentos = requerimentos;
     }
     
     //</editor-fold>
@@ -69,7 +81,6 @@ public class Tutor extends Usuario{
     public String toString() {
         return "Tutor{" 
                 + super.toString()
-                + ", pets=" + pets 
                 + '}';
     }
     

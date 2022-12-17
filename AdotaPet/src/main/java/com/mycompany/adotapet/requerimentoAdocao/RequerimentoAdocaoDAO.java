@@ -17,57 +17,61 @@
  */
 package com.mycompany.adotapet.requerimentoAdocao;
 
+import com.mycompany.adotapet.larTemporario.LarTemporario;
 import com.mycompany.adotapet.larTemporario.LarTemporarioDAO;
 import com.mycompany.adotapet.pet.PetDAO;
 import com.mycompany.adotapet.repositorio.DAO;
+import com.mycompany.adotapet.repositorio.DbConnection;
+import com.mycompany.adotapet.tutor.Tutor;
 import com.mycompany.adotapet.tutor.TutorDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  * <pre>CREATE TABLE `requerimento` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `aprovado` tinyint(1) DEFAULT 0,
-  `inicio` date DEFAULT NULL,
-  `termino` date DEFAULT NULL,
-  `idPet` bigint(20) unsigned NOT NULL,
-  `idTutor` bigint(20) unsigned NOT NULL,
-  `idLartemporario` bigint(20) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`),
-  KEY `idPet` (`idPet`),
-  KEY `idTutor` (`idTutor`),
-  KEY `idLartemporario` (`idLartemporario`),
-  CONSTRAINT `requerimento_ibfk_1` FOREIGN KEY (`idPet`) REFERENCES `pet` (`id`),
-  CONSTRAINT `requerimento_ibfk_2` FOREIGN KEY (`idTutor`) REFERENCES `tutor` (`id`),
-  CONSTRAINT `requerimento_ibfk_3` FOREIGN KEY (`idLartemporario`) REFERENCES `lartemporario` (`id`)
-) ENGINE=InnoDB</pre>
+ * `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+ * `aprovado` tinyint(1) DEFAULT 0,
+ * `inicio` date DEFAULT NULL,
+ * `termino` date DEFAULT NULL,
+ * `idPet` bigint(20) unsigned NOT NULL,
+ * `idTutor` bigint(20) unsigned NOT NULL,
+ * `idLartemporario` bigint(20) unsigned NOT NULL,
+ * PRIMARY KEY (`id`),
+ * UNIQUE KEY `id` (`id`),
+ * KEY `idPet` (`idPet`),
+ * KEY `idTutor` (`idTutor`),
+ * KEY `idLartemporario` (`idLartemporario`),
+ * CONSTRAINT `requerimento_ibfk_1` FOREIGN KEY (`idPet`) REFERENCES `pet` (`id`),
+ * CONSTRAINT `requerimento_ibfk_2` FOREIGN KEY (`idTutor`) REFERENCES `tutor` (`id`),
+ * CONSTRAINT `requerimento_ibfk_3` FOREIGN KEY (`idLartemporario`) REFERENCES `lartemporario` (`id`)
+ * ) ENGINE=InnoDB</pre>
  *
  * @author Pedro Henrique
  */
+public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao> {
 
-public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao>{
+    public static final String TABLE = "requerimento";
 
-    public static final String TABLE = "requerimentoadocao";
-    
     @Override
     public String getSaveStatment() {
-        return " INSERT INTO " + TABLE 
+        return " INSERT INTO " + TABLE
                 + "(idLartemporario,idTutor,idPet,pet,inicio) values (?,?,?,?,?);";
     }
 
     @Override
     public String getUpdateStatment() {
-        return "UPDATE " + TABLE 
-                + " SET aprovado=?,termino=? WHERE id= ? ";    
+        return "UPDATE " + TABLE
+                + " SET aprovado=?,termino=? WHERE id= ? ";
     }
 
     @Override
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, RequerimentoAdocao e) {
-            try {
+        try {
             pstmt.setLong(1, e.getLarTemporario().getId());
             pstmt.setString(2, e.getLarTemporario().getNome());
             pstmt.setLong(3, e.getTutor().getId());
@@ -77,11 +81,11 @@ public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao>{
             pstmt.setObject(8, e.getAprovado(), java.sql.Types.BOOLEAN);
             pstmt.setObject(9, e.getInicio(), java.sql.Types.DATE);
             pstmt.setObject(10, e.getTermino(), java.sql.Types.DATE);
-            
+
             if (e.getId() != null) {
                 pstmt.setLong(11, e.getId());
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(RequerimentoAdocaoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -89,7 +93,7 @@ public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao>{
 
     @Override
     public String getFindByIdStatment() {
-        return "SELECT * FROM " + TABLE + " WHERE id=?";    
+        return "SELECT * FROM " + TABLE + " WHERE id=?";
     }
 
     @Override
@@ -114,7 +118,7 @@ public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao>{
 
     @Override
     public RequerimentoAdocao extractObject(ResultSet resultSet) {
-        
+
         RequerimentoAdocao reqAd = new RequerimentoAdocao();
         try {
             reqAd.setId(resultSet.getLong("id"));
@@ -127,8 +131,125 @@ public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao>{
             Logger.getLogger(PetDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(PetDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        }
         return reqAd;
     }
-   
+
+    public List<RequerimentoAdocao> findAllByTutor(Tutor tutor) {
+        //
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConexao().prepareStatement(
+                        "SELECT * FROM " + TABLE + " WHERE idTutor = ?")) {
+
+            preparedStatement.setLong(1, tutor.getId());
+            
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            // Performs the query on the database
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Returns the respective object
+            return extractObjectsByTutor(resultSet, tutor);
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
+        List<RequerimentoAdocao> requerimentos = new ArrayList<>();
+        return requerimentos;
+    }
+
+    public RequerimentoAdocao extractObjectByTutor(ResultSet resultSet, Tutor tutor) {
+        try {
+            RequerimentoAdocao reqAd = new RequerimentoAdocao();
+            reqAd.setId(resultSet.getLong("id"));
+            reqAd.setAprovado(resultSet.getBoolean("aprovado"));
+            reqAd.setInicio(resultSet.getDate("inicio").toLocalDate());
+//            reqAd.setTermino(resultSet.getDate("termino").toLocalDate());
+            reqAd.setLarTemporario(new LarTemporarioDAO().findById(resultSet.getLong("idLartemporario")));
+            reqAd.setTutor(tutor);
+            reqAd.setPet(new PetDAO().findById(resultSet.getLong("idPet")));
+            reqAd.setInicio(resultSet.getDate("inicio").toLocalDate());
+            return reqAd;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PetDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(PetDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public List<RequerimentoAdocao> extractObjectsByTutor(ResultSet resultSet, Tutor tutor) {
+        List<RequerimentoAdocao> objects = new ArrayList<>();
+
+        try {
+            while (resultSet.next()) {
+                objects.add(extractObjectByTutor(resultSet, tutor));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return objects.isEmpty() ? null : objects;
+    }
+
+    public List<RequerimentoAdocao> findAllByLarTemporario(LarTemporario lartemporario) {
+        //
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConexao().prepareStatement(
+                        "SELECT * FROM " + TABLE + " WHERE idLartemporario = ?")) {
+
+            preparedStatement.setLong(1, lartemporario.getId());
+
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            // Performs the query on the database
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Returns the respective object
+            return extractObjectsByLarTemporario(resultSet, lartemporario);
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
+        List<RequerimentoAdocao> requerimentos = new ArrayList<>();
+        return requerimentos;
+    }
+
+    public RequerimentoAdocao extractObjectByLarTemporario(ResultSet resultSet, LarTemporario lartemporario) {
+        try {
+            RequerimentoAdocao reqAd = new RequerimentoAdocao();
+            reqAd.setId(resultSet.getLong("id"));
+            reqAd.setAprovado(resultSet.getBoolean("aprovado"));
+            reqAd.setInicio(resultSet.getDate("inicio").toLocalDate());
+            reqAd.setTermino(resultSet.getDate("termino").toLocalDate());
+            reqAd.setLarTemporario(lartemporario);
+            reqAd.setTutor(new TutorDAO().findById(resultSet.getLong("idTutor")));
+            reqAd.setPet(new PetDAO().findById(resultSet.getLong("idPet")));
+            reqAd.setInicio(resultSet.getDate("inicio").toLocalDate());
+            return reqAd;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PetDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(PetDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public List<RequerimentoAdocao> extractObjectsByLarTemporario(ResultSet resultSet, LarTemporario lartemporario) {
+        List<RequerimentoAdocao> objects = new ArrayList<>();
+
+        try {
+            while (resultSet.next()) {
+                objects.add(extractObjectByLarTemporario(resultSet, lartemporario));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return objects.isEmpty() ? null : objects;
+    }
 }

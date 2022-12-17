@@ -173,6 +173,7 @@ public class PetDAO extends DAO<Pet> {
             pet.setComentario(resultSet.getString("comentario"));
             pet.setVivo(resultSet.getBoolean("vivo"));
             pet.setMedicamentos(new AplicacaoDAO().findByPet(pet.getId()));
+            pet.setLarTemporario(new LarTemporarioDAO().findByIdSemRelacionamento(resultSet.getLong("idLartemporario")));
             return pet;
         } catch (SQLException ex) {
             Logger.getLogger(PetDAO.class.getName()).log(Level.SEVERE, null, ex);

@@ -43,6 +43,7 @@ public class MeuRequerimento extends javax.swing.JFrame {
      */
     public MeuRequerimento(Tutor tutor) {
         tutorLogado = tutor;
+        System.out.println(">> " + tutor.getRequerimentos());
         initComponents();
     }
 

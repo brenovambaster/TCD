@@ -23,6 +23,7 @@ import com.mycompany.adotapet.pet.Pet;
 import com.mycompany.adotapet.pet.PetDAO;
 import com.mycompany.adotapet.repositorio.DAO;
 import com.mycompany.adotapet.repositorio.DbConnection;
+import com.mycompany.adotapet.requerimentoAdocao.RequerimentoAdocaoDAO;
 import com.mycompany.adotapet.voluntario.Voluntario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -151,6 +152,32 @@ public class LarTemporarioDAO extends DAO<LarTemporario>{
         return null;
     }
     
+    public LarTemporario findByIdSemRelacionamento(Long id) {
+
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConexao().prepareStatement(
+                        "SELECT * FROM " + TABLE + " WHERE id = ?")) {
+
+            // Assemble the SQL statement with the id
+            preparedStatement.setLong(1, id);
+
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            // Performs the query on the database
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Returns the respective object if exists
+            if (resultSet.next()) {
+                return extractObjectSemPet(resultSet);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
+        return null;
+    }
+    
     public LarTemporario findByVoluntario(Voluntario voluntario) {
 
         try ( PreparedStatement preparedStatement
@@ -174,5 +201,68 @@ public class LarTemporarioDAO extends DAO<LarTemporario>{
             System.out.println("Exception: " + ex);
         }
         return null;
+    }
+    
+    public LarTemporario findByIdComRequerimentoDeAdocao(Long id) {
+
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConexao().prepareStatement(
+                        getFindByIdStatment())) {
+
+            // Assemble the SQL statement with the id
+            preparedStatement.setLong(1, id);
+
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            // Performs the query on the database
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Returns the respective object if exists
+            if (resultSet.next()) {
+                return extractObjectReq(resultSet);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
+
+        return null;
+    }
+    
+    public LarTemporario extractObjectReq(ResultSet resultSet) {
+        LarTemporario larTemporario = new LarTemporario();
+        try {
+            larTemporario.setId(resultSet.getLong("id"));
+            larTemporario.setNome(resultSet.getString("nome"));
+            larTemporario.setEndereco(new EnderecoDAO().findById(resultSet.getLong("idEndereco")));
+            larTemporario.setExcluido(resultSet.getBoolean("excluido"));
+            larTemporario.setPets(new PetDAO().findAllByLarTemporario(larTemporario.getId()));
+            larTemporario.setRequerimentos(new RequerimentoAdocaoDAO().findAllByLarTemporario(larTemporario));
+            for (Pet pet : larTemporario.getPets()) {
+                pet.setLarTemporario(larTemporario);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+        return larTemporario;
+    }
+    
+    public LarTemporario extractObjectSemPet(ResultSet resultSet) {
+        LarTemporario larTemporario = new LarTemporario();
+        try {
+            larTemporario.setId(resultSet.getLong("id"));
+            larTemporario.setNome(resultSet.getString("nome"));
+            larTemporario.setEndereco(new EnderecoDAO().findById(resultSet.getLong("idEndereco")));
+            larTemporario.setExcluido(resultSet.getBoolean("excluido"));
+            larTemporario.setRequerimentos(new RequerimentoAdocaoDAO().findAllByLarTemporario(larTemporario));
+        } catch (SQLException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+        return larTemporario;
     }
 }

@@ -23,7 +23,6 @@ import com.mycompany.adotapet.larTemporario.LarTemporarioDAO;
 import com.mycompany.adotapet.repositorio.DAO;
 import com.mycompany.adotapet.repositorio.DbConnection;
 import com.mycompany.adotapet.telefone.TelefoneDAO;
-import java.math.BigInteger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -160,7 +159,7 @@ public class VoluntarioDAO extends DAO<Voluntario>{
             voluntario.setCpf(resultSet.getLong("cpf"));
             voluntario.setTelefone(new TelefoneDAO().findById(resultSet.getLong("idTelefone")));
             voluntario.setEndereco(new EnderecoDAO().findById(resultSet.getLong("idEndereco")));
-            voluntario.setLarTemporario(new LarTemporarioDAO().findByVoluntario(voluntario));
+            voluntario.setLarTemporario(new LarTemporarioDAO().findByIdComRequerimentoDeAdocao(resultSet.getLong("idLartemporario")));
             if(voluntario.getLarTemporario() != null){
                 voluntario.getLarTemporario().adicionarVoluntario(voluntario);
             }

@@ -22,6 +22,7 @@ import com.mycompany.adotapet.pet.Pet;
 import com.mycompany.adotapet.pet.PetDAO;
 import com.mycompany.adotapet.repositorio.DAO;
 import com.mycompany.adotapet.repositorio.DbConnection;
+import com.mycompany.adotapet.requerimentoAdocao.RequerimentoAdocaoDAO;
 import com.mycompany.adotapet.telefone.TelefoneDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -112,10 +113,8 @@ public class TutorDAO extends DAO<Tutor> {
     @Override
     public Tutor extractObject(ResultSet resultSet) {
 
-        Tutor tutor = null;
-
         try {
-            tutor = new Tutor();
+            Tutor tutor = new Tutor();
             tutor.setId(resultSet.getLong("id"));
             tutor.setNome(resultSet.getString("nome"));
             tutor.setCpf(resultSet.getLong("cpf"));
@@ -124,14 +123,15 @@ public class TutorDAO extends DAO<Tutor> {
             tutor.setPets(new PetDAO().findAllByTutor(tutor.getId()));
             for (Pet pet : tutor.getPets()) {
                 pet.setTutor(tutor);
-            }
+            }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
             tutor.setExcluido(resultSet.getBoolean("excluido"));
+            return tutor;
         } catch (SQLException ex) {
             Logger.getLogger(TutorDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(TutorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return tutor;
+        return null;
     }
 
     public Tutor findByCpf(Long cpf) {
@@ -156,6 +156,57 @@ public class TutorDAO extends DAO<Tutor> {
 
         } catch (Exception ex) {
             System.out.println("Exception: " + ex);
+        }
+        return null;
+    }
+    
+    public Tutor findByIdComRequerimentoDeAdocao(Long id) {
+
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConexao().prepareStatement(
+                        getFindByIdStatment())) {
+
+            // Assemble the SQL statement with the id
+            preparedStatement.setLong(1, id);
+
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            // Performs the query on the database
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Returns the respective object if exists
+            if (resultSet.next()) {
+                return extractObjectReq(resultSet);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
+
+        return null;
+    }
+    
+    public Tutor extractObjectReq(ResultSet resultSet) {
+
+        try {
+            Tutor tutor = new Tutor();
+            tutor.setId(resultSet.getLong("id"));
+            tutor.setNome(resultSet.getString("nome"));
+            tutor.setCpf(resultSet.getLong("cpf"));
+            tutor.setTelefone(new TelefoneDAO().findById(resultSet.getLong("idTelefone")));
+            tutor.setEndereco(new EnderecoDAO().findById(resultSet.getLong("idEndereco")));
+            tutor.setPets(new PetDAO().findAllByTutor(tutor.getId()));
+            tutor.setRequerimentos(new RequerimentoAdocaoDAO().findAllByTutor(tutor));
+            for (Pet pet : tutor.getPets()) {
+                pet.setTutor(tutor);
+            }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+            tutor.setExcluido(resultSet.getBoolean("excluido"));
+            return tutor;
+        } catch (SQLException ex) {
+            Logger.getLogger(TutorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(TutorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

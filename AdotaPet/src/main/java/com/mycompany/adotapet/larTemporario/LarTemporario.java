@@ -20,7 +20,9 @@ package com.mycompany.adotapet.larTemporario;
 import com.mycompany.adotapet.endereco.Endereco;
 import com.mycompany.adotapet.entidade.Entidade;
 import com.mycompany.adotapet.pet.Pet;
+import com.mycompany.adotapet.requerimentoAdocao.RequerimentoAdocao;
 import com.mycompany.adotapet.voluntario.Voluntario;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,12 +36,17 @@ public class LarTemporario extends Entidade {
     private Endereco endereco;
     private List<Voluntario> voluntario;
     private List<Pet> pets;
+    private List<RequerimentoAdocao> requerimentos;
 
     //<editor-fold defaultstate="collapsed" desc="constructor">
     public LarTemporario() {
+        voluntario = new ArrayList<>();
+        pets = new ArrayList<>();
+        requerimentos = new ArrayList<>();
     }
 
     public LarTemporario(String nome, Endereco endereco) throws Exception {
+        this();
         setNome(nome);
         this.endereco = endereco;
     }
@@ -74,9 +81,29 @@ public class LarTemporario extends Entidade {
         this.pets = pets;
     }
 
+    public List<Voluntario> getVoluntario() {
+        return voluntario;
+    }
+
+    public void setVoluntario(List<Voluntario> voluntario) {
+        this.voluntario = voluntario;
+    }
+
+    public List<RequerimentoAdocao> getRequerimentos() {
+        return requerimentos;
+    }
+
+    public void setRequerimentos(List<RequerimentoAdocao> requerimentos) {
+        this.requerimentos = requerimentos;
+    }
+
     //</editor-fold>
     public void adicionarVoluntario(Voluntario voluntario) {
         voluntario.setLarTemporario(this);
+    }
+    
+    public void adicionarRequerimento(RequerimentoAdocao reqAd) {
+        requerimentos.add(reqAd);
     }
 
     public void adicionarPet(Pet pet) {

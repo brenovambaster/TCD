@@ -21,7 +21,6 @@ import com.mycompany.adotapet.repositorio.DAO;
 import com.mycompany.adotapet.repositorio.DbConnection;
 import com.mycompany.adotapet.tutor.Tutor;
 import com.mycompany.adotapet.tutor.TutorDAO;
-import com.mycompany.adotapet.usuario.Usuario;
 import com.mycompany.adotapet.voluntario.Voluntario;
 import com.mycompany.adotapet.voluntario.VoluntarioDAO;
 import java.math.BigInteger;
@@ -193,7 +192,7 @@ public class CredencialDAO extends DAO<Credencial> {
                 cred.getUsuario().setCredencial(cred);
 
             } else {
-                Tutor tutor = new TutorDAO().findById(resultSet.getLong("idTutor"));
+                Tutor tutor = new TutorDAO().findByIdComRequerimentoDeAdocao(resultSet.getLong("idTutor"));
                 cred.setUsuario(tutor);
                 cred.getUsuario().setCredencial(cred);
             }
