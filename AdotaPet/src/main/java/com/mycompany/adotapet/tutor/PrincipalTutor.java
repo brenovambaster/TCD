@@ -17,6 +17,8 @@
  */
 package com.mycompany.adotapet.tutor;
 
+import javax.swing.JLabel;
+
 /**
  *
  * @author Breno Vambaster C. L
@@ -45,23 +47,40 @@ public class PrincipalTutor extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelPrincipal = new javax.swing.JPanel();
+        lblTutor = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuAdocao = new javax.swing.JMenu();
         jMenuItemAdotarPet = new javax.swing.JMenuItem();
+        jmnMeusPets = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblTutor.setText(tutorLogado.getNome());
+
+        jLabel1.setText("Tutor logado: ");
 
         javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
         jPanelPrincipal.setLayout(jPanelPrincipalLayout);
         jPanelPrincipalLayout.setHorizontalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 631, Short.MAX_VALUE)
+            .addGroup(jPanelPrincipalLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTutor, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(373, Short.MAX_VALUE))
         );
         jPanelPrincipalLayout.setVerticalGroup(
             jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrincipalLayout.createSequentialGroup()
+                .addContainerGap(242, Short.MAX_VALUE)
+                .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTutor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap())
         );
 
         jMenu1.setText("File");
@@ -79,6 +98,14 @@ public class PrincipalTutor extends javax.swing.JFrame {
             }
         });
         jMenuAdocao.add(jMenuItemAdotarPet);
+
+        jmnMeusPets.setText("Meus Pets");
+        jmnMeusPets.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmnMeusPetsActionPerformed(evt);
+            }
+        });
+        jMenuAdocao.add(jmnMeusPets);
 
         jMenuBar1.add(jMenuAdocao);
 
@@ -103,6 +130,10 @@ public class PrincipalTutor extends javax.swing.JFrame {
     private void jMenuItemAdotarPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAdotarPetActionPerformed
         ListaPetAdocao.getInstance(tutorLogado).setVisible(true);
     }//GEN-LAST:event_jMenuItemAdotarPetActionPerformed
+
+    private void jmnMeusPetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnMeusPetsActionPerformed
+        MeusPets.getInstance(tutorLogado).setVisible(true);
+    }//GEN-LAST:event_jmnMeusPetsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,11 +171,14 @@ public class PrincipalTutor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenuAdocao;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemAdotarPet;
     private javax.swing.JPanel jPanelPrincipal;
+    private javax.swing.JMenuItem jmnMeusPets;
+    private javax.swing.JLabel lblTutor;
     // End of variables declaration//GEN-END:variables
 }
