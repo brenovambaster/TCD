@@ -78,6 +78,11 @@ public class PrincipalVoluntario extends javax.swing.JFrame {
         jMenuBar1.add(mnuRequerimentos);
 
         mnuCadastroPet.setText("Cadastrar Pet");
+        mnuCadastroPet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuCadastroPetMouseClicked(evt);
+            }
+        });
         mnuCadastroPet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuCadastroPetActionPerformed(evt);
@@ -112,6 +117,10 @@ public class PrincipalVoluntario extends javax.swing.JFrame {
     private void mnuRequerimentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuRequerimentosMouseClicked
         Requerimento.getInstance(voluntario).setVisible(true);
     }//GEN-LAST:event_mnuRequerimentosMouseClicked
+
+    private void mnuCadastroPetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuCadastroPetMouseClicked
+        CadastroVoluntario.getInstance().setVisible(true);
+    }//GEN-LAST:event_mnuCadastroPetMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
