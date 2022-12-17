@@ -115,6 +115,7 @@ public class CadastroTutor extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro Tutor");
 
         lblNome.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblNome.setText("Nome:");
@@ -398,7 +399,7 @@ public class CadastroTutor extends javax.swing.JFrame {
             tutor.setId(new TutorDAO().saveOrUpdate(tutor));
             credencial.setUsuario(tutor);
             new CredencialDAO().SaveTutor(credencial, tutor);
-
+            JOptionPane.showMessageDialog(this, "Tutor Cadastrado!");
             dispose();
         } catch (Exception ex) {
             JComponent component = null;
