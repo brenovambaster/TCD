@@ -99,11 +99,10 @@ public class CadastroLarTemporario extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastrar Lar Temporario");
 
         lblNome.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblNome.setText("Nome:");
-
-        txtNome.setText("a");
 
         lblEndereco.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblEndereco.setText("Endereço:");
@@ -111,40 +110,26 @@ public class CadastroLarTemporario extends javax.swing.JFrame {
         lblLogradouro.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblLogradouro.setText("Logradouro:");
 
-        txtLogradouro.setText("c");
-
         lblTipoLogradouro.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblTipoLogradouro.setText("Tipo Logradouro:");
 
         lblEnderecoNumero.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblEnderecoNumero.setText("Número:");
 
-        txtBairro.setText("d");
-
         lblBairro.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblBairro.setText("Bairro:");
-
-        txtEnderecoNumero.setText("4");
 
         lblComplemento.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblComplemento.setText("Complemento:");
 
-        txtComplemento.setText("e");
-
         lblEstado.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblEstado.setText("Estado:");
-
-        txtEstado.setText("g");
 
         lblCidade.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblCidade.setText("Cidade:");
 
-        txtCidade.setText("f");
-
         lblCep.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblCep.setText("CEP:");
-
-        txtCep.setText("5");
 
         btnCadastrar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         btnCadastrar.setText("Cadastrar");
@@ -284,6 +269,7 @@ public class CadastroLarTemporario extends javax.swing.JFrame {
             larTemporario.setEndereco(endereco);
             endereco.setId(new EnderecoDAO().saveOrUpdate(endereco));
             larTemporario.setId(new LarTemporarioDAO().saveOrUpdate(larTemporario));
+            JOptionPane.showMessageDialog(this, "Lar Temporario cadastrado!");
             dispose();
         } catch (Exception ex) {
             JComponent component = null;

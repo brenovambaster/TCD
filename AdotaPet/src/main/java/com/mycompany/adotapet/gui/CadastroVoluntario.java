@@ -89,7 +89,7 @@ public class CadastroVoluntario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        pnlPrinciapal = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
         txtNome = new com.mycompany.adotapet.repositorio.MyJTextField();
         lblEmail = new javax.swing.JLabel();
@@ -123,29 +123,22 @@ public class CadastroVoluntario extends javax.swing.JFrame {
         ckbMensagem = new javax.swing.JCheckBox();
         btnCadastrar = new javax.swing.JButton();
         cboLarTemporario = new javax.swing.JComboBox<>();
-        lblTipoLogradouro1 = new javax.swing.JLabel();
+        lblLarTemporario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastrar Voluntario");
 
         lblNome.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblNome.setText("Nome:");
 
-        txtNome.setText("a");
-
         lblEmail.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblEmail.setText("Email:");
-
-        txtEmail.setText("b");
 
         lblCpf.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblCpf.setText("CPF:");
 
-        txtCpf.setText("1");
-
         lblSenha.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblSenha.setText("Senha:");
-
-        txtSenha.setText("1");
 
         lblEndereco.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblEndereco.setText("Endereço:");
@@ -153,40 +146,26 @@ public class CadastroVoluntario extends javax.swing.JFrame {
         lblLogradouro.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblLogradouro.setText("Logradouro:");
 
-        txtLogradouro.setText("c");
-
         lblTipoLogradouro.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblTipoLogradouro.setText("Tipo Logradouro:");
 
         lblEnderecoNumero.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblEnderecoNumero.setText("Número:");
 
-        txtBairro.setText("d");
-
         lblBairro.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblBairro.setText("Bairro:");
-
-        txtEnderecoNumero.setText("4");
 
         lblComplemento.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblComplemento.setText("Complemento:");
 
-        txtComplemento.setText("e");
-
         lblEstado.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblEstado.setText("Estado:");
-
-        txtEstado.setText("g");
 
         lblCidade.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblCidade.setText("Cidade:");
 
-        txtCidade.setText("f");
-
         lblCep.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblCep.setText("CEP:");
-
-        txtCep.setText("5");
 
         lblTelefone.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblTelefone.setText("Telefone:");
@@ -194,12 +173,8 @@ public class CadastroVoluntario extends javax.swing.JFrame {
         lblDdd.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblDdd.setText("DDD:");
 
-        txtDDD.setText("23");
-
         lblTelefoneNumero.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblTelefoneNumero.setText("Número:");
-
-        txtTelefoneNumero.setText("45666");
 
         ckbMensagem.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         ckbMensagem.setText("Mensagem");
@@ -214,31 +189,31 @@ public class CadastroVoluntario extends javax.swing.JFrame {
 
         cboLarTemporario.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
-        lblTipoLogradouro1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        lblTipoLogradouro1.setText("Lar temporario:");
+        lblLarTemporario.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        lblLarTemporario.setText("Lar temporario:");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlPrinciapalLayout = new javax.swing.GroupLayout(pnlPrinciapal);
+        pnlPrinciapal.setLayout(pnlPrinciapalLayout);
+        pnlPrinciapalLayout.setHorizontalGroup(
+            pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPrinciapalLayout.createSequentialGroup()
+                .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlPrinciapalLayout.createSequentialGroup()
+                        .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlPrinciapalLayout.createSequentialGroup()
                                 .addGap(21, 21, 21)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblSenha)
                                     .addComponent(lblCpf)
                                     .addComponent(lblEmail)
                                     .addComponent(lblNome))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
                                     .addComponent(txtCpf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(pnlPrinciapalLayout.createSequentialGroup()
                                 .addGap(23, 23, 23)
                                 .addComponent(lblDdd)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -248,97 +223,97 @@ public class CadastroVoluntario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtTelefoneNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnCadastrar)
                                     .addComponent(ckbMensagem))))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(pnlPrinciapalLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(pnlPrinciapalLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblLogradouro)
                                     .addComponent(lblBairro)
                                     .addComponent(lblComplemento)
                                     .addComponent(lblCidade))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(pnlPrinciapalLayout.createSequentialGroup()
                                         .addComponent(txtLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(lblTipoLogradouro)
                                         .addGap(18, 18, 18)
                                         .addComponent(cboTipoLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(pnlPrinciapalLayout.createSequentialGroup()
+                                        .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(pnlPrinciapalLayout.createSequentialGroup()
                                                 .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(lblEnderecoNumero))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGroup(pnlPrinciapalLayout.createSequentialGroup()
                                                 .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(24, 24, 24)
                                                 .addComponent(lblEstado))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGroup(pnlPrinciapalLayout.createSequentialGroup()
                                                 .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(37, 37, 37)
                                                 .addComponent(lblCep)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtCep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(txtEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(txtEnderecoNumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                             .addComponent(lblTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE))))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(pnlPrinciapalLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(lblTipoLogradouro1)
+                .addComponent(lblLarTemporario)
                 .addGap(18, 18, 18)
                 .addComponent(cboLarTemporario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        pnlPrinciapalLayout.setVerticalGroup(
+            pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPrinciapalLayout.createSequentialGroup()
+                .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNome))
                 .addGap(13, 13, 13)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEmail))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCpf))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSenha)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(lblEndereco)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLogradouro)
                     .addComponent(txtLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboTipoLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTipoLogradouro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEnderecoNumero)
                     .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblBairro)
                     .addComponent(txtEnderecoNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblComplemento)
                     .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEstado)
                     .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCidade)
                     .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCep)
@@ -346,22 +321,22 @@ public class CadastroVoluntario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblTelefone)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDdd)
                     .addComponent(txtDDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTelefoneNumero)
                     .addComponent(txtTelefoneNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ckbMensagem))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlPrinciapalLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCadastrar)
                         .addGap(15, 15, 15))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(pnlPrinciapalLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pnlPrinciapalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cboLarTemporario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTipoLogradouro1))
+                            .addComponent(lblLarTemporario))
                         .addContainerGap(45, Short.MAX_VALUE))))
         );
 
@@ -371,14 +346,14 @@ public class CadastroVoluntario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlPrinciapal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlPrinciapal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -426,7 +401,7 @@ public class CadastroVoluntario extends javax.swing.JFrame {
             voluntario.setId(new VoluntarioDAO().saveOrUpdate(voluntario));
             credencial.setUsuario(voluntario);
             new CredencialDAO().SaveVoluntario(credencial, voluntario);
-
+            JOptionPane.showMessageDialog(this, "Voluntario Cadastrado!");
             dispose();
         } catch (Exception ex) {
             JComponent component = null;
@@ -574,7 +549,6 @@ public class CadastroVoluntario extends javax.swing.JFrame {
     private javax.swing.JComboBox<LarTemporario> cboLarTemporario;
     private javax.swing.JComboBox<TipoLogradouro> cboTipoLogradouro;
     private javax.swing.JCheckBox ckbMensagem;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblBairro;
     private javax.swing.JLabel lblCep;
     private javax.swing.JLabel lblCidade;
@@ -585,13 +559,14 @@ public class CadastroVoluntario extends javax.swing.JFrame {
     private javax.swing.JLabel lblEndereco;
     private javax.swing.JLabel lblEnderecoNumero;
     private javax.swing.JLabel lblEstado;
+    private javax.swing.JLabel lblLarTemporario;
     private javax.swing.JLabel lblLogradouro;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblTelefone;
     private javax.swing.JLabel lblTelefoneNumero;
     private javax.swing.JLabel lblTipoLogradouro;
-    private javax.swing.JLabel lblTipoLogradouro1;
+    private javax.swing.JPanel pnlPrinciapal;
     private com.mycompany.adotapet.repositorio.MyJTextField txtBairro;
     private com.mycompany.adotapet.repositorio.MyJTextField txtCep;
     private com.mycompany.adotapet.repositorio.MyJTextField txtCidade;

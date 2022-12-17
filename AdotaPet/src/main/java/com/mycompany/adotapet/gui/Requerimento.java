@@ -23,6 +23,7 @@ import com.mycompany.adotapet.requerimentoAdocao.RequerimentoAdocaoDAO;
 import com.mycompany.adotapet.voluntario.Voluntario;
 import java.time.LocalDate;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -131,7 +132,7 @@ public class Requerimento extends javax.swing.JFrame {
         reqAd.setAprovado(true);
         reqAd.setTermino(LocalDate.now());
         new PetDAO().adicionarTutor(reqAd.getPet());
-        new RequerimentoAdocaoDAO().saveOrUpdate(reqAd);
+        new RequerimentoAdocaoDAO().saveOrUpdate(reqAd);JOptionPane.showMessageDialog(this, "Requerimento aprovado!");
         dispose();
     }//GEN-LAST:event_btnAceitarActionPerformed
 
