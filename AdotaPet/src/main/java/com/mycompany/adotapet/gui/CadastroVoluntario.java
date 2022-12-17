@@ -125,7 +125,7 @@ public class CadastroVoluntario extends javax.swing.JFrame {
         cboLarTemporario = new javax.swing.JComboBox<>();
         lblTipoLogradouro1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblNome.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblNome.setText("Nome:");

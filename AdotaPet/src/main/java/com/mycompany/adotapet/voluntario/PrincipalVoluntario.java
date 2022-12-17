@@ -17,6 +17,7 @@
  */
 package com.mycompany.adotapet.voluntario;
 
+import com.mycompany.adotapet.gui.CadastroPet;
 import com.mycompany.adotapet.gui.CadastroVoluntario;
 import com.mycompany.adotapet.tutor.MeuRequerimento;
 import com.mycompany.adotapet.tutor.MeusPets;
@@ -107,7 +108,7 @@ public class PrincipalVoluntario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuCadastroPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroPetActionPerformed
-        CadastroVoluntario.getInstance().setVisible(true);
+        CadastroPet.getInstance().setVisible(true);
     }//GEN-LAST:event_mnuCadastroPetActionPerformed
 
     private void mnuRequerimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRequerimentosActionPerformed
@@ -119,7 +120,7 @@ public class PrincipalVoluntario extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuRequerimentosMouseClicked
 
     private void mnuCadastroPetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuCadastroPetMouseClicked
-        CadastroVoluntario.getInstance().setVisible(true);
+        CadastroPet.getInstance().setVisible(true);
     }//GEN-LAST:event_mnuCadastroPetMouseClicked
 
 

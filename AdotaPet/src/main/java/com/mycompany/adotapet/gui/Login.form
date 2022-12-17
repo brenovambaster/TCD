@@ -165,6 +165,7 @@
             <Property name="text" type="java.lang.String" value="Cadastrar Volunt&#xe1;rio"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCadastrarVoluntarioMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarVoluntarioActionPerformed"/>
           </Events>
         </Component>

@@ -95,6 +95,11 @@ public class Login extends javax.swing.JFrame {
 
         btnCadastrarVoluntario.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         btnCadastrarVoluntario.setText("Cadastrar Voluntário");
+        btnCadastrarVoluntario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCadastrarVoluntarioMouseClicked(evt);
+            }
+        });
         btnCadastrarVoluntario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarVoluntarioActionPerformed(evt);
@@ -170,7 +175,7 @@ public class Login extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         System.out.println("Autenticar");
-
+        
         Credencial credencial = new Credencial();
         try {
             credencial.setEmail(txtEmail.getText());
@@ -178,11 +183,11 @@ public class Login extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         Credencial credencialAutenticada = new CredencialDAO().autenticar(credencial);
-
+        
         if (credencialAutenticada != null) {
-
+            
             if (new CredencialDAO().isTutor(credencial)) {
                 System.out.println(">> Autenticado: " + credencialAutenticada.getUsuario());
                 new PrincipalTutor((Tutor) credencialAutenticada.getUsuario()).setVisible(true);
@@ -193,7 +198,7 @@ public class Login extends javax.swing.JFrame {
         } else {
             System.out.println(">> Não autenticado.");
         }
-
+        
         pwdSenha.setText(null);
         txtEmail.requestFocus();
         txtEmail.selectAll();
@@ -210,6 +215,10 @@ public class Login extends javax.swing.JFrame {
     private void btnCadastrarTutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarTutorActionPerformed
         CadastroTutor.getInstance().setVisible(true);
     }//GEN-LAST:event_btnCadastrarTutorActionPerformed
+
+    private void btnCadastrarVoluntarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarVoluntarioMouseClicked
+        CadastroVoluntario.getInstance().setVisible(true);
+    }//GEN-LAST:event_btnCadastrarVoluntarioMouseClicked
 
     /**
      * @param args the command line arguments
