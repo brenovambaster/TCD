@@ -169,22 +169,22 @@ public class Login extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         System.out.println("Autenticar");
-        
+
         Credencial credencial = new Credencial();
         try {
             credencial.setEmail(txtEmail.getText());
+            credencial.setSenha(String.valueOf(pwdSenha.getPassword()));
         } catch (Exception ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-        credencial.setSenha(String.valueOf(pwdSenha.getPassword()));
-        
+
         Credencial credencialAutenticada = new CredencialDAO().autenticar(credencial);
-        
+
         if (credencialAutenticada != null) {
-            System.out.println(">> Autenticado: " + credencialAutenticada);
-            
+
             if (new CredencialDAO().isTutor(credencial)) {
-                new PrincipalTutor((Tutor) credencial.getUsuario()).setVisible(true);
+                System.out.println(">> Autenticado: " + credencialAutenticada.getUsuario());
+                new PrincipalTutor((Tutor) credencialAutenticada.getUsuario()).setVisible(true);
             } else {
                 new PrincipalVoluntario().setVisible(true);
             }
@@ -192,7 +192,7 @@ public class Login extends javax.swing.JFrame {
         } else {
             System.out.println(">> Não autenticado.");
         }
-        
+
         pwdSenha.setText(null);
         txtEmail.requestFocus();
         txtEmail.selectAll();
