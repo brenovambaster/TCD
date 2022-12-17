@@ -74,7 +74,6 @@ public class Main {
 
         LarTemporario larTemporario = new LarTemporario("AdotaPet", endereco);
         larTemporario.adicionarPet(pet);
-        larTemporario.setFundador(voluntario);
         System.out.println("> " + larTemporario);
 
         Tutor tutor = new Tutor("Pedro", 123456789010L, fone, endereco);

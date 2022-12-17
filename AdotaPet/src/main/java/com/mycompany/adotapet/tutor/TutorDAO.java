@@ -121,7 +121,7 @@ public class TutorDAO extends DAO<Tutor>{
             tutor.setCpf(resultSet.getLong("cpf"));
             tutor.setTelefone(new TelefoneDAO().findById(resultSet.getLong("idTelefone")));
             tutor.setEndereco(new EnderecoDAO().findById(resultSet.getLong("idEndereco")));
-            tutor.setPets(new PetDAO().findByTutor(tutor.getId()));
+            tutor.setPets(new PetDAO().findAllByTutor(tutor.getId()));
             tutor.setExcluido(resultSet.getBoolean("excluido"));
         } catch (SQLException ex) {
             Logger.getLogger(TutorDAO.class.getName()).log(Level.SEVERE, null, ex);

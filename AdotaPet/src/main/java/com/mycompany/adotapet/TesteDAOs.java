@@ -109,7 +109,6 @@ public class TesteDAOs {
 
         //criando objeto do tipo LarTemporario para testes
         LarTemporario larTemporario = new LarTemporario("PETs", endereco);
-        larTemporario.setFundador(voluntario);
         //verificando se já está salvo no bd
         LarTemporario larTemporario2 = new LarTemporarioDAO().findByName(larTemporario.getNome());
         //salva caso contrario

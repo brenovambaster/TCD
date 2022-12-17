@@ -32,7 +32,6 @@ public class LarTemporario extends Entidade {
 
     private String nome;
     private Endereco endereco;
-    private Voluntario fundador;
     private List<Voluntario> voluntario;
     private List<Pet> pets;
 
@@ -67,12 +66,12 @@ public class LarTemporario extends Entidade {
         this.endereco = endereco;
     }
 
-    public Voluntario getFundador() {
-        return fundador;
+    public List<Pet> getPets() {
+        return pets;
     }
 
-    public void setFundador(Voluntario fundador) {
-        this.fundador = fundador;
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
     }
 
     //</editor-fold>
@@ -89,7 +88,6 @@ public class LarTemporario extends Entidade {
         return "LarTemporario{"
                 + "nome=" + nome
                 + ", endereco=" + endereco
-                + ", fundador=" + fundador
                 + '}';
     }
 

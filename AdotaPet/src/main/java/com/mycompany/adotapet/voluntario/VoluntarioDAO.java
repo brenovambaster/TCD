@@ -160,14 +160,9 @@ public class VoluntarioDAO extends DAO<Voluntario>{
             voluntario.setCpf(resultSet.getLong("cpf"));
             voluntario.setTelefone(new TelefoneDAO().findById(resultSet.getLong("idTelefone")));
             voluntario.setEndereco(new EnderecoDAO().findById(resultSet.getLong("idEndereco")));
-            
-            //verifica se esta associado a um LarTemporario
-            BigInteger idLartemporario = (BigInteger)resultSet.getObject("idLartemporario");
-            if(idLartemporario != null){
-                voluntario.setLarTemporario(new LarTemporarioDAO().findById(resultSet.getLong("idLartemporario"))); 
-                voluntario.getLarTemporario().setFundador(voluntario);
-            }else{
-                voluntario.setLarTemporario(null);
+            voluntario.setLarTemporario(new LarTemporarioDAO().findByVoluntario(voluntario));
+            if(voluntario.getLarTemporario() != null){
+                voluntario.getLarTemporario().adicionarVoluntario(voluntario);
             }
             voluntario.setExcluido(resultSet.getBoolean("excluido"));
         } catch (SQLException ex) {

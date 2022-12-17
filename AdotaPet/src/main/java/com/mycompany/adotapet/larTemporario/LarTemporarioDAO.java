@@ -19,9 +19,11 @@
 package com.mycompany.adotapet.larTemporario;
 
 import com.mycompany.adotapet.endereco.EnderecoDAO;
+import com.mycompany.adotapet.pet.Pet;
+import com.mycompany.adotapet.pet.PetDAO;
 import com.mycompany.adotapet.repositorio.DAO;
 import com.mycompany.adotapet.repositorio.DbConnection;
-import com.mycompany.adotapet.voluntario.VoluntarioDAO;
+import com.mycompany.adotapet.voluntario.Voluntario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,7 +36,6 @@ import java.util.logging.Logger;
   `nome` varchar(35) NOT NULL,
   `idEndereco` bigint(20) unsigned NOT NULL,
   `excluido` tinyint(1) DEFAULT 0,
-  `idVoluntario` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   KEY `idEndereco` (`idEndereco`),
@@ -52,12 +53,12 @@ public class LarTemporarioDAO extends DAO<LarTemporario>{
     
     @Override
     public String getSaveStatment() {
-        return "INSERT INTO " + TABLE + "  (nome, idEndereco, idVoluntario) VALUES (?,?,?)";
+        return "INSERT INTO " + TABLE + "  (nome, idEndereco) VALUES (?,?)";
     }
     
     @Override
     public String getUpdateStatment() {
-        return "UPDATE " + TABLE + "  SET nome = ? , idEndereco = ?,  idVoluntario = ? WHERE id = ? ";
+        return "UPDATE " + TABLE + "  SET nome = ? , idEndereco = ?, WHERE id = ? ";
     }
     
     @Override
@@ -65,7 +66,6 @@ public class LarTemporarioDAO extends DAO<LarTemporario>{
         try {
             pstmt.setString(1, e.getNome());
             pstmt.setLong(2, e.getEndereco().getId());
-            pstmt.setLong(3, e.getFundador().getId());;
             
             if (e.getId() != null) {
                 pstmt.setLong(4, e.getId());
@@ -112,8 +112,11 @@ public class LarTemporarioDAO extends DAO<LarTemporario>{
             larTemporario.setId(resultSet.getLong("id"));
             larTemporario.setNome(resultSet.getString("nome"));
             larTemporario.setEndereco(new EnderecoDAO().findById(resultSet.getLong("idEndereco")));
-            larTemporario.setFundador(new VoluntarioDAO().findById(resultSet.getLong("idVoluntario")));
             larTemporario.setExcluido(resultSet.getBoolean("excluido"));
+            larTemporario.setPets(new PetDAO().findAllByLarTemporario(larTemporario.getId()));
+            for (Pet pet : larTemporario.getPets()) {
+                pet.setLarTemporario(larTemporario);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
@@ -130,6 +133,31 @@ public class LarTemporarioDAO extends DAO<LarTemporario>{
 
             // Assemble the SQL statement with the id
             preparedStatement.setString(1, nome);
+
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            // Performs the query on the database
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Returns the respective object if exists
+            if (resultSet.next()) {
+                return extractObject(resultSet);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
+        return null;
+    }
+    
+    public LarTemporario findByVoluntario(Voluntario voluntario) {
+
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConexao().prepareStatement("SELECT * FROM " + TABLE + " WHERE idVoluntario = ?")) {
+
+            // Assemble the SQL statement with the id
+            preparedStatement.setLong(1, voluntario.getId());
 
             // Show the full sentence
             System.out.println(">> SQL: " + preparedStatement);

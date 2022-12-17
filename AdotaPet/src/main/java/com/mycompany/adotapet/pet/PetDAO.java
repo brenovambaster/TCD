@@ -100,9 +100,8 @@ public class PetDAO extends DAO<Pet> {
         }
     }
 
-    public void adicionarLarTemporario(Pet e) {
+    public void adicionarTutor(Pet e) {
 
-        //checa se o voluntario já foi criado e está associado a um LarTemporario
         if (e.getTutor() != null && e.getId() != null) {
 
             // try-with-resources
@@ -166,21 +165,12 @@ public class PetDAO extends DAO<Pet> {
             pet.setId(resultSet.getLong("id"));
             pet.setRaca(new RacaDAO().findById(resultSet.getLong("idRaca")));
             pet.setNome(resultSet.getString("nome"));
-            pet.setLarTemporario(new LarTemporarioDAO().findById(resultSet.getLong("idLartemporario")));
             pet.setNascimento(resultSet.getDate("nascimento").toLocalDate());
             pet.setPeso(resultSet.getFloat("peso"));
             pet.setMacho(resultSet.getBoolean("macho"));
             pet.setCastrado(resultSet.getBoolean("castrado"));
             pet.setComentario(resultSet.getString("comentario"));
             pet.setVivo(resultSet.getBoolean("vivo"));
-
-            //verifica se tem Tutor
-            BigInteger idTutor = (BigInteger) resultSet.getObject("idTutor");
-            if (idTutor != null) {
-                pet.setTutor(new TutorDAO().findById(resultSet.getLong("idTutor")));
-            } else {
-                pet.setTutor(null);
-            }
             pet.setMedicamentos(new AplicacaoDAO().findByPet(pet.getId()));
         } catch (SQLException ex) {
             Logger.getLogger(PetDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -190,7 +180,7 @@ public class PetDAO extends DAO<Pet> {
         return pet;
     }
 
-    public List<Pet> findByTutor(Long id) {
+    public List<Pet> findAllByTutor(Long id) {
 
         try ( PreparedStatement preparedStatement
                 = DbConnection.getConexao().prepareStatement(
@@ -238,7 +228,7 @@ public class PetDAO extends DAO<Pet> {
         return null;
     }
 
-    public List<Pet> findByLarTemporario(Long id) {
+    public List<Pet> findAllByLarTemporario(Long id) {
 
         try ( PreparedStatement preparedStatement
                 = DbConnection.getConexao().prepareStatement(
