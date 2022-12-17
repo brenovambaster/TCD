@@ -114,7 +114,7 @@ public class CadastroTutor extends javax.swing.JFrame {
         ckbMensagem = new javax.swing.JCheckBox();
         btnCadastrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblNome.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblNome.setText("Nome:");

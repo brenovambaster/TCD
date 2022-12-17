@@ -40,7 +40,7 @@ import javax.swing.ListCellRenderer;
  */
 public class CadastroPet extends javax.swing.JFrame {
 
-    private static CadastroVoluntario instance;
+    private static CadastroPet instance;
     private LarTemporario lartemporario;
     private final DefaultComboBoxModel<Raca> boxModel
             = new DefaultComboBoxModel<>();
@@ -61,10 +61,10 @@ public class CadastroPet extends javax.swing.JFrame {
             System.out.println(">> " + ex.getMessage());
         }
     }
-    
-    public static CadastroVoluntario getInstance() {
+
+    public static CadastroPet getInstance(LarTemporario lar) {
         if (instance == null) {
-            instance = new CadastroVoluntario();
+            instance = new CadastroPet(lar);
         }
         return instance;
     }
@@ -93,7 +93,7 @@ public class CadastroPet extends javax.swing.JFrame {
         cbkCastrado = new javax.swing.JCheckBox();
         btnCadastrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblNome.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblNome.setText("Nome:");
@@ -214,7 +214,7 @@ public class CadastroPet extends javax.swing.JFrame {
             pet.setPeso(Float.parseFloat(txtPeso.getText()));
             pet.setNascimento(LocalDate.parse(txtNascimento.getText()));
             pet.setLarTemporario(lartemporario);
-            pet.setRaca((Raca)cboRaca.getSelectedItem());
+            pet.setRaca((Raca) cboRaca.getSelectedItem());
             new PetDAO().saveOrUpdate(pet);
             dispose();
         } catch (Exception ex) {
@@ -267,7 +267,7 @@ public class CadastroPet extends javax.swing.JFrame {
         }
 
     }
-    
+
     /**
      * @param args the command line arguments
      */

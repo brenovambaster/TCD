@@ -108,11 +108,11 @@ public class PrincipalVoluntario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuCadastroPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroPetActionPerformed
-        CadastroPet.getInstance().setVisible(true);
+
     }//GEN-LAST:event_mnuCadastroPetActionPerformed
 
     private void mnuRequerimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRequerimentosActionPerformed
-        Requerimento.getInstance(voluntario).setVisible(true);
+
     }//GEN-LAST:event_mnuRequerimentosActionPerformed
 
     private void mnuRequerimentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuRequerimentosMouseClicked
@@ -120,7 +120,7 @@ public class PrincipalVoluntario extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuRequerimentosMouseClicked
 
     private void mnuCadastroPetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuCadastroPetMouseClicked
-        CadastroPet.getInstance().setVisible(true);
+        CadastroPet.getInstance(voluntario.getLarTemporario()).setVisible(true);
     }//GEN-LAST:event_mnuCadastroPetMouseClicked
 
 
