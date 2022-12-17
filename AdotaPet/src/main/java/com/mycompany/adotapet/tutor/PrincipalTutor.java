@@ -55,6 +55,7 @@ public class PrincipalTutor extends javax.swing.JFrame {
         jMenuAdocao = new javax.swing.JMenu();
         jMenuItemAdotarPet = new javax.swing.JMenuItem();
         jmnMeusPets = new javax.swing.JMenuItem();
+        jmnRequerimentos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,6 +108,14 @@ public class PrincipalTutor extends javax.swing.JFrame {
         });
         jMenuAdocao.add(jmnMeusPets);
 
+        jmnRequerimentos.setText("Meus Requerimentos");
+        jmnRequerimentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmnRequerimentosActionPerformed(evt);
+            }
+        });
+        jMenuAdocao.add(jmnRequerimentos);
+
         jMenuBar1.add(jMenuAdocao);
 
         setJMenuBar(jMenuBar1);
@@ -134,6 +143,10 @@ public class PrincipalTutor extends javax.swing.JFrame {
     private void jmnMeusPetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnMeusPetsActionPerformed
         MeusPets.getInstance(tutorLogado).setVisible(true);
     }//GEN-LAST:event_jmnMeusPetsActionPerformed
+
+    private void jmnRequerimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnRequerimentosActionPerformed
+        MeuRequerimento.getInstance(tutorLogado).setVisible(true);
+    }//GEN-LAST:event_jmnRequerimentosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,6 +192,7 @@ public class PrincipalTutor extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemAdotarPet;
     private javax.swing.JPanel jPanelPrincipal;
     private javax.swing.JMenuItem jmnMeusPets;
+    private javax.swing.JMenuItem jmnRequerimentos;
     private javax.swing.JLabel lblTutor;
     // End of variables declaration//GEN-END:variables
 }

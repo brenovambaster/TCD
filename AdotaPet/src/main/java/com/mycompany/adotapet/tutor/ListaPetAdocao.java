@@ -48,9 +48,10 @@ public class ListaPetAdocao extends javax.swing.JFrame {
         // trocar o model para lstPetModel
         tutorLogado = tutor;
         lstPetModel = new DefaultListModel<>();
-        List<Pet> pets = new PetDAO().findAll();
-        lstPetModel.addAll(pets);
+        List<Pet> pets = new PetDAO().findByPetAvaliable();
+
         System.out.println("RESULT: " + pets);
+        lstPetModel.addAll(pets);
         initComponents();
     }
 
