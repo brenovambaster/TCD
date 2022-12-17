@@ -26,7 +26,7 @@ import com.mycompany.adotapet.tutor.MeusPets;
  * @author Breno Vambaster C. L
  */
 public class PrincipalVoluntario extends javax.swing.JFrame {
-    
+
     private Voluntario voluntario;
 
     /**
@@ -65,6 +65,11 @@ public class PrincipalVoluntario extends javax.swing.JFrame {
         );
 
         mnuRequerimentos.setText("Requerimentos");
+        mnuRequerimentos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuRequerimentosMouseClicked(evt);
+            }
+        });
         mnuRequerimentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuRequerimentosActionPerformed(evt);
@@ -104,9 +109,10 @@ public class PrincipalVoluntario extends javax.swing.JFrame {
         Requerimento.getInstance(voluntario).setVisible(true);
     }//GEN-LAST:event_mnuRequerimentosActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void mnuRequerimentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuRequerimentosMouseClicked
+        Requerimento.getInstance(voluntario).setVisible(true);
+    }//GEN-LAST:event_mnuRequerimentosMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
