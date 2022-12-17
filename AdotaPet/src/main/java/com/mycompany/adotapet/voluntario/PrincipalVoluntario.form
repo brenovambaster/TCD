@@ -8,11 +8,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Requerimentos"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuRequerimentosActionPerformed"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuCadastroPet">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cadastrar Pet"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuCadastroPetActionPerformed"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>

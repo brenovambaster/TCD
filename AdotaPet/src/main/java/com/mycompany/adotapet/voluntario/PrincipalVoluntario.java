@@ -17,12 +17,18 @@
  */
 package com.mycompany.adotapet.voluntario;
 
+import com.mycompany.adotapet.gui.CadastroVoluntario;
+import com.mycompany.adotapet.tutor.MeuRequerimento;
+import com.mycompany.adotapet.tutor.MeusPets;
+
 /**
  *
  * @author Breno Vambaster C. L
  */
 public class PrincipalVoluntario extends javax.swing.JFrame {
+    
     private Voluntario voluntario;
+
     /**
      * Creates new form PrincipalVoluntario
      */
@@ -59,9 +65,19 @@ public class PrincipalVoluntario extends javax.swing.JFrame {
         );
 
         mnuRequerimentos.setText("Requerimentos");
+        mnuRequerimentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuRequerimentosActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(mnuRequerimentos);
 
         mnuCadastroPet.setText("Cadastrar Pet");
+        mnuCadastroPet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCadastroPetActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(mnuCadastroPet);
 
         setJMenuBar(jMenuBar1);
@@ -79,6 +95,14 @@ public class PrincipalVoluntario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mnuCadastroPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCadastroPetActionPerformed
+        CadastroVoluntario.getInstance().setVisible(true);
+    }//GEN-LAST:event_mnuCadastroPetActionPerformed
+
+    private void mnuRequerimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRequerimentosActionPerformed
+        Requerimento.getInstance(voluntario).setVisible(true);
+    }//GEN-LAST:event_mnuRequerimentosActionPerformed
 
     /**
      * @param args the command line arguments
