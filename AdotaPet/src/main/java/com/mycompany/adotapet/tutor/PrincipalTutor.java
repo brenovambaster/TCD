@@ -27,6 +27,8 @@ public class PrincipalTutor extends javax.swing.JFrame {
 
     /**
      * Creates new form PrincipalTutor
+     *
+     * @param tutor
      */
     public PrincipalTutor(Tutor tutor) {
         tutorLogado = tutor;

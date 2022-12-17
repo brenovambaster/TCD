@@ -184,6 +184,7 @@ public class CredencialDAO extends DAO<Credencial> {
             idTutor = (BigInteger) resultSet.getObject("idTutor");
             idVoluntario = (BigInteger) resultSet.getObject("idVoluntario");
             System.out.println(">> " + idTutor + ":" + idVoluntario);
+
             // verifica se essa credencial é de tutor ou de voluntario
             if (idTutor == null) {
                 if (idVoluntario != null) {
