@@ -213,7 +213,7 @@ public class PetDAO extends DAO<Pet> {
     public List<Pet> findByPetAvaliable() {
         try ( PreparedStatement preparedStatement
                 = DbConnection.getConexao().prepareStatement(
-                        "SELECT * FROM " + TABLE + " WHERE idTutor=NULL")) {
+                        "SELECT * FROM " + TABLE + " WHERE idTutor is NULL")) {
 
             // Show the full sentence
             System.out.println(">> SQL: " + preparedStatement);

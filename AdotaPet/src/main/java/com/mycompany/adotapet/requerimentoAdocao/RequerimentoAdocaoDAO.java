@@ -60,30 +60,26 @@ public class RequerimentoAdocaoDAO extends DAO<RequerimentoAdocao> {
     @Override
     public String getSaveStatment() {
         return " INSERT INTO " + TABLE
-                + "(idLartemporario,idTutor,idPet,pet,inicio) values (?,?,?,?,?);";
+                + "(idLartemporario,idTutor,idPet,inicio,termino) values (?,?,?,?,?);";
     }
 
     @Override
     public String getUpdateStatment() {
         return "UPDATE " + TABLE
-                + " SET aprovado=?,termino=? WHERE id= ? ";
+                + " SET idLartemporario = ?,idTutor = ?,idPet = ? ,inicio = ? ,termino = ? WHERE id= ? ";
     }
 
     @Override
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, RequerimentoAdocao e) {
         try {
             pstmt.setLong(1, e.getLarTemporario().getId());
-            pstmt.setString(2, e.getLarTemporario().getNome());
-            pstmt.setLong(3, e.getTutor().getId());
-            pstmt.setString(4, e.getTutor().getNome());
-            pstmt.setLong(5, e.getPet().getId());
-            pstmt.setString(6, e.getPet().getNome());
-            pstmt.setObject(8, e.getAprovado(), java.sql.Types.BOOLEAN);
-            pstmt.setObject(9, e.getInicio(), java.sql.Types.DATE);
-            pstmt.setObject(10, e.getTermino(), java.sql.Types.DATE);
+            pstmt.setLong(2, e.getTutor().getId());
+            pstmt.setLong(3, e.getPet().getId());
+            pstmt.setObject(4, e.getInicio(), java.sql.Types.DATE);
+            pstmt.setObject(5, e.getTermino(), java.sql.Types.DATE);
 
             if (e.getId() != null) {
-                pstmt.setLong(11, e.getId());
+                pstmt.setLong(6, e.getId());
             }
 
         } catch (SQLException ex) {

@@ -162,7 +162,7 @@ public class TesteDAOs {
         }
         System.out.println("> " + raca);
         
-        Pet pet = new Pet("Maik", raca, larTemporario, LocalDate.of(2020, Month.OCTOBER, 22), 10.0F, true, false, "Muito estressado");
+        Pet pet = new Pet("Pitoco", raca, larTemporario, LocalDate.of(2020, Month.OCTOBER, 22), 10.0F, true, false, "Muito estressado");
         Long idPet= new PetDAO().saveOrUpdate(pet);
         pet.setId(idPet);
         System.out.println("> " + pet);

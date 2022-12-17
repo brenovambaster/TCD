@@ -21,6 +21,8 @@ import com.mycompany.adotapet.credencial.Credencial;
 import com.mycompany.adotapet.credencial.CredencialDAO;
 import com.mycompany.adotapet.endereco.Endereco;
 import com.mycompany.adotapet.endereco.EnderecoDAO;
+import com.mycompany.adotapet.larTemporario.LarTemporario;
+import com.mycompany.adotapet.larTemporario.LarTemporarioDAO;
 import com.mycompany.adotapet.telefone.Telefone;
 import com.mycompany.adotapet.telefone.TelefoneDAO;
 import com.mycompany.adotapet.tipoLogradouro.TipoLogradouro;
@@ -48,17 +50,24 @@ public class CadastroVoluntario extends javax.swing.JFrame {
     private final DefaultComboBoxModel<TipoLogradouro> boxModel
             = new DefaultComboBoxModel<>();
 
+    private final DefaultComboBoxModel<LarTemporario> boxModel2
+            = new DefaultComboBoxModel<>();
+
     /**
      * Creates new form CadastrarTutor
      */
     public CadastroVoluntario() {
         initComponents();
         cboTipoLogradouro.setModel(boxModel);
+        cboLarTemporario.setModel(boxModel2);
         cboTipoLogradouro.setRenderer(new TipoLogradouroRender());
+        cboLarTemporario.setRenderer(new LarTemporarioRender());
         boxModel.addAll(new TipoLogradouroDAO().findAll());
+        boxModel2.addAll(new LarTemporarioDAO().findAll());
 
         try {
             cboTipoLogradouro.setSelectedIndex(0);
+            cboLarTemporario.setSelectedIndex(0);
         } catch (Exception ex) {
             System.out.println(">> " + ex.getMessage());
         }
@@ -113,6 +122,8 @@ public class CadastroVoluntario extends javax.swing.JFrame {
         txtTelefoneNumero = new com.mycompany.adotapet.repositorio.MyJTextField();
         ckbMensagem = new javax.swing.JCheckBox();
         btnCadastrar = new javax.swing.JButton();
+        cboLarTemporario = new javax.swing.JComboBox<>();
+        lblTipoLogradouro1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -201,6 +212,11 @@ public class CadastroVoluntario extends javax.swing.JFrame {
             }
         });
 
+        cboLarTemporario.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+
+        lblTipoLogradouro1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        lblTipoLogradouro1.setText("Lar temporario:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -208,18 +224,33 @@ public class CadastroVoluntario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblSenha)
-                            .addComponent(lblCpf)
-                            .addComponent(lblEmail)
-                            .addComponent(lblNome))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
-                            .addComponent(txtCpf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblSenha)
+                                    .addComponent(lblCpf)
+                                    .addComponent(lblEmail)
+                                    .addComponent(lblNome))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                                    .addComponent(txtCpf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(lblDdd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblTelefoneNumero)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtTelefoneNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnCadastrar)
+                                    .addComponent(ckbMensagem))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -258,27 +289,15 @@ public class CadastroVoluntario extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtCep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(txtEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtEnderecoNumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)))
+                                            .addComponent(txtEnderecoNumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(lblTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE))))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(lblDdd)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(lblTipoLogradouro1)
                 .addGap(18, 18, 18)
-                .addComponent(lblTelefoneNumero)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtTelefoneNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(ckbMensagem)
+                .addComponent(cboLarTemporario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCadastrar)
-                .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,9 +352,17 @@ public class CadastroVoluntario extends javax.swing.JFrame {
                     .addComponent(lblTelefoneNumero)
                     .addComponent(txtTelefoneNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ckbMensagem))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCadastrar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCadastrar)
+                        .addGap(15, 15, 15))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cboLarTemporario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTipoLogradouro1))
+                        .addContainerGap(45, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -391,6 +418,7 @@ public class CadastroVoluntario extends javax.swing.JFrame {
             voluntario.setTelefone(telefone);;
             voluntario.setEndereco(endereco);
             voluntario.setCredencial(credencial);
+            voluntario.setLarTemporario((LarTemporario)cboLarTemporario.getSelectedItem());
             System.out.println("> " + voluntario);
 
             endereco.setId(new EnderecoDAO().saveOrUpdate(endereco));
@@ -476,6 +504,35 @@ public class CadastroVoluntario extends javax.swing.JFrame {
 
     }
 
+    private class LarTemporarioRender
+            extends JLabel
+            implements ListCellRenderer<LarTemporario> {
+
+        @Override
+        public Component getListCellRendererComponent(
+                JList<? extends LarTemporario> list, LarTemporario value,
+                int index, boolean isSelected, boolean cellHasFocus) {
+            if (value == null) {
+                return this;
+            }
+
+            setOpaque(true);
+            setForeground(SystemColor.textText);
+            setBackground(SystemColor.text);
+            if (isSelected) {
+                setForeground(SystemColor.textHighlightText);
+                setBackground(SystemColor.textHighlight);
+            }
+
+            // The value to be rendered on the combo box
+            setText(value.getNome());
+
+            setBorder(BorderFactory.createEmptyBorder(0, 5, 1, 1));
+            return this;
+        }
+
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -514,6 +571,7 @@ public class CadastroVoluntario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JComboBox<LarTemporario> cboLarTemporario;
     private javax.swing.JComboBox<TipoLogradouro> cboTipoLogradouro;
     private javax.swing.JCheckBox ckbMensagem;
     private javax.swing.JPanel jPanel1;
@@ -533,6 +591,7 @@ public class CadastroVoluntario extends javax.swing.JFrame {
     private javax.swing.JLabel lblTelefone;
     private javax.swing.JLabel lblTelefoneNumero;
     private javax.swing.JLabel lblTipoLogradouro;
+    private javax.swing.JLabel lblTipoLogradouro1;
     private com.mycompany.adotapet.repositorio.MyJTextField txtBairro;
     private com.mycompany.adotapet.repositorio.MyJTextField txtCep;
     private com.mycompany.adotapet.repositorio.MyJTextField txtCidade;

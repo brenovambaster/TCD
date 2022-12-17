@@ -20,9 +20,11 @@ package com.mycompany.adotapet.tutor;
 import com.mycompany.adotapet.pet.Pet;
 import com.mycompany.adotapet.pet.PetDAO;
 import com.mycompany.adotapet.requerimentoAdocao.RequerimentoAdocao;
+import com.mycompany.adotapet.requerimentoAdocao.RequerimentoAdocaoDAO;
 import java.time.LocalDate;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -139,7 +141,15 @@ public class ListaPetAdocao extends javax.swing.JFrame {
         try {
             RequerimentoAdocao reqAd = new RequerimentoAdocao();
             reqAd.setInicio(LocalDate.now());
+            Pet pet = lstPets.getSelectedValue();
+            reqAd.setTutor(tutorLogado);
+            reqAd.setPet(pet);
+            reqAd.setLarTemporario(pet.getLarTemporario());
+            new RequerimentoAdocaoDAO().saveOrUpdate(reqAd);
+            JOptionPane.showMessageDialog(this, "Requerimento aberto!");
+            dispose();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro!");
         }
     }//GEN-LAST:event_jButtonRequerimentoActionPerformed
 
