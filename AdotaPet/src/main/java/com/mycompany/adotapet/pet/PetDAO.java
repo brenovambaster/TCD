@@ -227,7 +227,8 @@ public class PetDAO extends DAO<Pet> {
         } catch (Exception ex) {
             System.out.println("Exception: " + ex);
         }
-        return null;
+        List<Pet> pets = new ArrayList<>();
+        return pets;
     }
 
     public List<Pet> findAllByLarTemporario(Long id) {
@@ -253,6 +254,7 @@ public class PetDAO extends DAO<Pet> {
         } catch (Exception ex) {
             System.out.println("Exception: " + ex);
         }
-        return null;
+        List<Pet> pets = new ArrayList<>();
+        return pets;
     }
 }
