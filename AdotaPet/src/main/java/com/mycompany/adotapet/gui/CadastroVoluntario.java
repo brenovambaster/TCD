@@ -413,13 +413,13 @@ public class CadastroVoluntario extends javax.swing.JFrame {
             Voluntario voluntario = new Voluntario();
             voluntario.setNome(txtNome.getText());
             voluntario.setCpf(Long.parseLong(txtCpf.getText()));
-            Voluntario.validarUsuario(voluntario);
-            Telefone.validarTelefone(telefone);
-            Credencial.validarCredencial(credencial);
-            voluntario.setTelefone(telefone);;
+            Voluntario.validarUsuario(voluntario); // se CPF não existe
+            Telefone.validarTelefone(telefone);     // se telefone  não existe
+            Credencial.validarCredencial(credencial); // se email não existe
+            voluntario.setTelefone(telefone);
             voluntario.setEndereco(endereco);
             voluntario.setCredencial(credencial);
-            voluntario.setLarTemporario((LarTemporario)cboLarTemporario.getSelectedItem());
+            voluntario.setLarTemporario((LarTemporario) cboLarTemporario.getSelectedItem());
             System.out.println("> " + voluntario);
 
             endereco.setId(new EnderecoDAO().saveOrUpdate(endereco));

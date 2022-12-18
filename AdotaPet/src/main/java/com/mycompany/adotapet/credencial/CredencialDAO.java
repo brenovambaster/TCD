@@ -109,6 +109,12 @@ public class CredencialDAO extends DAO<Credencial> {
 
     }
 
+    /**
+     *
+     * @param e
+     * @param voluntario
+     * @brief Salva na tabela credencial o id do voluntário
+     */
     public void SaveVoluntario(Credencial e, Voluntario voluntario) {
 
         try ( PreparedStatement preparedStatement

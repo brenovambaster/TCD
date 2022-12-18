@@ -127,12 +127,13 @@ public class Requerimento extends javax.swing.JFrame {
     private void btnAceitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceitarActionPerformed
         RequerimentoAdocao reqAd = new RequerimentoAdocao();
         reqAd = lstRequerimentos.getSelectedValue();
-        reqAd.getPet().setTutor(reqAd.getTutor());
-        reqAd.getTutor().adicionarPet(reqAd.getPet());
-        reqAd.setAprovado(true);
-        reqAd.setTermino(LocalDate.now());
+        reqAd.getPet().setTutor(reqAd.getTutor()); // ao aprovar, atribui ao pet o tutor responsável por ele 
+        reqAd.getTutor().adicionarPet(reqAd.getPet()); // ao aprovar, atribui ao tutor um novo pet sob sua responsabilidade
+        reqAd.setAprovado(true);    // req é aprovado 
+        reqAd.setTermino(LocalDate.now()); // colcoa a data de t´érmino
         new PetDAO().adicionarTutor(reqAd.getPet());
-        new RequerimentoAdocaoDAO().saveOrUpdate(reqAd);JOptionPane.showMessageDialog(this, "Requerimento aprovado!");
+        new RequerimentoAdocaoDAO().saveOrUpdate(reqAd); //atulaiza o requerimento
+        JOptionPane.showMessageDialog(this, "Requerimento aprovado!");
         dispose();
     }//GEN-LAST:event_btnAceitarActionPerformed
 
