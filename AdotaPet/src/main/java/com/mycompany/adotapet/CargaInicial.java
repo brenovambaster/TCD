@@ -33,22 +33,29 @@ public class CargaInicial {
 
     public static void main(String[] args) throws Exception {
         // criando e  adicionando especiea ao bd
-        Especie esp = new Especie("lobus");
-        Long id_especie = new EspecieDAO().saveOrUpdate(esp);
-        esp.setId(id_especie);
+        Especie esp = new Especie("Cachorro");
+        Long idEspecie = new EspecieDAO().saveOrUpdate(esp);
+        esp.setId(idEspecie);
+
+        Raca raca1 = new Raca("Fox Paulistinha", esp);
+        Long idRaca1 = new RacaDAO().saveOrUpdate(raca1);
+        raca1.setId(idRaca1);
 
         // criando e adicionando raca ao bd
-        Raca raca = new Raca("pitbull", esp);
-        Long id_raca = new RacaDAO().saveOrUpdate(raca);
-        raca.setId(id_raca);
+        Raca raca = new Raca("Caramelo", esp);
+        Long idRaca = new RacaDAO().saveOrUpdate(raca);
+        raca.setId(idRaca);
 
         // criando e salvando tipo logradouro
-        TipoLogradouro lg = new TipoLogradouro("Bairro");
+        TipoLogradouro tpL1 = new TipoLogradouro("Recanto");
+        TipoLogradouro tpL2 = new TipoLogradouro("Rua");
 
         // salvando
-        Long id = new TipoLogradouroDAO().saveOrUpdate(lg);
-        lg.setId(id);
-        System.out.println(lg);
+        Long id = new TipoLogradouroDAO().saveOrUpdate(tpL1);
+        Long id2 = new TipoLogradouroDAO().saveOrUpdate(tpL2);
+        tpL1.setId(id);
+        tpL2.setId(id2);
+        System.out.println(tpL1);
 
     }
 }
