@@ -120,22 +120,22 @@ public class CadastroTutor extends javax.swing.JFrame {
         lblNome.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblNome.setText("Nome:");
 
-        txtNome.setText("a");
+        txtNome.setText("Pedro");
 
         lblEmail.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblEmail.setText("Email:");
 
-        txtEmail.setText("b");
+        txtEmail.setText("Pedro@");
 
         lblCpf.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblCpf.setText("CPF:");
 
-        txtCpf.setText("1");
+        txtCpf.setText("12345678990");
 
         lblSenha.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblSenha.setText("Senha:");
 
-        txtSenha.setText("1");
+        txtSenha.setText("123");
 
         lblEndereco.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblEndereco.setText("Endereço:");
@@ -143,7 +143,7 @@ public class CadastroTutor extends javax.swing.JFrame {
         lblLogradouro.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblLogradouro.setText("Logradouro:");
 
-        txtLogradouro.setText("c");
+        txtLogradouro.setText("5");
 
         lblTipoLogradouro.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblTipoLogradouro.setText("Tipo Logradouro:");
@@ -151,32 +151,32 @@ public class CadastroTutor extends javax.swing.JFrame {
         lblEnderecoNumero.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblEnderecoNumero.setText("Número:");
 
-        txtBairro.setText("d");
+        txtBairro.setText("Monte");
 
         lblBairro.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblBairro.setText("Bairro:");
 
-        txtEnderecoNumero.setText("4");
+        txtEnderecoNumero.setText("345");
 
         lblComplemento.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblComplemento.setText("Complemento:");
 
-        txtComplemento.setText("e");
+        txtComplemento.setText("Sem saida");
 
         lblEstado.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblEstado.setText("Estado:");
 
-        txtEstado.setText("g");
+        txtEstado.setText("MG");
 
         lblCidade.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblCidade.setText("Cidade:");
 
-        txtCidade.setText("f");
+        txtCidade.setText("Montes Claros");
 
         lblCep.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblCep.setText("CEP:");
 
-        txtCep.setText("5");
+        txtCep.setText("2300090");
 
         lblTelefone.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblTelefone.setText("Telefone:");
@@ -184,14 +184,15 @@ public class CadastroTutor extends javax.swing.JFrame {
         lblDdd.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblDdd.setText("DDD:");
 
-        txtDDD.setText("23");
+        txtDDD.setText("38");
 
         lblTelefoneNumero.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblTelefoneNumero.setText("Número:");
 
-        txtTelefoneNumero.setText("45666");
+        txtTelefoneNumero.setText("987654321");
 
         ckbMensagem.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        ckbMensagem.setSelected(true);
         ckbMensagem.setText("Mensagem");
 
         btnCadastrar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N

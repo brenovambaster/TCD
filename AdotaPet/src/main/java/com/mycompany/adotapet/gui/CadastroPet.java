@@ -99,17 +99,25 @@ public class CadastroPet extends javax.swing.JFrame {
         lblNome.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblNome.setText("Nome:");
 
+        txtNome.setText("Maik");
+
         lblRaca.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblRaca.setText("Raca:");
 
         lbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lbl.setText("Nascimento:");
 
+        txtNascimento.setText("2020-10-28");
+
         lblPeso.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblPeso.setText("Peso:");
 
+        txtPeso.setText("10");
+
         lblComentario.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblComentario.setText("Comentario:");
+
+        txtComentario.setText("Muito estressado");
 
         cbkMacho.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         cbkMacho.setText("Macho");

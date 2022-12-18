@@ -128,6 +128,9 @@
           </Properties>
         </Component>
         <Component class="com.mycompany.adotapet.repositorio.MyJTextField" name="txtNome">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Maik"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblRaca">
           <Properties>
@@ -156,6 +159,9 @@
           </Properties>
         </Component>
         <Component class="com.mycompany.adotapet.repositorio.MyJTextField" name="txtNascimento">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="2020-10-28"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblPeso">
           <Properties>
@@ -166,6 +172,9 @@
           </Properties>
         </Component>
         <Component class="com.mycompany.adotapet.repositorio.MyJTextField" name="txtPeso">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="10"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblComentario">
           <Properties>
@@ -176,6 +185,9 @@
           </Properties>
         </Component>
         <Component class="com.mycompany.adotapet.repositorio.MyJTextField" name="txtComentario">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Muito estressado"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cbkMacho">
           <Properties>

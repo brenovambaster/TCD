@@ -239,6 +239,9 @@
           </Properties>
         </Component>
         <Component class="com.mycompany.adotapet.repositorio.MyJTextField" name="txtNome">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Breno"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblEmail">
           <Properties>
@@ -249,6 +252,9 @@
           </Properties>
         </Component>
         <Component class="com.mycompany.adotapet.repositorio.MyJTextField" name="txtEmail">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Breno@"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCpf">
           <Properties>
@@ -259,6 +265,9 @@
           </Properties>
         </Component>
         <Component class="com.mycompany.adotapet.repositorio.MyJTextField" name="txtCpf">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="12345678901"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblSenha">
           <Properties>
@@ -269,6 +278,9 @@
           </Properties>
         </Component>
         <Component class="com.mycompany.adotapet.repositorio.MyJTextField" name="txtSenha">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="321"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblEndereco">
           <Properties>
@@ -287,6 +299,9 @@
           </Properties>
         </Component>
         <Component class="com.mycompany.adotapet.repositorio.MyJTextField" name="txtLogradouro">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="chacara"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cboTipoLogradouro">
           <Properties>
@@ -315,6 +330,9 @@
           </Properties>
         </Component>
         <Component class="com.mycompany.adotapet.repositorio.MyJTextField" name="txtBairro">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Zona Rural"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblBairro">
           <Properties>
@@ -325,6 +343,9 @@
           </Properties>
         </Component>
         <Component class="com.mycompany.adotapet.repositorio.MyJTextField" name="txtEnderecoNumero">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="123"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblComplemento">
           <Properties>
@@ -335,6 +356,9 @@
           </Properties>
         </Component>
         <Component class="com.mycompany.adotapet.repositorio.MyJTextField" name="txtComplemento">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="proximo ao lago"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblEstado">
           <Properties>
@@ -345,6 +369,9 @@
           </Properties>
         </Component>
         <Component class="com.mycompany.adotapet.repositorio.MyJTextField" name="txtEstado">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="MG"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCidade">
           <Properties>
@@ -355,6 +382,9 @@
           </Properties>
         </Component>
         <Component class="com.mycompany.adotapet.repositorio.MyJTextField" name="txtCidade">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Patos"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCep">
           <Properties>
@@ -365,6 +395,9 @@
           </Properties>
         </Component>
         <Component class="com.mycompany.adotapet.repositorio.MyJTextField" name="txtCep">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="400900"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTelefone">
           <Properties>
@@ -383,6 +416,9 @@
           </Properties>
         </Component>
         <Component class="com.mycompany.adotapet.repositorio.MyJTextField" name="txtDDD">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="38"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTelefoneNumero">
           <Properties>
@@ -393,6 +429,9 @@
           </Properties>
         </Component>
         <Component class="com.mycompany.adotapet.repositorio.MyJTextField" name="txtTelefoneNumero">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="912345678"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="ckbMensagem">
           <Properties>

@@ -131,14 +131,22 @@ public class CadastroVoluntario extends javax.swing.JFrame {
         lblNome.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblNome.setText("Nome:");
 
+        txtNome.setText("Breno");
+
         lblEmail.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblEmail.setText("Email:");
+
+        txtEmail.setText("Breno@");
 
         lblCpf.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblCpf.setText("CPF:");
 
+        txtCpf.setText("12345678901");
+
         lblSenha.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblSenha.setText("Senha:");
+
+        txtSenha.setText("321");
 
         lblEndereco.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblEndereco.setText("Endereço:");
@@ -146,26 +154,40 @@ public class CadastroVoluntario extends javax.swing.JFrame {
         lblLogradouro.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblLogradouro.setText("Logradouro:");
 
+        txtLogradouro.setText("chacara");
+
         lblTipoLogradouro.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblTipoLogradouro.setText("Tipo Logradouro:");
 
         lblEnderecoNumero.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblEnderecoNumero.setText("Número:");
 
+        txtBairro.setText("Zona Rural");
+
         lblBairro.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblBairro.setText("Bairro:");
+
+        txtEnderecoNumero.setText("123");
 
         lblComplemento.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblComplemento.setText("Complemento:");
 
+        txtComplemento.setText("proximo ao lago");
+
         lblEstado.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblEstado.setText("Estado:");
+
+        txtEstado.setText("MG");
 
         lblCidade.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblCidade.setText("Cidade:");
 
+        txtCidade.setText("Patos");
+
         lblCep.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblCep.setText("CEP:");
+
+        txtCep.setText("400900");
 
         lblTelefone.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblTelefone.setText("Telefone:");
@@ -173,8 +195,12 @@ public class CadastroVoluntario extends javax.swing.JFrame {
         lblDdd.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblDdd.setText("DDD:");
 
+        txtDDD.setText("38");
+
         lblTelefoneNumero.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblTelefoneNumero.setText("Número:");
+
+        txtTelefoneNumero.setText("912345678");
 
         ckbMensagem.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         ckbMensagem.setText("Mensagem");

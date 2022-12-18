@@ -104,11 +104,15 @@ public class CadastroLarTemporario extends javax.swing.JFrame {
         lblNome.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblNome.setText("Nome:");
 
+        txtNome.setText("Recanto dos Bixos");
+
         lblEndereco.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblEndereco.setText("Endereço:");
 
         lblLogradouro.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblLogradouro.setText("Logradouro:");
+
+        txtLogradouro.setText("chacara");
 
         lblTipoLogradouro.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblTipoLogradouro.setText("Tipo Logradouro:");
@@ -116,20 +120,32 @@ public class CadastroLarTemporario extends javax.swing.JFrame {
         lblEnderecoNumero.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblEnderecoNumero.setText("Número:");
 
+        txtBairro.setText("Zona Rral");
+
         lblBairro.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblBairro.setText("Bairro:");
+
+        txtEnderecoNumero.setText("123");
 
         lblComplemento.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblComplemento.setText("Complemento:");
 
+        txtComplemento.setText("proximo ao lago");
+
         lblEstado.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblEstado.setText("Estado:");
+
+        txtEstado.setText("MG");
 
         lblCidade.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblCidade.setText("Cidade:");
 
+        txtCidade.setText("Patos");
+
         lblCep.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         lblCep.setText("CEP:");
+
+        txtCep.setText("400900");
 
         btnCadastrar.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         btnCadastrar.setText("Cadastrar");
