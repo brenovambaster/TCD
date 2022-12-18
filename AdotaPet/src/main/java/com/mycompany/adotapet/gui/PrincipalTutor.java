@@ -55,6 +55,7 @@ public class PrincipalTutor extends javax.swing.JFrame {
         jMenuItemAdotarPet = new javax.swing.JMenuItem();
         jmnMeusPets = new javax.swing.JMenuItem();
         jmnRequerimentos = new javax.swing.JMenuItem();
+        mnuAbout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,6 +116,14 @@ public class PrincipalTutor extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuAdocao);
 
+        mnuAbout.setText("About");
+        mnuAbout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuAboutMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(mnuAbout);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -144,6 +153,10 @@ public class PrincipalTutor extends javax.swing.JFrame {
     private void jmnRequerimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmnRequerimentosActionPerformed
         MeuRequerimento.getInstance(tutorLogado).setVisible(true);
     }//GEN-LAST:event_jmnRequerimentosActionPerformed
+
+    private void mnuAboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuAboutMouseClicked
+        About.getInstance().setVisible(true);
+    }//GEN-LAST:event_mnuAboutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -189,5 +202,6 @@ public class PrincipalTutor extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmnMeusPets;
     private javax.swing.JMenuItem jmnRequerimentos;
     private javax.swing.JLabel lblTutor;
+    private javax.swing.JMenu mnuAbout;
     // End of variables declaration//GEN-END:variables
 }

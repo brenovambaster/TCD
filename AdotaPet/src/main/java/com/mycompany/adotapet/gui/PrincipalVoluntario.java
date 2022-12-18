@@ -26,7 +26,7 @@ import com.mycompany.adotapet.voluntario.Voluntario;
  * @author Breno Vambaster C. L
  */
 public class PrincipalVoluntario extends javax.swing.JFrame {
-
+    
     private Voluntario voluntario;
 
     /**
@@ -50,6 +50,7 @@ public class PrincipalVoluntario extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuRequerimentos = new javax.swing.JMenu();
         mnuCadastroPet = new javax.swing.JMenu();
+        mnuAbout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,6 +93,14 @@ public class PrincipalVoluntario extends javax.swing.JFrame {
         });
         jMenuBar1.add(mnuCadastroPet);
 
+        mnuAbout.setText("About");
+        mnuAbout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuAboutMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(mnuAbout);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -124,10 +133,15 @@ public class PrincipalVoluntario extends javax.swing.JFrame {
         CadastroPet.getInstance(voluntario.getLarTemporario()).setVisible(true);
     }//GEN-LAST:event_mnuCadastroPetMouseClicked
 
+    private void mnuAboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuAboutMouseClicked
+         About.getInstance().setVisible(true);
+    }//GEN-LAST:event_mnuAboutMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenu mnuAbout;
     private javax.swing.JMenu mnuCadastroPet;
     private javax.swing.JMenu mnuRequerimentos;
     // End of variables declaration//GEN-END:variables
