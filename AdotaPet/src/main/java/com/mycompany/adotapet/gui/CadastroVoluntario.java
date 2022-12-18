@@ -427,6 +427,7 @@ public class CadastroVoluntario extends javax.swing.JFrame {
             voluntario.setId(new VoluntarioDAO().saveOrUpdate(voluntario));
             credencial.setUsuario(voluntario);
             new CredencialDAO().SaveVoluntario(credencial, voluntario);
+            new VoluntarioDAO().adicionarLarTemporario(voluntario);
             JOptionPane.showMessageDialog(this, "Voluntario Cadastrado!");
             dispose();
         } catch (Exception ex) {
