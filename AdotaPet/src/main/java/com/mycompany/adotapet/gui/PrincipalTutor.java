@@ -107,6 +107,11 @@ public class PrincipalTutor extends javax.swing.JFrame {
 
         jmnRequerimentos.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jmnRequerimentos.setText("Meus Requerimentos");
+        jmnRequerimentos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmnRequerimentosMouseClicked(evt);
+            }
+        });
         jmnRequerimentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmnRequerimentosActionPerformed(evt);
@@ -157,6 +162,10 @@ public class PrincipalTutor extends javax.swing.JFrame {
     private void mnuAboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuAboutMouseClicked
         About.getInstance().setVisible(true);
     }//GEN-LAST:event_mnuAboutMouseClicked
+
+    private void jmnRequerimentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmnRequerimentosMouseClicked
+        MeuRequerimento.getInstance(tutorLogado).setVisible(true);
+    }//GEN-LAST:event_jmnRequerimentosMouseClicked
 
     /**
      * @param args the command line arguments
